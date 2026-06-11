@@ -9,6 +9,30 @@ export default function ComposeEmail() {
   const editorRef = useRef(null);
   const fileRef = useRef(null);
 
+function handleHeading(e) {
+  const val = e.target.value;
+  if (!val) return;
+
+  const editor = editorRef.current;
+  editor.focus(); // pehle focus do
+
+  // agar editor bilkul empty hai to ek empty node banao
+  if (!editor.innerText.trim()) {
+    const tempNode = document.createElement("br");
+    editor.appendChild(tempNode);
+
+    const range = document.createRange();
+    const sel = window.getSelection();
+    range.setStart(editor, 0);
+    range.collapse(true);
+    sel.removeAllRanges();
+    sel.addRange(range); // cursor set karo
+  }
+
+  document.execCommand("formatBlock", false, val === "p" ? "p" : val);
+  e.target.value = "";
+}
+
   function showToast(msg) {
     setToast(msg);
     setTimeout(() => setToast(""), 2800);
@@ -56,14 +80,14 @@ export default function ComposeEmail() {
     });
   }
 
-  function handleHeading(e) {
-    const val = e.target.value;
-    if (val) {
-      document.execCommand("formatBlock", false, val === "p" ? "p" : val);
-      editorRef.current?.focus();
-    }
-    e.target.value = "";
-  }
+  // function handleHeading(e) {
+  //   const val = e.target.value;
+  //   if (val) {
+  //     document.execCommand("formatBlock", false, val === "p" ? "p" : val);
+  //     editorRef.current?.focus();
+  //   }
+  //   e.target.value = "";
+  // }
 
   function handleFile(e) {
     setFileName(e.target.files[0]?.name || "No file chosen");
@@ -106,7 +130,7 @@ export default function ComposeEmail() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+    <div className="h-full flex items-center justify-center p-4">
       {/* Toast */}
       {toast && (
         <div className="fixed bottom-5 left-1/2 -translate-x-1/2 bg-gray-900 text-white text-sm px-5 py-2.5 rounded-lg z-50 shadow-lg transition-all">
@@ -114,7 +138,7 @@ export default function ComposeEmail() {
         </div>
       )}
 
-      <div className="w-full max-w-lg bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+      <div className="w-full h-full bg-white border border-gray-200 rounded overflow-hidden shadow-sm p-[1rem]">
         {/* To */}
         <div className="flex items-center border-b border-gray-200 rounded-[8px] overflow-hidden border border-[#80808059] my-2">
           <span className="text-sm text-gray-500 font-medium px-4 py-2.5 border-r border-gray-200 min-w-[64px] bg-[#F5F5F5] flex justify-center items-center">
@@ -141,12 +165,9 @@ export default function ComposeEmail() {
           />
         </div>
 
-<div>
+<div className="bg-[#F5F5F5] rounded">
 
-  
-</div>
 
-        {/* Toolbar Row 1 */}
         <div className="flex items-center gap-1 px-2 py-1.5 border-b border-gray-200 flex-wrap">
           <select
             className="text-sm text-gray-500 border-none outline-none bg-transparent cursor-pointer px-1 py-1 rounded hover:bg-gray-100"
@@ -187,6 +208,11 @@ export default function ComposeEmail() {
         </div>
 
         {/* Editor */}
+        <style>{`.rich-editor h1{font-size:1.5rem !important}
+.rich-editor h2{font-size:1.25rem !important}
+.rich-editor h3{font-size:1.125rem !important}
+.rich-editor p{font-size:0.875rem !important}
+.rich-editor blockquote{font-size:0.95rem !important}`}</style>
         <div
           ref={editorRef}
           contentEditable
@@ -194,7 +220,7 @@ export default function ComposeEmail() {
           onKeyUp={updateActive}
           onMouseUp={updateActive}
           data-placeholder="Write your message..."
-          className="min-h-40 px-4 py-3 text-sm text-gray-800 outline-none leading-relaxed empty:before:content-[attr(data-placeholder)] empty:before:text-gray-400"
+          className="rich-editor min-h-40 px-4 py-3 text-sm text-gray-800 outline-none leading-relaxed empty:before:content-[attr(data-placeholder)] empty:before:text-gray-400"
         />
 
         {/* Powered by */}
@@ -202,8 +228,9 @@ export default function ComposeEmail() {
           POWERED BY ✦ RichEditor
         </div>
 
+</div>
         {/* Footer */}
-        <div className="flex items-center justify-between px-4 py-3 border-t border-gray-200 gap-3">
+        <div className="flex items-center justify-between  py-3 border-t border-gray-200 gap-3">
           <div className="flex items-center gap-2">
             <label
               htmlFor="file-upload"
@@ -223,11 +250,13 @@ export default function ComposeEmail() {
 
           <button
             onClick={handleSend}
-            className="bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white text-sm font-medium px-5 py-2 rounded-lg transition-all"
+            className="bg-[#6A73FA] cursor-pointer hover:bg-indigo-700 active:scale-95 text-white text-sm font-medium px-5 py-2 rounded transition-all"
           >
             Send
           </button>
         </div>
+
+        {/* Toolbar Row 1 */}
       </div>
     </div>
   );

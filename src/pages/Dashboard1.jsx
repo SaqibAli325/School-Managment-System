@@ -5,6 +5,8 @@ import Card from '../components/Card.jsx'
 import Chart from '../components/ChartsDashboard.jsx'
 import CourseCard from '../components/CourseCard.jsx'
 import Editor from '../components/ComposeEmail.jsx'
+import Toppers from '../components/ExamToppers.jsx'
+import StudentList from '../components/StudentList.jsx'
 import { RiTeamLine ,RiUserLine,RiGraduationCapLine,RiMoneyDollarCircleLine} from '@remixicon/react'
 
 const Dashboard1 = () => {
@@ -100,8 +102,17 @@ const Dashboard1 = () => {
     })}
     </div>
 
-    {/* Editor */}
-    <Editor />
+<div className='flex gap-3  items-stretch mt-4'>
+    <div className='flex-1 h-[520px]'>
+      <Editor />
+    </div>
+
+    <div className='flex-1 h-[520px]'>
+      <Toppers />
+    </div>
+  </div>
+  {/* Student List */}
+  <StudentList />
       </div>
     </div>
   )
