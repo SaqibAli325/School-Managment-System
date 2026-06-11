@@ -9,7 +9,7 @@ import { RiArrowRightLongLine } from "@remixicon/react";
 
 const Header = () => {
   return (
-    <div className="absolute w-full h-[65px] bg-white flex items-center">
+    <div className="fixed top-0 left-0 w-full h-[65px] bg-white flex items-center z-[100] shadow-sm">
 
       <h1 className="uppercase text-[#6A73FA] flex gap-2 tracking-[4px] text-[1.8rem] font-black items-center pl-[0.3rem]"><RiGraduationCapFill className="w-[65px] h-[40px]"/> edumin</h1>
       <div><RiBarChartHorizontalLine className="text-gray-400 ml-8 font-bold"/></div>

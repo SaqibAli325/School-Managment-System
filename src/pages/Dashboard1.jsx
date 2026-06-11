@@ -2,25 +2,54 @@ import React from 'react'
 import Navbar from '../components/Navbar.jsx'
 import Sidebar from '../components/Sidebar.jsx'
 import Card from '../components/Card.jsx'
-import { Users, UserPlus, GraduationCap, DollarSign } from "lucide-react";
+import Chart from '../components/ChartsDashboard.jsx'
 import { RiTeamLine } from '@remixicon/react'
 
 const Dashboard1 = () => {
   const stats = [
-    { color: "blue",   icon: <Users size={24} />,          label: "Total Students",  value: "3280",    progress: 80, footer: "80% Increase in 20 Days" },
-    { color: "orange", icon: <UserPlus size={24} />,        label: "New Students",    value: "245",     progress: 50, footer: "50% Increase in 25 Days" },
-    { color: "purple", icon: <GraduationCap size={24} />,   label: "Total Course",    value: "28",      progress: 76, footer: "76% Increase in 20 Days" },
-    { color: "red",    icon: <DollarSign size={24} />,      label: "Fees Collection", value: "25160$",  progress: 30, footer: "30% Increase in 30 Days" },
-  ];
+    {
+      title: 'total students',
+      num: 3280,
+      percent: 80,
+      days: 20,
+      color : '#6A73FA'
+    },
+    {
+      title: 'new students',
+      num: 245,
+      percent: 50,
+      days: 25,
+      color : '#FFAA16'
+    },
+    {
+      title: 'total course',
+      num: 28,
+      percent: 76,
+      days: 20,
+      color : '#673BB7'
+    },
+    {
+      title: 'fees collection',
+      num: 25160,
+      percent: 30,
+      days: 30,
+      color : '#FB1515'
+    },
+  ]
   return (
     <div className='w-screen h-screen bg-[#F2F2F3]'>
       <Navbar/>
       <Sidebar />
-      <div className='absolute right-0 bottom-0 w-[calc(100vw-250px)] h-[calc(100vh-65px)] p-1rem'>
+      <div className='absolute right-0 bottom-0 w-[calc(100vw-250px)] h-[calc(100vh-65px)] p-4 overflow-y-auto'>
     {/* Cards */}
-    <div className="flex gap-4 flex-wrap p-4">
-      {stats.map((s, i) => <Card key={i} {...s} />)}
+    <div className='flex justify-between gap-3 px-5 pt-5'>
+      {stats.map((stat, index) => (
+        <Card key={index} title={stat.title} num={stat.num} percent={stat.percent} days={stat.days} color={stat.color} />
+      ))}
     </div>
+    
+    {/* Charts */}
+    <Chart />
       </div>
     </div>
   )

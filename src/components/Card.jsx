@@ -1,26 +1,27 @@
-// StatCard.jsx
-export default function StatCard({ color, icon, label, value, progress, footer }) {
+import { RiTeamLine } from '@remixicon/react'
+
+const Card = (props) => {
+  console.log(props);
+  
   return (
-    <div className={`bg-blue-500 rounded-xl p-5 text-white flex flex-col gap-3 flex-1 min-w-[160px]`}>
-      
-      {/* Icon LEFT — Text RIGHT */}
-      <div className="flex flex-row items-center gap-4">
-        <div className="w-14 h-14 min-w-[56px] rounded-full bg-white/25 flex items-center justify-center">
-          {icon}
-        </div>
-        <div className="flex flex-col">
-          <p className="text-[11px] font-semibold tracking-widest uppercase opacity-90 m-0">{label}</p>
-          <p className="text-3xl font-bold leading-tight m-0">{value}</p>
+    <div style={{ backgroundColor: props.color }} className="w-full flex justify-start items-center text-white gap-4 p-[1em] pr-8 rounded">
+      {/* Left */}
+      <div className='h-full w-[30%] flex justify-center items-center'>
+        <div className='p-[15px] rounded-full bg-gray-100'>
+          <RiTeamLine className='text-black'/>
         </div>
       </div>
-
-      {/* Progress Bar */}
-      <div className="bg-white/25 rounded-full h-1.5">
-        <div className="bg-white h-1.5 rounded-full" style={{ width: `${progress}%` }} />
+      {/* Right  */}
+      <div className='w-[calc(100% - 30%)]'>
+        <h3 className='uppercase text-[14px] font-semibold'>{props.title}</h3>
+        <h2 className='text-[22px] font-bold'>{props.num}</h2>
+        <div className='w-full h-[5px] bg-[#f5f5f580] rounded overflow-hidden my-2'>
+            <div style={{ width: `${props.percent}%` }} className="h-full bg-white"></div>
+        </div>
+        <p className='text-[12px]'>{props.percent}% Increase in 20 days</p>
       </div>
-
-      {/* Footer */}
-      <p className="text-[11px] opacity-85 m-0">{footer}</p>
     </div>
-  );
+  )
 }
+
+export default Card

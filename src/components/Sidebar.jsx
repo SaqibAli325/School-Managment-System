@@ -21,7 +21,7 @@ import {
 
 const Sidebar = () => {
   return (
-    <div className="absolute bottom-[0] left-0 w-[250px] h-[calc(100vh-65px)] bg-[#FAF9FB] overflow-y-auto">
+    <div className="fixed bottom-0 left-0 w-[250px] h-[calc(100vh-65px)] bg-[#FAF9FB] overflow-y-auto z-[90] border-r border-gray-200">
       <div>
         <div className="ml-[2rem] text-gray-500 pt-8 border-b border-gray-200 pb-2 mr-4">
           <small className="text-[70%] font-semibold">Main Menu</small>
