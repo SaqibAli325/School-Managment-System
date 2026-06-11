@@ -103,11 +103,11 @@ const Dashboard1 = () => {
     </div>
 
 <div className='flex gap-3  items-stretch mt-4'>
-    <div className='flex-1 h-[520px]'>
+    <div className='flex-1 h-130'>
       <Editor />
     </div>
 
-    <div className='flex-1 h-[520px]'>
+    <div className='flex-1 h-130'>
       <Toppers />
     </div>
   </div>

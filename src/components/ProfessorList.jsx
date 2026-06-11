@@ -21,7 +21,7 @@ const ProfessorList = () => {
             <img
               src={prof.img}
               alt={prof.name}
-              className="w-12 h-12 rounded-full object-cover flex-shrink-0"
+              className="w-12 h-12 rounded-full object-cover shrink-0"
             />
             <div>
               <p className="text-sm font-semibold text-gray-800">

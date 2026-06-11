@@ -21,9 +21,9 @@ import {
 
 const Sidebar = () => {
   return (
-    <div className="fixed bottom-0 left-0 w-[250px] h-[calc(100vh-65px)] bg-[#FAF9FB] overflow-y-auto z-[90] border-r border-gray-200">
+    <div className="fixed bottom-0 left-0 w-62.5 h-[calc(100vh-65px)] bg-[#FAF9FB] overflow-y-auto z-90 border-r border-gray-200">
       <div>
-        <div className="ml-[2rem] text-gray-500 pt-8 border-b border-gray-200 pb-2 mr-4">
+        <div className="ml-8 text-gray-500 pt-8 border-b border-gray-200 pb-2 mr-4">
           <small className="text-[70%] font-semibold">Main Menu</small>
         </div>
 
@@ -93,7 +93,7 @@ const Sidebar = () => {
           </div>
         </div>
 
-        <div className="ml-[2rem] text-gray-500 pt-3 pb-2 mr-4">
+        <div className="ml-8 text-gray-500 pt-3 pb-2 mr-4">
           <small className="text-[70%] font-semibold">Apps</small>
         </div>
 
@@ -109,7 +109,7 @@ const Sidebar = () => {
           <div className="group flex justify-between items-center w-[90%] mx-auto py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer">
               <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
                 <RiInboxLine size={20} />
-                <div className="flex items-center gap-[5px]">
+                <div className="flex items-center gap-1.25">
                   <span>CMS</span>
                   <div className="bg-red-500 text-white text-[10px] px-2 py-0.5 rounded-sm">New</div>
                 </div>
@@ -126,7 +126,7 @@ const Sidebar = () => {
           </div>
         </div>
 
-        <div className="ml-[2rem] text-gray-500 pt-3 pb-2 mr-4">
+        <div className="ml-8 text-gray-500 pt-3 pb-2 mr-4">
           <small className="text-[70%] font-semibold">COMPONENTS</small>
         </div>
 
@@ -154,7 +154,7 @@ const Sidebar = () => {
           </div>
         </div>
 
-        <div className="ml-[2rem] text-gray-500 pt-3 pb-2 mr-4">
+        <div className="ml-8 text-gray-500 pt-3 pb-2 mr-4">
           <small className="text-[70%] font-semibold">FORMS</small>
         </div>
         <div className="flex flex-col gap-1 mt-2 border-b border-gray-200 pb-5">
@@ -167,7 +167,7 @@ const Sidebar = () => {
           </div>
         </div>
 
-        <div className="ml-[2rem] text-gray-500 pt-3 pb-2 mr-4">
+        <div className="ml-8 text-gray-500 pt-3 pb-2 mr-4">
           <small className="text-[70%] font-semibold">TABLE</small>
         </div>
         <div className="flex flex-col gap-1 mt-2 border-b border-gray-200 pb-5">
@@ -180,7 +180,7 @@ const Sidebar = () => {
           </div>
         </div>
 
-        <div className="ml-[2rem] text-gray-500 pt-3 pb-2 mr-4">
+        <div className="ml-8 text-gray-500 pt-3 pb-2 mr-4">
           <small className="text-[70%] font-semibold">EXTRA</small>
         </div>
         <div className="flex flex-col gap-1 mt-2">
