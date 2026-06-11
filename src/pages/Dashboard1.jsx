@@ -12,7 +12,7 @@ import { RiTeamLine ,RiUserLine,RiGraduationCapLine,RiMoneyDollarCircleLine} fro
 const Dashboard1 = () => {
   const stats = [
     {
-      title: 'total students',
+      title: 'TOTAL STUDENTS',
       num: 3280,
       percent: 80,
       days: 20,
@@ -20,7 +20,7 @@ const Dashboard1 = () => {
       img : RiTeamLine
     },
     {
-      title: 'new students',
+      title: 'NEW STUDENTS',
       num: 245,
       percent: 50,
       days: 25,
@@ -28,7 +28,7 @@ const Dashboard1 = () => {
       img : RiUserLine
     },
     {
-      title: 'total course',
+      title: 'TOTAL COURSE',
       num: 28,
       percent: 76,
       days: 20,
@@ -36,7 +36,7 @@ const Dashboard1 = () => {
       img : RiGraduationCapLine
     },
     {
-      title: 'fees collection',
+      title: 'FEES COLLECTION',
       num: 25160,
       percent: 30,
       days: 30,
@@ -86,8 +86,8 @@ const Dashboard1 = () => {
           percent={stat.percent} 
           days={stat.days} 
           color={stat.color} 
-          // Icon component pass kar rahe hain
           img={stat.img} 
+          textColor={'white'}
         />
       ))}
     </div>

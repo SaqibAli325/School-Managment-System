@@ -7,7 +7,7 @@ export default function ChartsDashboard() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-7xl">
         
         {/* 1. University Survey (Bar Chart) - TAKES 2 COLUMNS (Wider) */}
-        <div className="bg-white rounded-xl shadow-md border border-gray-100 overflow-hidden flex flex-col h-[450px] md:col-span-2 lg:col-span-2">
+        <div className="bg-white rounded-xl shadow-md border border-gray-100 overflow-hidden flex flex-col h-112.5 md:col-span-2 lg:col-span-2">
           <div className="p-5 border-b border-gray-100">
             <h2 className="text-xl font-semibold text-gray-800">University Survey</h2>
           </div>
@@ -45,7 +45,7 @@ export default function ChartsDashboard() {
         </div>
 
         {/* 2. Donught Chart - TAKES 1 COLUMN */}
-        <div className="bg-white rounded-xl shadow-md border border-gray-100 overflow-hidden flex flex-col h-[450px] lg:col-span-1">
+        <div className="bg-white rounded-xl shadow-md border border-gray-100 overflow-hidden flex flex-col h-112.5 lg:col-span-1">
           <div className="p-5 border-b border-gray-100">
             <h2 className="text-xl font-semibold text-gray-800">Donught Chart</h2>
           </div>
@@ -65,7 +65,7 @@ export default function ChartsDashboard() {
         </div>
 
         {/* 3. University Survey (Area Chart) - TAKES 1 COLUMN */}
-        <div className="bg-white rounded-xl shadow-md border border-gray-100 overflow-hidden flex flex-col h-[450px] relative lg:col-span-1">
+        <div className="bg-white rounded-xl shadow-md border border-gray-100 overflow-hidden flex flex-col h-112.5 relative lg:col-span-1">
           <div className="p-5 border-b border-gray-100">
             <h2 className="text-xl font-semibold text-gray-800">University Survey</h2>
           </div>

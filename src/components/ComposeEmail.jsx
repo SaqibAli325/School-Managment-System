@@ -138,10 +138,10 @@ function handleHeading(e) {
         </div>
       )}
 
-      <div className="w-full h-full bg-white border border-gray-200 rounded overflow-hidden shadow-sm p-[1rem]">
+      <div className="w-full h-full bg-white border border-gray-200 rounded overflow-hidden shadow-sm p-4">
         {/* To */}
-        <div className="flex items-center border-b border-gray-200 rounded-[8px] overflow-hidden border border-[#80808059] my-2">
-          <span className="text-sm text-gray-500 font-medium px-4 py-2.5 border-r border-gray-200 min-w-[64px] bg-[#F5F5F5] flex justify-center items-center">
+        <div className="flex items-center border-b border-gray-200 rounded-lg overflow-hidden border my-2">
+          <span className="text-sm text-gray-500 font-medium px-4 py-2.5 border-r border-gray-200 min-w-16 bg-[#F5F5F5] flex justify-center items-center">
             To
           </span>
           <input
@@ -153,8 +153,8 @@ function handleHeading(e) {
         </div>
 
         {/* Subject */}
-        <div className="flex items-center border-b border-gray-200 rounded-[8px] overflow-hidden border border-[#80808059] my-2">
-          <span className="text-sm text-gray-500 font-medium px-4 py-2.5 border-r border-gray-200 min-w-[64px] bg-[#F5F5F5] flex justify-center items-center">
+        <div className="flex items-center border-b border-gray-200 rounded-lg overflow-hidden border my-2">
+          <span className="text-sm text-gray-500 font-medium px-4 py-2.5 border-r border-gray-200 min-w-16 bg-[#F5F5F5] flex justify-center items-center">
             Subject
           </span>
           <input
@@ -245,7 +245,7 @@ function handleHeading(e) {
               ref={fileRef}
               onChange={handleFile}
             />
-            <span className="text-xs text-gray-400 max-w-[130px] truncate">{fileName}</span>
+            <span className="text-xs text-gray-400 max-w-32.5 truncate">{fileName}</span>
           </div>
 
           <button

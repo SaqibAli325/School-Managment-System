@@ -1,10 +1,10 @@
 
-import Dashboard1 from './pages/Dashboard1.jsx'
+import Dashboard2 from './pages/Dashboard2.jsx'
 
 const App = () => {
   return (
     <div>
-      <Dashboard1 />
+      <Dashboard2 />
     </div>
   )
 }
