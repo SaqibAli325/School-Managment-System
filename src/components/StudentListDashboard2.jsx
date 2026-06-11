@@ -28,7 +28,7 @@ const StudentListDashboard2 = () => {
   };
 
   return (
-    <div className="bg-white rounded shadow-sm p-6 w-full flex flex-col gap-4">
+    <div className="bg-white rounded shadow-sm p-6 w-full flex flex-col gap-4 h-full">
       <h2 className="text-lg font-semibold text-gray-800">Student List</h2>
 
       <table className="w-full text-sm">

@@ -6,7 +6,7 @@ const data = [
   { v: 40 }, { v: 65 }, { v: 75 }, { v: 50 }, { v: 95 },
 ];
 
-const medals = [
+export const medals = [
   {
     title: "Gold Medal",
     color: "#A2BAD3",
@@ -36,9 +36,9 @@ const medals = [
   },
 ];
 
-const MedalStatsCard = ({ title, color, stroke, overall, monthly, day, badge }) => {
+export const MedalStatsCard = ({ title, color, stroke, overall, monthly, day, badge }) => {
   return (
-    <div className="mt-5 bg-white rounded shadow-sm overflow-hidden flex flex-col w-[320px]">
+    <div className="bg-white rounded shadow-sm overflow-hidden flex flex-col w-auto h-full">
       <div className="px-5 pt-5 pb-3 flex items-center gap-3">
         <h3 className="text-lg font-semibold text-gray-800">{title}</h3>
         <span className="text-green-500 text-xs font-medium flex items-center gap-0.5">

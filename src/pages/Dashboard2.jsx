@@ -4,16 +4,10 @@ import Card from "../components/Card"
 import IncomeChart from "../components/IncomeExpenseChart"
 import ProfessorList from "../components/ProfessorList"
 import StudentList from "../components/StudentListDashboard2"
-import Medal from "../components/MedalStatsSection"
+import { MedalStatsCard, medals } from "../components/MedalStatsSection"
 import SalaryStatus from "../components/SalaryStatus"
 
 const Dashboard2 = () => {
-    const titleStyle = {
-        size : '1rem',
-        paddingTop: "1rem",
-        fontWeight: 600,
-    }
-
     const stats = [
         {
             title: 'Total Students',
@@ -69,18 +63,6 @@ const Dashboard2 = () => {
         },
     ]
 
-    const medals = [
-  {
-    title: "Gold Medal",
-    color: "#a8c4e0",   // area fill color
-    stroke: "#7aafd4",  // line color
-    overall: "82.24%",
-    monthly: "12.24 %",
-    day: "42.24%",
-    badge: "20% High then last mont",
-  },
-  // ...
-];
   return (
     <div className="w-screen h-screen bg-[#F2F2F3]">
       <Sidebar />
@@ -90,7 +72,7 @@ const Dashboard2 = () => {
         {/* Top */}
         <div className="flex justify-between gap-8">
             {/* Left */}
-            <div className="grid grid-cols-2 gap-[2rem] w-[50%]">
+            <div className="grid grid-cols-2 gap-8 w-[50%]">
                 {stats.map((stat, index) => (
                     <Card
                         key={index}
@@ -110,12 +92,30 @@ const Dashboard2 = () => {
     <IncomeChart />
 </div>
       </div>
-<div className="flex justify-between gap-8 mt-10">
-<ProfessorList />
-<StudentList/>
-</div>
 
-<Medal />
+        {/* Middle Section: Lists (same height) and Medals underneath */}
+        <div className="flex flex-col gap-0 mt-10">
+            {/* First Row: Lists */}
+            <div className="flex justify-between gap-6 items-stretch">
+                <div className="w-full max-w-xs">
+                    <ProfessorList />
+                </div>
+                <div className="flex-1">
+                    <StudentList />
+                </div>
+            </div>
+
+            {/* Second Row: Medals aligned with columns above */}
+            <div className="flex justify-between gap-6 items-stretch mt-5">
+                <div className="w-full max-w-xs">
+                    <MedalStatsCard {...medals[0]} />
+                </div>
+                <div className="flex-1 grid grid-cols-2 gap-6">
+                    <MedalStatsCard {...medals[1]} />
+                    <MedalStatsCard {...medals[2]} />
+                </div>
+            </div>
+        </div>
 
 <SalaryStatus />
                 <footer className="text-center pt-[4em] pb-[0.5em] text-sm text-gray-500">
