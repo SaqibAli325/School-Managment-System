@@ -3,7 +3,9 @@ import Navbar from '../components/Navbar.jsx'
 import Sidebar from '../components/Sidebar.jsx'
 import Card from '../components/Card.jsx'
 import Chart from '../components/ChartsDashboard.jsx'
-import { RiTeamLine } from '@remixicon/react'
+import CourseCard from '../components/CourseCard.jsx'
+import Editor from '../components/ComposeEmail.jsx'
+import { RiTeamLine ,RiUserLine,RiGraduationCapLine,RiMoneyDollarCircleLine} from '@remixicon/react'
 
 const Dashboard1 = () => {
   const stats = [
@@ -12,28 +14,59 @@ const Dashboard1 = () => {
       num: 3280,
       percent: 80,
       days: 20,
-      color : '#6A73FA'
+      color : '#6A73FA',
+      img : RiTeamLine
     },
     {
       title: 'new students',
       num: 245,
       percent: 50,
       days: 25,
-      color : '#FFAA16'
+      color : '#FFAA16',
+      img : RiUserLine
     },
     {
       title: 'total course',
       num: 28,
       percent: 76,
       days: 20,
-      color : '#673BB7'
+      color : '#673BB7',
+      img : RiGraduationCapLine
     },
     {
       title: 'fees collection',
       num: 25160,
       percent: 30,
       days: 30,
-      color : '#FB1515'
+      color : '#FB1515',
+      img : RiMoneyDollarCircleLine
+    },
+  ];
+
+  const courses = [
+    {
+      title: "When Is the Best Time to Take an Education Course?",
+      likes: 230,
+      professor: 'Jack Ronan',
+      img: 'https://edumin.dexignlab.com/xhtml/images/courses/pic1.jpg'
+    },
+    {
+      title: "Education Courses: A Guide to Unlocking Your Potential",
+      likes: 450,
+      professor: 'Jimmy Morris',
+      img: 'https://edumin.dexignlab.com/xhtml/images/courses/pic2.jpg'
+    },
+    {
+      title: "A Comprehensive Guide to Taking an Education Course",
+      likes: 120,
+      professor: 'Konne Backfield',
+      img: 'https://edumin.dexignlab.com/xhtml/images/courses/pic3.jpg'
+    },
+    {
+      title: "Why Should You Consider Taking an Education Course?",
+      likes: 275,
+      professor: 'Nashid Martines',
+      img: 'https://edumin.dexignlab.com/xhtml/images/courses/pic4.jpg'
     },
   ]
   return (
@@ -44,12 +77,31 @@ const Dashboard1 = () => {
     {/* Cards */}
     <div className='flex justify-between gap-3 px-5 pt-5'>
       {stats.map((stat, index) => (
-        <Card key={index} title={stat.title} num={stat.num} percent={stat.percent} days={stat.days} color={stat.color} />
+        <Card 
+          key={index} 
+          title={stat.title} 
+          num={stat.num} 
+          percent={stat.percent} 
+          days={stat.days} 
+          color={stat.color} 
+          // Icon component pass kar rahe hain
+          img={stat.img} 
+        />
       ))}
     </div>
     
     {/* Charts */}
     <Chart />
+    
+    {/* Course Card */}
+    <div className='flex'>
+    {courses.map((course, index) => {
+      return <CourseCard key={index} title={course.title} likes={course.likes} professor={course.professor} img={course.img} />
+    })}
+    </div>
+
+    {/* Editor */}
+    <Editor />
       </div>
     </div>
   )
