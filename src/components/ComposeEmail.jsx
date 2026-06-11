@@ -116,8 +116,8 @@ export default function ComposeEmail() {
 
       <div className="w-full max-w-lg bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
         {/* To */}
-        <div className="flex items-center border-b border-gray-200">
-          <span className="text-sm text-gray-500 font-medium px-4 py-2.5 border-r border-gray-200 min-w-[64px]">
+        <div className="flex items-center border-b border-gray-200 rounded-[8px] overflow-hidden border border-[#80808059] my-2">
+          <span className="text-sm text-gray-500 font-medium px-4 py-2.5 border-r border-gray-200 min-w-[64px] bg-[#F5F5F5] flex justify-center items-center">
             To
           </span>
           <input
@@ -129,8 +129,8 @@ export default function ComposeEmail() {
         </div>
 
         {/* Subject */}
-        <div className="flex items-center border-b border-gray-200">
-          <span className="text-sm text-gray-500 font-medium px-4 py-2.5 border-r border-gray-200 min-w-[64px]">
+        <div className="flex items-center border-b border-gray-200 rounded-[8px] overflow-hidden border border-[#80808059] my-2">
+          <span className="text-sm text-gray-500 font-medium px-4 py-2.5 border-r border-gray-200 min-w-[64px] bg-[#F5F5F5] flex justify-center items-center">
             Subject
           </span>
           <input
@@ -140,6 +140,11 @@ export default function ComposeEmail() {
             onChange={(e) => setSubject(e.target.value)}
           />
         </div>
+
+<div>
+
+  
+</div>
 
         {/* Toolbar Row 1 */}
         <div className="flex items-center gap-1 px-2 py-1.5 border-b border-gray-200 flex-wrap">
