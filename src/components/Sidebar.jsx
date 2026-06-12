@@ -23,21 +23,43 @@ import { Link, Links } from "react-router-dom";
 
 const Sidebar = () => {
   const [dashboardSections,setdashboardSections] = useState(false);
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(localStorage.getItem('sidebarCollapsed') === 'true');
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   useEffect(() => {
     const handleResize = () => {
-      setCollapsed(window.innerWidth <= 1100);
+      setWindowWidth(window.innerWidth);
     };
-    handleResize();
     window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    
+    const handleToggle = (e) => {
+      setCollapsed(e.detail.collapsed);
+    };
+    window.addEventListener("sidebarToggle", handleToggle);
+    
+    const handleMobileToggle = (e) => {
+      setMobileMenuOpen(e.detail.isOpen);
+    };
+    window.addEventListener("mobileSidebarToggle", handleMobileToggle);
+    
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("sidebarToggle", handleToggle);
+      window.removeEventListener("mobileSidebarToggle", handleMobileToggle);
+    };
   }, []);
+  
+  const isMobileView = windowWidth < 1100;
+  const shouldHide = isMobileView && !mobileMenuOpen;
+  // On mobile, always show full text; on desktop, use collapsed state
+  const displayCollapsed = isMobileView ? false : collapsed;
+  
   return (
-    <div className={`fixed top-0 left-0 h-screen bg-[#FAF9FB] overflow-y-auto overflow-x-hidden z-90 border-r border-gray-200 transition-width duration-200 ${collapsed ? 'w-14' : 'w-62.5'} max-[860px]:hidden`}>
+    <div className={`fixed top-0 left-0 h-screen bg-[#FAF9FB] overflow-y-auto overflow-x-hidden z-90 border-r border-gray-200 transition-all duration-200 ${isMobileView ? 'w-62.5' : (displayCollapsed ? 'w-14' : 'w-62.5')} ${shouldHide ? 'hidden' : ''}`}>
       <div>
-        <div className={`pt-8 border-b border-gray-200 pb-2 mr-4 ${collapsed ? 'hidden' : 'ml-8 text-gray-500'}`}>
-          {!collapsed && <small className="text-[70%] font-semibold">Main Menu</small>}
+        <div className={`pt-8 border-b border-gray-200 pb-2 mr-4 ${displayCollapsed ? 'hidden' : 'ml-8 text-gray-500'}`}>
+          {!displayCollapsed && <small className="text-[70%] font-semibold">Main Menu</small>}
         </div>
 
         <div className="flex flex-col gap-1 mt-2 border-b border-gray-200 pb-5">

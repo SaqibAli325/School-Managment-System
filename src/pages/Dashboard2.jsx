@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react'
 import Sidebar from "../components/Sidebar"
 import Navbar from "../components/Navbar"
 import Card from "../components/Card"
@@ -63,16 +64,41 @@ const Dashboard2 = () => {
         },
     ]
 
-  return (
-    <div className="w-screen h-screen bg-[#F2F2F3]">
+    const [sidebarCollapsed, setSidebarCollapsed] = useState(localStorage.getItem('sidebarCollapsed') === 'true');
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+    useEffect(() => {
+        const handleResize = () => setWindowWidth(window.innerWidth);
+        window.addEventListener('resize', handleResize);
+        
+        const handleToggle = (e) => {
+            setSidebarCollapsed(e.detail.collapsed);
+        };
+        window.addEventListener('sidebarToggle', handleToggle);
+
+        const handleMobileToggle = (e) => {
+            setMobileMenuOpen(e.detail.isOpen);
+        };
+        window.addEventListener('mobileSidebarToggle', handleMobileToggle);
+        
+        return () => {
+            window.removeEventListener('resize', handleResize);
+            window.removeEventListener('sidebarToggle', handleToggle);
+            window.removeEventListener('mobileSidebarToggle', handleMobileToggle);
+        };
+    }, []);
+
+    return (
+        <div className="w-screen h-screen bg-[#F2F2F3]">
       <Sidebar />
       <Navbar />
 
-      <div className="absolute right-0 bottom-0 w-[calc(100vw-250px)] h-[calc(100vh-65px)] p-4 overflow-y-auto">
+    <div className={`absolute right-0 bottom-0 ${windowWidth < 1100 ? (mobileMenuOpen ? 'w-[calc(100vw-250px)]' : 'w-screen') : (sidebarCollapsed ? 'w-[calc(100vw-56px)]' : 'w-[calc(100vw-250px)]')} h-[calc(100vh-56px)] p-4 overflow-y-auto overflow-x-hidden`}>
         {/* Top */}
-        <div className="flex justify-between gap-8">
+        <div className="flex justify-between gap-8 max-[950px]:flex-col">
             {/* Left */}
-            <div className="grid grid-cols-2 gap-8 w-[50%]">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 w-[50%] max-[950px]:w-full">
                 {stats.map((stat, index) => (
                     <Card
                         key={index}
@@ -88,29 +114,27 @@ const Dashboard2 = () => {
 
                 </div>
 {/* Right */}
-<div className="w-[50%]">
+<div className="w-[50%] max-[950px]:w-full">
     <IncomeChart />
 </div>
       </div>
 
-        {/* Middle Section: Lists (same height) and Medals underneath */}
         <div className="flex flex-col gap-0 mt-10">
             {/* First Row: Lists */}
-            <div className="flex justify-between gap-6 items-stretch">
-                <div className="w-full max-w-xs">
+            <div className="flex justify-between gap-6 items-stretch max-[1200px]:flex-col">
+                <div className="w-[30%] max-[1200px]:w-full">
                     <ProfessorList />
                 </div>
-                <div className="flex-1">
+                <div className="w-[70%] max-[1200px]:w-full">
                     <StudentList />
                 </div>
             </div>
 
-            {/* Second Row: Medals aligned with columns above */}
-            <div className="flex justify-between gap-6 items-stretch mt-5">
-                <div className="w-full max-w-xs">
+            <div className="flex flex-col md:flex-row justify-between gap-6 items-stretch mt-5">
+                <div className="w-full md:w-auto md:min-w-xs">
                     <MedalStatsCard {...medals[0]} />
                 </div>
-                <div className="flex-1 grid grid-cols-2 gap-6">
+                <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <MedalStatsCard {...medals[1]} />
                     <MedalStatsCard {...medals[2]} />
                 </div>

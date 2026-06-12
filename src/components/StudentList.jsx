@@ -50,15 +50,15 @@ export default function StudentList() {
   const inputCls = "border border-gray-300 rounded px-2 py-1 text-sm w-full focus:outline-none focus:border-indigo-400";
 
   return (
-    <div className="bg-gray-100 flex items-center justify-center p-5 ">
-      <div className="w-full bg-white rounded shadow-sm overflow-hidden pb-2">
+    <div className="bg-gray-100 flex items-center justify-center p-5">
+      <div className="w-full bg-white rounded shadow-sm overflow-x-auto pb-2">
         {/* Header */}
-        <div className="px-6 py-5 border-b border-gray-100">
+        <div className="px-6 py-5 border-b border-gray-100 min-w-max">
           <h2 className="text-lg font-semibold text-gray-800">New Student List</h2>
         </div>
 
         {/* Table */}
-        <div className="overflow-x-auto">
+        <div className="w-full">
           <table className="w-full table-auto border-collapse">
             <thead>
               <tr className="border-b border-gray-100">

@@ -27,13 +27,14 @@ const notifications = [
 export default function AssignTaskPage() {
   return (
     <div className="bg-gray-100 p-6 font-sans">
-      <div className="flex gap-5">
+      <div className="flex flex-col lg:flex-row gap-5">
 
         {/* Assign Task Table */}
         <div className="flex-1 bg-white border border-gray-200 rounded p-6">
           <h2 className="text-lg font-semibold text-gray-800 mb-6 border-b border-[gainsboro] pb-5">Assign Task</h2>
 
-          <table className="w-full text-sm">
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-gray-100">
                 <th className="text-left font-medium pb-3 w-12">S.No.</th>
@@ -68,11 +69,12 @@ export default function AssignTaskPage() {
                 </tr>
               ))}
             </tbody>
-          </table>
+            </table>
+          </div>
         </div>
 
         {/* Notifications */}
-        <div className="w-72 bg-white border border-gray-200 rounded p-6 flex flex-col h-112.5">
+        <div className="w-full lg:w-72 bg-white border border-gray-200 rounded p-6 flex flex-col h-auto lg:h-112.5 mt-4 lg:mt-0">
           <h2 className="text-lg font-semibold text-gray-800 mb-5 border-b border-[gainsboro] pb-5">Notifications</h2>
 
           <div className="flex flex-col gap-4 overflow-y-auto pr-2">

@@ -31,7 +31,8 @@ const StudentListDashboard2 = () => {
     <div className="bg-white rounded shadow-sm p-6 w-full flex flex-col gap-4 h-full">
       <h2 className="text-lg font-semibold text-gray-800">Student List</h2>
 
-      <table className="w-full text-sm">
+      <div className="overflow-x-auto">
+        <table className="w-full text-sm">
         <thead>
           <tr className="text-gray-500 text-left">
             <th className="pb-4 w-8">
@@ -81,7 +82,8 @@ const StudentListDashboard2 = () => {
             </tr>
           ))}
         </tbody>
-      </table>
+        </table>
+      </div>
     </div>
   );
 };

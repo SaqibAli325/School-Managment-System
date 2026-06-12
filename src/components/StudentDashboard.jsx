@@ -184,7 +184,7 @@ export default function StudentDashboard() {
     <div className=" bg-gray-100 p-6 font-sans">
 
       {/* Stat Cards */}
-      <div className="grid grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         <StatCard title="Total Students" value="422" bg="bg-[#6A73FA]">
           <PieChart />
         </StatCard>
@@ -203,7 +203,7 @@ export default function StudentDashboard() {
       </div>
 
       {/* Charts */}
-      <div className="grid grid-cols-2 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         <ChartCard title="Income/Expense Report">
           <BarChart />
         </ChartCard>

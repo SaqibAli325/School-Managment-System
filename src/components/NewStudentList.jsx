@@ -45,7 +45,8 @@ export default function NewStudentList() {
 
         <h2 className="text-lg font-semibold text-gray-800 mb-6">New Student List</h2>
 
-        <table className="w-full text-sm border-separate border-spacing-0">
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm border-separate border-spacing-0">
           <thead>
             <tr className="border-b border-gray-200 text-gray-500">
               <th className="text-left font-medium pb-4 pl-4">Student Name</th>
@@ -117,7 +118,8 @@ export default function NewStudentList() {
               </tr>
             ))}
           </tbody>
-        </table>
+          </table>
+        </div>
 
       </div>
     </div>

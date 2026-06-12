@@ -71,13 +71,29 @@ const Dashboard1 = () => {
       img: 'https://edumin.dexignlab.com/xhtml/images/courses/pic4.jpg'
     },
   ]
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(localStorage.getItem('sidebarCollapsed') === 'true');
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   useEffect(() => {
-    const handleResize = () => setSidebarCollapsed(window.innerWidth <= 1100);
-    handleResize();
+    const handleResize = () => setWindowWidth(window.innerWidth);
     window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    
+    const handleToggle = (e) => {
+      setSidebarCollapsed(e.detail.collapsed);
+    };
+    window.addEventListener('sidebarToggle', handleToggle);
+
+    const handleMobileToggle = (e) => {
+      setMobileMenuOpen(e.detail.isOpen);
+    };
+    window.addEventListener('mobileSidebarToggle', handleMobileToggle);
+    
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('sidebarToggle', handleToggle);
+      window.removeEventListener('mobileSidebarToggle', handleMobileToggle);
+    };
   }, []);
 
   return (
@@ -86,7 +102,7 @@ const Dashboard1 = () => {
       <Sidebar/>
       {/* Main Div */}
       {/** Use explicit classes so Tailwind generates both variants */}
-      <div className={`absolute right-0 bottom-0 ${sidebarCollapsed ? 'w-[calc(100vw-56px)]' : 'w-[calc(100vw-260px)]'} h-[calc(100vh-56px)] p-4 overflow-y-auto overflow-x-hidden max-[860px]:w-screen`}>
+      <div className={`absolute right-0 bottom-0 ${windowWidth < 1100 ? (mobileMenuOpen ? 'w-[calc(100vw-250px)]' : 'w-screen') : (sidebarCollapsed ? 'w-[calc(100vw-56px)]' : 'w-[calc(100vw-250px)]')} h-[calc(100vh-56px)] p-4 overflow-y-auto overflow-x-hidden`}>
     {/* Cards */}
     <div className='flex justify-between gap-6  pt-5 max-[1010px]:flex-col'>
       {stats.map((stat, index) => (
