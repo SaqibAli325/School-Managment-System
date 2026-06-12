@@ -51,7 +51,7 @@ export default function StudentList() {
 
   return (
     <div className="bg-gray-100 flex items-center justify-center p-5 ">
-      <div className="w-full max-w-5xl bg-white rounded shadow-sm overflow-hidden pb-2">
+      <div className="w-full bg-white rounded shadow-sm overflow-hidden pb-2">
         {/* Header */}
         <div className="px-6 py-5 border-b border-gray-100">
           <h2 className="text-lg font-semibold text-gray-800">New Student List</h2>

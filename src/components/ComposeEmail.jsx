@@ -16,7 +16,6 @@ function handleHeading(e) {
   const editor = editorRef.current;
   editor.focus(); // pehle focus do
 
-  // agar editor bilkul empty hai to ek empty node banao
   if (!editor.innerText.trim()) {
     const tempNode = document.createElement("br");
     editor.appendChild(tempNode);
@@ -80,15 +79,6 @@ function handleHeading(e) {
     });
   }
 
-  // function handleHeading(e) {
-  //   const val = e.target.value;
-  //   if (val) {
-  //     document.execCommand("formatBlock", false, val === "p" ? "p" : val);
-  //     editorRef.current?.focus();
-  //   }
-  //   e.target.value = "";
-  // }
-
   function handleFile(e) {
     setFileName(e.target.files[0]?.name || "No file chosen");
   }
@@ -138,7 +128,7 @@ function handleHeading(e) {
         </div>
       )}
 
-      <div className="w-full h-full bg-white border border-gray-200 rounded overflow-hidden shadow-sm p-4">
+      <div className="w-full h-full bg-white border border-gray-200 rounded overflow-hidden shadow-sm p-4 ">
         {/* To */}
         <div className="flex items-center border-b border-gray-200 rounded-lg overflow-hidden border my-2">
           <span className="text-sm text-gray-500 font-medium px-4 py-2.5 border-r border-gray-200 min-w-16 bg-[#F5F5F5] flex justify-center items-center">
@@ -230,7 +220,7 @@ function handleHeading(e) {
 
 </div>
         {/* Footer */}
-        <div className="flex items-center justify-between  py-3 border-t border-gray-200 gap-3">
+        <div className="flex items-center justify-between  py-3 border-t border-gray-200 gap-3 max-[400px]:flex-col">
           <div className="flex items-center gap-2">
             <label
               htmlFor="file-upload"

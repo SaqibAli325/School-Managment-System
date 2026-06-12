@@ -49,12 +49,12 @@ export default function ExamToppers() {
 
   return (
     <div className="h-full flex items-center justify-center p-4">
-      <div className="w-full h-full bg-white border border-gray-200 rounded overflow-hidden shadow">
+      <div className="w-full h-full bg-white border border-gray-200 rounded overflow-auto shadow">
         <div className="px-5 py-4 border-b border-gray-200">
           <h2 className="text-base font-medium text-gray-800">Exam Toppers</h2>
         </div>
 
-        <table className="w-full table-fixed border-separate border-spacing-y-2">
+        <table className=" table-fixed border-separate border-spacing-y-2">
           <thead>
             <tr className="border-b border-gray-200">
               <th className="w-20 text-left text-xs font-medium text-gray-400 px-4 py-2.5">Roll No.</th>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Navbar from '../components/Navbar.jsx'
 import Sidebar from '../components/Sidebar.jsx'
 import Card from '../components/Card.jsx'
@@ -71,13 +71,24 @@ const Dashboard1 = () => {
       img: 'https://edumin.dexignlab.com/xhtml/images/courses/pic4.jpg'
     },
   ]
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => setSidebarCollapsed(window.innerWidth <= 1100);
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <div className='w-screen h-screen bg-[#F2F2F3]'>
       <Navbar/>
-      <Sidebar />
-      <div className='absolute right-0 bottom-0 w-[calc(100vw-250px)] h-[calc(100vh-65px)] p-4 overflow-y-auto'>
+      <Sidebar/>
+      {/* Main Div */}
+      {/** Use explicit classes so Tailwind generates both variants */}
+      <div className={`absolute right-0 bottom-0 ${sidebarCollapsed ? 'w-[calc(100vw-56px)]' : 'w-[calc(100vw-260px)]'} h-[calc(100vh-56px)] p-4 overflow-y-auto overflow-x-hidden max-[860px]:w-screen`}>
     {/* Cards */}
-    <div className='flex justify-between gap-3 px-5 pt-5'>
+    <div className='flex justify-between gap-6  pt-5 max-[1010px]:flex-col'>
       {stats.map((stat, index) => (
         <Card 
           key={index} 
@@ -96,13 +107,13 @@ const Dashboard1 = () => {
     <Chart />
     
     {/* Course Card */}
-    <div className='flex'>
+    <div className='flex max-[1010px]:flex-col'>
     {courses.map((course, index) => {
       return <CourseCard key={index} title={course.title} likes={course.likes} professor={course.professor} img={course.img} />
     })}
     </div>
 
-<div className='flex gap-3  items-stretch mt-4'>
+<div className='flex gap-3  items-stretch mt-4 max-[860px]:flex-col'>
     <div className='flex-1 h-130'>
       <Editor />
     </div>
@@ -113,9 +124,11 @@ const Dashboard1 = () => {
   </div>
   {/* Student List */}
   <StudentList />
+      <footer className="text-center pt-[4em] pb-[0.5em] text-sm text-gray-500">
+                    <p>Copyright © Designed & Developed by <a className="text-[#6a73fa] cursor-pointer">DexignLab</a> 2023</p>
+                </footer>
       </div>
     </div>
   )
 }
-
 export default Dashboard1

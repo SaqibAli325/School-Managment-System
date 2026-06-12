@@ -18,183 +18,222 @@ import {
   RiMoneyDollarCircleLine,
   RiHeartFill 
 } from "@remixicon/react";
+import { useState, useEffect } from "react";
+import { Link, Links } from "react-router-dom";
 
 const Sidebar = () => {
+  const [dashboardSections,setdashboardSections] = useState(false);
+  const [collapsed, setCollapsed] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setCollapsed(window.innerWidth <= 1100);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
   return (
-    <div className="fixed bottom-0 left-0 w-62.5 h-[calc(100vh-65px)] bg-[#FAF9FB] overflow-y-auto z-90 border-r border-gray-200">
+    <div className={`fixed top-0 left-0 h-screen bg-[#FAF9FB] overflow-y-auto overflow-x-hidden z-90 border-r border-gray-200 transition-width duration-200 ${collapsed ? 'w-14' : 'w-62.5'} max-[860px]:hidden`}>
       <div>
-        <div className="ml-8 text-gray-500 pt-8 border-b border-gray-200 pb-2 mr-4">
-          <small className="text-[70%] font-semibold">Main Menu</small>
+        <div className={`pt-8 border-b border-gray-200 pb-2 mr-4 ${collapsed ? 'hidden' : 'ml-8 text-gray-500'}`}>
+          {!collapsed && <small className="text-[70%] font-semibold">Main Menu</small>}
         </div>
 
         <div className="flex flex-col gap-1 mt-2 border-b border-gray-200 pb-5">
-          <div className="group flex justify-between items-center w-[90%] mx-auto py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer">
-              <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
-                <RiHome4Line size={20} />
-                <span>Dashboard</span>
-              </div>
-              <RiPlayMiniFill size={16} />
-          </div>
+          {/* Reusable Accordion Section */}
+          <div className="w-full">
+            <div 
+              onClick={() => setdashboardSections(!dashboardSections)}
+              className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}
+            >
+                <div className={`${dashboardSections ? "text-[#6A73FA]":""} flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]`}>
+                  <RiHome4Line size={20} />
+                  {!collapsed && <h2 className="text-[12px]">Dashboard</h2>}
+                </div>
+                {!collapsed && (
+                  <RiPlayMiniFill 
+                    size={16} 
+                    className={`transition-transform duration-300 ${dashboardSections ? "rotate-90 text-[#6A73FA]" : ""}`}
+                  />
+                )}
+            </div>
 
-          <div className="group flex justify-between items-center w-[90%] mx-auto py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer">
-              <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
-                <RiCalendar2Line size={20} />
-                <span>Event Management</span>
-              </div>
-              <RiPlayMiniFill size={16} />
-          </div>
-
-          <div className="group flex justify-between items-center w-[90%] mx-auto py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer">
-              <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
-                <RiUserLine size={20} />
-                <span>Professors</span>
-              </div>
-              <RiPlayMiniFill size={16} />
-          </div>
-
-          <div className="group flex justify-between items-center w-[90%] mx-auto py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer">
-              <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
-                <RiTeamLine size={20} />
-                <span>Students</span>
-              </div>
-              <RiPlayMiniFill size={16} />
-          </div>
-
-          <div className="group flex justify-between items-center w-[90%] mx-auto py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer">
-              <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
-                <RiGraduationCapLine size={20} />
-                <span>Courses</span>
-              </div>
-              <RiPlayMiniFill size={16} />
-          </div>
-
-          <div className="group flex justify-between items-center w-[90%] mx-auto py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer">
-              <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
-                <RiBuilding4Line size={20} />
-                <span>Library</span>
-              </div>
-              <RiPlayMiniFill size={16} />
-          </div>
-
-          <div className="group flex justify-between items-center w-[90%] mx-auto py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer">
-              <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
-                <RiGift2Line size={20} />
-                <span>Holiday</span>
-              </div>
-              <RiPlayMiniFill size={16} />
-          </div>
-
-          <div className="group flex justify-between items-center w-[90%] mx-auto py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer">
-              <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
-                <span className="text-[20px] pl-1">$</span>
-                <span className="pl-1">Fees</span>
-              </div>
-              <RiPlayMiniFill size={16} />
-          </div>
-        </div>
-
-        <div className="ml-8 text-gray-500 pt-3 pb-2 mr-4">
-          <small className="text-[70%] font-semibold">Apps</small>
-        </div>
-
-        <div className="flex flex-col gap-1 mt-2 border-b border-gray-200 pb-5">
-          <div className="group flex justify-between items-center w-[90%] mx-auto py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer">
-              <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
-                <RiTeamLine size={20} />
-                <span>Apps</span>
-              </div>
-              <RiPlayMiniFill size={16} />
-          </div>
-
-          <div className="group flex justify-between items-center w-[90%] mx-auto py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer">
-              <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
-                <RiInboxLine size={20} />
-                <div className="flex items-center gap-1.25">
-                  <span>CMS</span>
-                  <div className="bg-red-500 text-white text-[10px] px-2 py-0.5 rounded-sm">New</div>
+            {!collapsed && (
+              <div className={`overflow-hidden transition-all duration-500 ease-in-out ${dashboardSections ? "max-h-40 opacity-100" : "max-h-0 opacity-0"}`}>
+                <div className="flex flex-col text-[12px] pl-10 gap-3 pb-3 text-[#737b8b] font-bold">
+                  <Link to="/" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Dashboard 1</Link>
+                  <Link to="/dashboard2" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Dashboard 2</Link>
+                  <Link to="/dashboard3" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Dashboard 3</Link>
                 </div>
               </div>
-              <RiPlayMiniFill size={16} />
+            )}
+          </div>
+          {/*  className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500" */}
+
+          <div className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}>
+              <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
+                <RiCalendar2Line size={20} />
+                {!collapsed && <span>Event Management</span>}
+              </div>
+              {!collapsed && <RiPlayMiniFill size={16} />}
           </div>
 
-          <div className="group flex justify-between items-center w-[90%] mx-auto py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer">
+          <div className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}>
+              <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
+                <RiUserLine size={20} />
+                {!collapsed && <span>Professors</span>}
+              </div>
+              {!collapsed && <RiPlayMiniFill size={16} />}
+          </div>
+
+          <div className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}>
+              <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
+                <RiTeamLine size={20} />
+                {!collapsed && <span>Students</span>}
+              </div>
+              {!collapsed && <RiPlayMiniFill size={16} />}
+          </div>
+
+          <div className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}>
+              <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
+                <RiGraduationCapLine size={20} />
+                {!collapsed && <span>Courses</span>}
+              </div>
+              {!collapsed && <RiPlayMiniFill size={16} />}
+          </div>
+
+          <div className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}>
+              <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
+                <RiBuilding4Line size={20} />
+                {!collapsed && <span>Library</span>}
+              </div>
+              {!collapsed && <RiPlayMiniFill size={16} />}
+          </div>
+
+          <div className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}>
+              <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
+                <RiGift2Line size={20} />
+                {!collapsed && <span>Holiday</span>}
+              </div>
+              {!collapsed && <RiPlayMiniFill size={16} />}
+          </div>
+
+          <div className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}>
+              <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
+                <span className="text-[20px] pl-1">$</span>
+                {!collapsed && <span className="pl-1">Fees</span>}
+              </div>
+              {!collapsed && <RiPlayMiniFill size={16} />}
+          </div>
+        </div>
+
+        <div className={`pt-3 pb-2 mr-4 ${collapsed ? 'hidden' : 'ml-8 text-gray-500'}`}>
+          {!collapsed && <small className="text-[70%] font-semibold">Apps</small>}
+        </div>
+
+        <div className="flex flex-col gap-1 mt-2 border-b border-gray-200 pb-5">
+          <div className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}>
+              <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
+                <RiTeamLine size={20} />
+                {!collapsed && <span>Apps</span>}
+              </div>
+              {!collapsed && <RiPlayMiniFill size={16} />}
+          </div>
+
+          <div className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}>
+              <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
+                <RiInboxLine size={20} />
+                {!collapsed && (
+                  <div className="flex items-center gap-1.25">
+                    <span>CMS</span>
+                    <div className="bg-red-500 text-white text-[10px] px-2 py-0.5 rounded-sm">New</div>
+                  </div>
+                )}
+              </div>
+              {!collapsed && <RiPlayMiniFill size={16} />}
+          </div>
+
+          <div className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}>
               <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
                 <RiSignalCellular3Fill size={20} />
-                <span>Charts</span>
+                {!collapsed && <span>Charts</span>}
               </div>
-              <RiPlayMiniFill size={16} />
+              {!collapsed && <RiPlayMiniFill size={16} />}
           </div>
         </div>
 
-        <div className="ml-8 text-gray-500 pt-3 pb-2 mr-4">
-          <small className="text-[70%] font-semibold">COMPONENTS</small>
+        <div className={`pt-3 pb-2 mr-4 ${collapsed ? 'hidden' : 'ml-8 text-gray-500'}`}>
+          {!collapsed && <small className="text-[70%] font-semibold">COMPONENTS</small>}
         </div>
 
         <div className="flex flex-col gap-1 mt-2 border-b border-gray-200 pb-5">
-          <div className="group flex justify-between items-center w-[90%] mx-auto py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer">
+          <div className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}>
               <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
                 <RiGlobalLine size={20} />
-                <span>Bootstrap</span>
+                {!collapsed && <span>Bootstrap</span>}
               </div>
-                <RiPlayMiniFill size={16} />
+                {!collapsed && <RiPlayMiniFill size={16} />}
           </div>
-          <div className="group flex justify-between items-center w-[90%] mx-auto py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer">
+          <div className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}>
               <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
                 <RiFileAddLine size={20} />
-                <span>Plugins</span>
+                {!collapsed && <span>Plugins</span>}
               </div>
-                <RiPlayMiniFill size={16} />
+                {!collapsed && <RiPlayMiniFill size={16} />}
           </div>
-          <div className="group flex justify-between items-center w-[90%] mx-auto py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer">
+          <div className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}>
               <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
                 <RiComputerLine size={20} />
-                <span>Widget</span>
+                {!collapsed && <span>Widget</span>}
               </div>
 
           </div>
         </div>
 
-        <div className="ml-8 text-gray-500 pt-3 pb-2 mr-4">
-          <small className="text-[70%] font-semibold">FORMS</small>
+        <div className={`pt-3 pb-2 mr-4 ${collapsed ? 'hidden' : 'ml-8 text-gray-500'}`}>
+          {!collapsed && <small className="text-[70%] font-semibold">FORMS</small>}
         </div>
         <div className="flex flex-col gap-1 mt-2 border-b border-gray-200 pb-5">
-          <div className="group flex justify-between items-center w-[90%] mx-auto py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer">
+          <div className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}>
               <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
                 <RiFileTextLine size={20} />
-                <span>Forms</span>
+                {!collapsed && <span>Forms</span>}
               </div>
-              <RiPlayMiniFill size={16} />
+              {!collapsed && <RiPlayMiniFill size={16} />}
           </div>
         </div>
 
-        <div className="ml-8 text-gray-500 pt-3 pb-2 mr-4">
-          <small className="text-[70%] font-semibold">TABLE</small>
+        <div className={`pt-3 pb-2 mr-4 ${collapsed ? 'hidden' : 'ml-8 text-gray-500'}`}>
+          {!collapsed && <small className="text-[70%] font-semibold">TABLE</small>}
         </div>
         <div className="flex flex-col gap-1 mt-2 border-b border-gray-200 pb-5">
-          <div className="group flex justify-between items-center w-[90%] mx-auto py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer">
+          <div className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}>
               <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
                 <RiLayoutGrid2Line size={20} />
-                <span>Table</span>
+                {!collapsed && <span>Table</span>}
               </div>
-              <RiPlayMiniFill size={16} />
+              {!collapsed && <RiPlayMiniFill size={16} />}
           </div>
         </div>
 
-        <div className="ml-8 text-gray-500 pt-3 pb-2 mr-4">
-          <small className="text-[70%] font-semibold">EXTRA</small>
+        <div className={`pt-3 pb-2 mr-4 ${collapsed ? 'hidden' : 'ml-8 text-gray-500'}`}>
+          {!collapsed && <small className="text-[70%] font-semibold">EXTRA</small>}
         </div>
         <div className="flex flex-col gap-1 mt-2">
-          <div className="group flex justify-between items-center w-[90%] mx-auto py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer">
+          <div className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}>
               <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
                 <RiFileTextLine size={20} />
-                <span>Pages</span>
+                {!collapsed && <span>Pages</span>}
               </div>
-              <RiPlayMiniFill size={16} />
+              {!collapsed && <RiPlayMiniFill size={16} />}
           </div>
         </div>
 
-        <div className="px-4 py-8 text-[15px] text-gray-400 leading-relaxed">
-          <p>Edumin Saas Admin © 2023 All <br /> Rights Reserved <br /> Made with <RiHeartFill size={10} className="inline text-red-500" /> by DexignLab</p>
+        <div className={`px-4 py-8 text-[15px] text-gray-400 leading-relaxed ${collapsed ? 'hidden' : ''}`}>
+          {!collapsed && (
+            <p>Edumin Saas Admin © 2023 All <br /> Rights Reserved <br /> Made with <RiHeartFill size={10} className="inline text-red-500" /> by DexignLab</p>
+          )}
         </div>
       </div>
     </div>
