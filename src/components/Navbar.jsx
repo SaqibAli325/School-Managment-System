@@ -11,26 +11,26 @@ const Header = () => {
   return (
     <div className="fixed top-0 left-0 w-full h-16.25 bg-white flex items-center z-100 shadow-sm">
 
-      <h1 className="uppercase text-[#6A73FA] flex gap-2 tracking-[4px] text-[1.8rem] font-black items-center pl-[0.3rem]"><RiGraduationCapFill className="w-16.25 h-10"/> edumin</h1>
-      <div><RiBarChartHorizontalLine className="text-gray-400 ml-8 font-bold"/></div>
+      <h1 className="uppercase text-[#6A73FA] flex gap-2 tracking-[4px] text-[1.8rem] font-black items-center pl-[0.3rem]"><RiGraduationCapFill className="w-16.25 h-10"/> <span className="max-[515px]:hidden">edumin</span></h1>
+      <div><RiBarChartHorizontalLine className="text-gray-400 ml-8 font-bold max-[340px]:ml-0"/></div>
 
-      <div className="flex ml-9 p-4 rounded-[3rem] bg-[#F5F5F5] h-[70%] items-center gap-4 w-[320px]">
+      <div className="max-[860px]:hidden flex ml-9 p-4 rounded-[3rem] bg-[#F5F5F5] h-[70%] items-center gap-4 w-[320px]">
         <RiSearchLine className="text-[#888892] w-5"/>
         <input type="text" placeholder="Search" className="outline-none text-[14px] text-[#00000094] font-semibold placeholder:text-[#00000094]" />
       </div>
 
       <div className="flex items-center ml-auto mr-8 gap-[1.2rem]">
-        <div className="text-[#7C84FA] cursor-pointer"><RiMoonFill size={22} className="text-[#7C84FA]"/></div>
+        <div className="text-[#7C84FA] cursor-pointer"><RiMoonFill size={22} className="text-[#7C84FA] max-[340px]:w-[15px]"/></div>
         
         <div className="relative text-[#7C84FA] cursor-pointer">
-          <RiMessage2Line size={22} />
+          <RiMessage2Line size={22} className="max-[820px]:w-[15px]"/>
           <span className="absolute -top-1 -right-1 bg-[#7C84FA] text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full">75</span>
         </div>
 
-        <div className="text-[#7C84FA] cursor-pointer"><RiNotification2Line size={22} /></div>
+        <div className="text-[#7C84FA] cursor-pointer"><RiNotification2Line size={22} className="max-[340px]:w-[15px]"/></div>
 
         <div className="relative text-[#7C84FA] cursor-pointer">
-          <RiSettings3Line size={22} />
+          <RiSettings3Line size={22} className="max-[340px]:w-[15px]"/>
           <span className="absolute -top-1 -right-1 bg-[#7C84FA] text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full">15</span>
         </div>
 
