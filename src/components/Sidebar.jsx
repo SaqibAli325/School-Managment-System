@@ -93,13 +93,12 @@ const Sidebar = () => {
           </div>
           {/*  className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500" */}
 
-          <div className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}>
+          <Link to="/event-management" className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}>
               <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
                 <RiCalendar2Line size={20} />
                 {!collapsed && <span>Event Management</span>}
               </div>
-              {!collapsed && <RiPlayMiniFill size={16} />}
-          </div>
+          </Link>
 
           <div className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}>
               <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
