@@ -35,11 +35,17 @@ const EventManagement = () => {
         <Navbar />
         <Sidebar />
 
-        <div className={`absolute right-0 bottom-0 ${windowWidth < 1100 ? (mobileMenuOpen ? 'w-[calc(100vw-250px)]' : 'w-screen') : (sidebarCollapsed ? 'w-[calc(100vw-56px)]' : 'w-[calc(100vw-250px)]')} h-[calc(100vh-56px)] p-4 overflow-y-auto overflow-x-hidden`}>
+        <div className={`absolute right-0 bottom-0 ${windowWidth < 1100 ? (mobileMenuOpen ? 'w-[calc(100vw-250px)]' : 'w-screen') : (sidebarCollapsed ? 'w-[calc(100vw-56px)]' : 'w-[calc(100vw-250px)]')} h-[calc(100vh-56px)] p-4 overflow-y-auto overflow-x-hidden flex flex-col gap-8`}>
             
-            <Header />
-            <Calender />
-            <footer className="text-center pt-[4em] pb-[0.5em] text-sm text-gray-500">
+            <div className="h-fit flex-none">
+                <Header />
+            </div>
+
+            <div className="h-fit flex-none">
+                <Calender />
+            </div>
+
+            <footer className="text-center pt-[4em] pb-4 text-sm text-gray-500 flex-none">
                 <p>Copyright © Designed & Developed by <a className="text-[#6a73fa] cursor-pointer">DexignLab</a> 2023</p>
             </footer>
         </div>

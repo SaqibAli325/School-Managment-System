@@ -221,7 +221,7 @@ export default function Calendar() {
   }
 
   return (
-    <div className="flex h-screen bg-white overflow-hidden">
+    <div className="flex h-fit bg-white overflow-hidden rounded-xl shadow-sm border border-gray-200">
       {/* ── Calendar area ── */}
       <div className="flex flex-col flex-1 min-w-0">
         {/* Header */}
