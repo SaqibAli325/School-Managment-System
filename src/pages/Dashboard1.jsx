@@ -102,7 +102,7 @@ const Dashboard1 = () => {
       <Sidebar/>
       {/* Main Div */}
       {/** Use explicit classes so Tailwind generates both variants */}
-      <div className={`absolute right-0 bottom-0 ${windowWidth < 1100 ? (mobileMenuOpen ? 'w-[calc(100vw-250px)]' : 'w-screen') : (sidebarCollapsed ? 'w-[calc(100vw-56px)]' : 'w-[calc(100vw-250px)]')} h-[calc(100vh-56px)] p-4 overflow-y-auto overflow-x-hidden`}>
+      <div className={`absolute right-0 bottom-0 ${windowWidth < 1100 ? (mobileMenuOpen ? 'w-[calc(100vw-250px)]' : 'w-screen') : (sidebarCollapsed ? 'w-[calc(100vw-56px)]' : 'w-[calc(100vw-250px)]')} h-[calc(100vh-65px)] p-4 overflow-y-auto overflow-x-hidden`}>
     {/* Cards */}
     <div className='flex justify-between gap-6  pt-5 max-[1010px]:flex-col'>
       {stats.map((stat, index) => (

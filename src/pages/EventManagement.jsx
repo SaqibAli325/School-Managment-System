@@ -35,10 +35,10 @@ const EventManagement = () => {
         <Navbar />
         <Sidebar />
 
-        <div className={`absolute right-0 bottom-0 ${windowWidth < 1100 ? (mobileMenuOpen ? 'w-[calc(100vw-250px)]' : 'w-screen') : (sidebarCollapsed ? 'w-[calc(100vw-56px)]' : 'w-[calc(100vw-250px)]')} h-[calc(100vh-56px)] p-4 overflow-y-auto overflow-x-hidden flex flex-col gap-8`}>
+        <div className={`absolute right-0 bottom-0 ${windowWidth < 1100 ? (mobileMenuOpen ? 'w-[calc(100vw-250px)]' : 'w-screen') : (sidebarCollapsed ? 'w-[calc(100vw-56px)]' : 'w-[calc(100vw-250px)]')} h-[calc(100vh-65px)] p-4 overflow-y-auto overflow-x-hidden flex flex-col gap-8`}>
             
             <div className="h-fit flex-none">
-                <Header parentTitle="Event Management" childTitle="Events"/>
+                <Header parentTitle="Events" childTitle="Events" grandChildTitle="Event Management"/>
             </div>
 
             <div className="h-fit flex-none">
