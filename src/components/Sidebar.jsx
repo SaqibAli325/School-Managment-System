@@ -23,6 +23,7 @@ import { Link, Links } from "react-router-dom";
 
 const Sidebar = () => {
   const [dashboardSections,setdashboardSections] = useState(false);
+  const [professorsSections, setProfessorsSections] = useState(false);
   const [collapsed, setCollapsed] = useState(localStorage.getItem('sidebarCollapsed') === 'true');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -52,7 +53,6 @@ const Sidebar = () => {
   
   const isMobileView = windowWidth < 1100;
   const shouldHide = isMobileView && !mobileMenuOpen;
-  // On mobile, always show full text; on desktop, use collapsed state
   const displayCollapsed = isMobileView ? false : collapsed;
   
   return (
@@ -63,7 +63,6 @@ const Sidebar = () => {
         </div>
 
         <div className="flex flex-col gap-1 mt-2 border-b border-gray-200 pb-5">
-          {/* Reusable Accordion Section */}
           <div className="w-full">
             <div 
               onClick={() => setdashboardSections(!dashboardSections)}
@@ -91,7 +90,6 @@ const Sidebar = () => {
               </div>
             )}
           </div>
-          {/*  className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500" */}
 
           <Link to="/event-management" className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}>
               <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
@@ -100,12 +98,33 @@ const Sidebar = () => {
               </div>
           </Link>
 
-          <div className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}>
-              <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
-                <RiUserLine size={20} />
-                {!collapsed && <span>Professors</span>}
+          <div className="w-full">
+            <div 
+              onClick={() => setProfessorsSections(!professorsSections)}
+              className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}
+            >
+                <div className={`${professorsSections ? "text-[#6A73FA]":""} flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]`}>
+                  <RiUserLine size={20} />
+                  {!collapsed && <h2 className="text-[12px]">Professors</h2>}
+                </div>
+                {!collapsed && (
+                  <RiPlayMiniFill 
+                    size={16} 
+                    className={`transition-transform duration-300 ${professorsSections ? "rotate-90 text-[#6A73FA]" : ""}`}
+                  />
+                )}
+            </div>
+
+            {!collapsed && (
+              <div className={`overflow-hidden transition-all duration-500 ease-in-out ${professorsSections ? "max-h-48 opacity-100" : "max-h-0 opacity-0"}`}>
+                <div className="flex flex-col text-[12px] pl-10 gap-3 pb-3 text-[#737b8b] font-bold">
+                  <Link to="/all-professors" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- All Professors</Link>
+                  <Link to="/add-professor" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Add Professor</Link>
+                  <Link to="/edit-professor" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Edit Professor</Link>
+                  <Link to="/professor-profile" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Professor Profile</Link>
+                </div>
               </div>
-              {!collapsed && <RiPlayMiniFill size={16} />}
+            )}
           </div>
 
           <div className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}>

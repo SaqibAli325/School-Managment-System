@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Navbar from '../components/Navbar'
 import Sidebar from '../components/Sidebar'
-import Header from '../components/EventManagement/Header'
+import Header from '../components/Header'
 import Calender from '../components/EventManagement/Calendar'
 
 const EventManagement = () => {
@@ -38,7 +38,7 @@ const EventManagement = () => {
         <div className={`absolute right-0 bottom-0 ${windowWidth < 1100 ? (mobileMenuOpen ? 'w-[calc(100vw-250px)]' : 'w-screen') : (sidebarCollapsed ? 'w-[calc(100vw-56px)]' : 'w-[calc(100vw-250px)]')} h-[calc(100vh-56px)] p-4 overflow-y-auto overflow-x-hidden flex flex-col gap-8`}>
             
             <div className="h-fit flex-none">
-                <Header />
+                <Header parentTitle="Event Management" childTitle="Events"/>
             </div>
 
             <div className="h-fit flex-none">
