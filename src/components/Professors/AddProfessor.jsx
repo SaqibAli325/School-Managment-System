@@ -50,28 +50,28 @@ const AddProfessor = () => {
                     <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="flex flex-col gap-2">
                             <label className="ml-1 text-[0.875rem] font-medium text-[#312a2a] mb-2">First Name</label>
-                            <input type="text" placeholder="First Name" className="border border-gray-200 rounded px-[0.95rem] py-[0.3125rem] h-[2.7rem] focus:outline-none focus:ring-2 focus:ring-[#6A73FC]/30" />
+                            <input type="text" placeholder="First Name" className="border border-gray-200 rounded px-[0.95rem] py-1.25 h-[2.7rem] focus:outline-none focus:ring-2 focus:ring-[#6A73FC]/30" />
                         </div>
 
                         <div className="flex flex-col gap-2">
                             <label className="ml-1 text-[0.875rem] font-medium text-[#312a2a] mb-2">Last Name</label>
-                            <input type="text" placeholder="Last Name" className="border border-gray-200 rounded px-[0.95rem] py-[0.3125rem] h-[2.7rem] focus:outline-none focus:ring-2 focus:ring-[#6A73FC]/30" />
+                            <input type="text" placeholder="Last Name" className="border border-gray-200 rounded px-[0.95rem] py-1.25 h-[2.7rem] focus:outline-none focus:ring-2 focus:ring-[#6A73FC]/30" />
                         </div>
 
                         <div className="flex flex-col gap-2">
                             <label className="ml-1 text-[0.875rem] font-medium text-[#312a2a] mb-2">Email</label>
-                            <input type="email" placeholder="Email" className="border border-gray-200 rounded px-[0.95rem] py-[0.3125rem] h-[2.7rem] focus:outline-none focus:ring-2 focus:ring-[#6A73FC]/30" />
+                            <input type="email" placeholder="Email" className="border border-gray-200 rounded px-[0.95rem] py-1.25 h-[2.7rem] focus:outline-none focus:ring-2 focus:ring-[#6A73FC]/30" />
                         </div>
 
                         <div className="flex flex-col gap-2">
                             <label className="ml-1 text-[0.875rem] font-medium text-[#312a2a] mb-2">Joining Date</label>
-                            <input type="date" className="border border-gray-200 rounded px-[0.95rem] py-[0.3125rem] h-[2.7rem] focus:outline-none focus:ring-2 focus:ring-[#6A73FC]/30" />
+                            <input type="date" className="border border-gray-200 rounded px-[0.95rem] py-1.25 h-[2.7rem] focus:outline-none focus:ring-2 focus:ring-[#6A73FC]/30" />
                         </div>
 
                         <div className="flex flex-col gap-2">
                             <label className="ml-1 text-[0.875rem] font-medium text-[#312a2a] mb-2">Password</label>
                             <div className="relative">
-                                <input type={showPassword ? "text" : "password"} placeholder="Password" className="w-full border border-gray-200 rounded px-[0.95rem] py-[0.3125rem] h-[2.7rem] focus:outline-none focus:ring-2 focus:ring-[#6A73FC]/30" />
+                                <input type={showPassword ? "text" : "password"} placeholder="Password" className="w-full border border-gray-200 rounded px-[0.95rem] py-1.25 h-[2.7rem] focus:outline-none focus:ring-2 focus:ring-[#6A73FC]/30" />
                                 <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400">
                                     {showPassword ? <Eye size={18} /> : <EyeOff size={18} />}
                                 </button>
@@ -81,7 +81,7 @@ const AddProfessor = () => {
                         <div className="flex flex-col gap-2">
                             <label className="ml-1 text-[0.875rem] font-medium text-[#312a2a] mb-2">Confirm Password</label>
                             <div className="relative">
-                                <input type={showConfirmPassword ? "text" : "password"} placeholder="Confirm Password" className="w-full border border-gray-200 rounded px-[0.95rem] py-[0.3125rem] h-[2.7rem] focus:outline-none focus:ring-2 focus:ring-[#6A73FC]/30" />
+                                <input type={showConfirmPassword ? "text" : "password"} placeholder="Confirm Password" className="w-full border border-gray-200 rounded px-[0.95rem] py-1.25 h-[2.7rem] focus:outline-none focus:ring-2 focus:ring-[#6A73FC]/30" />
                                 <button type="button" onClick={() => setShowConfirmPassword(!showConfirmPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400">
                                     {showConfirmPassword ? <Eye size={18} /> : <EyeOff size={18} />}
                                 </button>
@@ -90,12 +90,12 @@ const AddProfessor = () => {
 
                         <div className="flex flex-col gap-2">
                             <label className="ml-1 text-[0.875rem] font-medium text-[#312a2a] mb-2">Mobile Number</label>
-                            <input type="text" placeholder="Mobile Number" className="border border-gray-200 rounded px-[0.95rem] py-[0.3125rem] h-[2.7rem] focus:outline-none focus:ring-2 focus:ring-[#6A73FC]/30" />
+                            <input type="text" placeholder="Mobile Number" className="border border-gray-200 rounded px-[0.95rem] py-1.25 h-[2.7rem] focus:outline-none focus:ring-2 focus:ring-[#6A73FC]/30" />
                         </div>
 
                         <div className="flex flex-col gap-2">
                             <label className="ml-1 text-[0.875rem] font-medium text-[#312a2a] mb-2">Gender</label>
-                            <select className="border border-gray-200 rounded px-[0.95rem] py-[0.3125rem] h-[2.7rem] focus:outline-none focus:ring-2 focus:ring-[#6A73FC]/30 bg-white">
+                            <select className="border border-gray-200 rounded px-[0.95rem] py-1.25 h-[2.7rem] focus:outline-none focus:ring-2 focus:ring-[#6A73FC]/30 bg-white">
                                 <option value="">Select Gender</option>
                                 <option value="male">Male</option>
                                 <option value="female">Female</option>
@@ -104,12 +104,12 @@ const AddProfessor = () => {
 
                         <div className="flex flex-col gap-2">
                             <label className="ml-1 text-[0.875rem] font-medium text-[#312a2a] mb-2">Designation</label>
-                            <input type="text" placeholder="Designation" className="border border-gray-200 rounded px-[0.95rem] py-[0.3125rem] h-[2.7rem] focus:outline-none focus:ring-2 focus:ring-[#6A73FC]/30" />
+                            <input type="text" placeholder="Designation" className="border border-gray-200 rounded px-[0.95rem] py-1.25 h-[2.7rem] focus:outline-none focus:ring-2 focus:ring-[#6A73FC]/30" />
                         </div>
 
                         <div className="flex flex-col gap-2">
                             <label className="ml-1 text-[0.875rem] font-medium text-[#312a2a] mb-2">Department</label>
-                            <select className="border border-gray-200 rounded px-[0.95rem] py-[0.3125rem] h-[2.7rem] focus:outline-none focus:ring-2 focus:ring-[#6A73FC]/30 bg-white">
+                            <select className="border border-gray-200 rounded px-[0.95rem] py-1.25 h-[2.7rem] focus:outline-none focus:ring-2 focus:ring-[#6A73FC]/30 bg-white">
                                 <option value="">Select Department</option>
                                 <option value="cs">Computer Science</option>
                                 <option value="math">Mathematics</option>
@@ -119,12 +119,12 @@ const AddProfessor = () => {
 
                         <div className="flex flex-col gap-2">
                             <label className="ml-1 text-[0.875rem] font-medium text-[#312a2a] mb-2">Date of Birth</label>
-                            <input type="date" className="border border-gray-200 rounded px-[0.95rem] py-[0.3125rem] h-[2.7rem] focus:outline-none focus:ring-2 focus:ring-[#6A73FC]/30" />
+                            <input type="date" className="border border-gray-200 rounded px-[0.95rem] py-1.25 h-[2.7rem] focus:outline-none focus:ring-2 focus:ring-[#6A73FC]/30" />
                         </div>
 
                         <div className="flex flex-col gap-2">
                             <label className="ml-1 text-[0.875rem] font-medium text-[#312a2a] mb-2">Education</label>
-                            <input type="text" placeholder="Education Details" className="border border-gray-200 rounded px-[0.95rem] py-[0.3125rem] h-[2.7rem] focus:outline-none focus:ring-2 focus:ring-[#6A73FC]/30" />
+                            <input type="text" placeholder="Education Details" className="border border-gray-200 rounded px-[0.95rem] py-1.25 h-[2.7rem] focus:outline-none focus:ring-2 focus:ring-[#6A73FC]/30" />
                         </div>
 
                         <div className="flex flex-col gap-2 md:col-span-2">
@@ -140,13 +140,13 @@ const AddProfessor = () => {
                         <div className="md:col-span-2 flex gap-3 mt-4">
                             <button 
                                 type="submit"  
-                                className="bg-[#6A73FC] border-[#6A73FC] hover:bg-[#5961e0] text-white px-[1.25rem] py-[0.55rem] rounded-[5px] transition-colors font-medium text-[.9375rem] cursor-pointer"
+                                className="bg-[#6A73FC] border-[#6A73FC] hover:bg-[#5961e0] text-white px-5 py-[0.55rem] rounded-[5px] transition-colors font-medium text-[.9375rem] cursor-pointer"
                             >
                                 Submit
                             </button>
                             <button 
                                 type="reset" 
-                                className="bg-[#ffd8d8] border-[#ffd8d8] text-[#FF1616] px-[1.25rem] py-[0.55rem] rounded-[5px] transition-colors font-medium text-[.9375rem] cursor-pointer"
+                                className="bg-[#ffd8d8] border-[#ffd8d8] text-[#FF1616] px-5 py-[0.55rem] rounded-[5px] transition-colors font-medium text-[.9375rem] cursor-pointer"
                             >
                                 Cancel
                             </button>
