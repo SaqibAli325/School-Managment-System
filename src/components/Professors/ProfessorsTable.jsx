@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Pencil, Trash2 } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { Pencil, Trash2, MoreVertical } from "lucide-react";
 
 // data prop me array of objects aayega, jaise:
 // {
@@ -320,7 +320,13 @@ const defaultData = [
 const ProfessorsTable = ({ data = defaultData, onEdit, onDelete }) => {
   const [view, setView] = useState("list"); // "list" | "grid"
   const [search, setSearch] = useState("");
-  const [entries, setEntries] = useState(100);
+  const [entries, setEntries] = useState(10);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  // Filter ya entries change hone par page 1 par reset karein
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [search, entries]);
 
   // Search filter - name, department, email me se kahin bhi match kare
   const filteredData = data.filter((prof) => {
@@ -332,10 +338,13 @@ const ProfessorsTable = ({ data = defaultData, onEdit, onDelete }) => {
     );
   });
 
-  const visibleData = filteredData.slice(0, entries);
+  // Pagination logic
+  const totalPages = Math.ceil(filteredData.length / entries);
+  const startIndex = (currentPage - 1) * entries;
+  const visibleData = filteredData.slice(startIndex, startIndex + entries);
 
   return (
-    <div className="p-4 sm:p-6">
+    <div className="pt-4">
       {/* View toggle buttons */}
       <div className="mt-2 mb-6 flex gap-2">
         <button
@@ -361,7 +370,7 @@ const ProfessorsTable = ({ data = defaultData, onEdit, onDelete }) => {
       </div>
 
       {/* Card wrapper */}
-      <div className="bg-white rounded-xl shadow-sm p-4 sm:p-6 w-full">
+      <div className="bg-white rounded-xl shadow-sm p-4 sm:p-6 w-full overflow-x-auto">
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
           <h2 className="text-lg font-semibold text-gray-700">All Professors</h2>
@@ -389,27 +398,26 @@ const ProfessorsTable = ({ data = defaultData, onEdit, onDelete }) => {
             <span>entries</span>
           </div>
 
-          <div className="flex items-center gap-2 text-sm text-gray-500">
+          <div className="flex items-center gap-2 text-sm">
             <span>Search:</span>
             <input
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              placeholder="Type to search..."
-              className="border border-gray-200 rounded-md px-3 py-1.5 w-full sm:w-56 focus:outline-none focus:ring-2 focus:ring-[#6A73FC]/30"
+              className="border border-gray-200 rounded px-3 py-2  sm:w-45 focus:outline-none focus:ring-2 focus:ring-[#6A73FC]/30"
             />
           </div>
         </div>
 
         {/* ===== LIST VIEW ===== */}
         {view === "list" && (
-          <div className="overflow-x-auto -mx-4 sm:mx-0">
+          <div className="-mx-4 sm:mx-0">
             <table className="w-full min-w-[800px] text-sm">
               <thead>
-                <tr className="text-left text-gray-700 font-semibold border-y border-gray-100">
+                <tr className="text-left font-semibold border-y border-gray-100">
                   <th className="py-3 px-4 w-16">Profile</th>
                   <th className="py-3 px-4">Name</th>
-                  <th className="py-3 px-4">Department</th>
+                  <th className="py-3 px-2">Department</th>
                   <th className="py-3 px-4">Gender</th>
                   <th className="py-3 px-4">Education</th>
                   <th className="py-3 px-4">Mobile</th>
@@ -439,13 +447,13 @@ const ProfessorsTable = ({ data = defaultData, onEdit, onDelete }) => {
                         className="w-9 h-9 rounded-full object-cover"
                       />
                     </td>
-                    <td className="py-3 px-4 text-gray-700 whitespace-nowrap">{prof.name}</td>
-                    <td className="py-3 px-4 text-gray-400 whitespace-nowrap">{prof.department}</td>
-                    <td className="py-3 px-4 text-gray-700">{prof.gender}</td>
-                    <td className="py-3 px-4 text-gray-500 whitespace-nowrap">{prof.education}</td>
-                    <td className="py-3 px-4 text-gray-700 font-medium whitespace-nowrap">{prof.mobile}</td>
-                    <td className="py-3 px-4 text-gray-700 font-medium whitespace-nowrap">{prof.email}</td>
-                    <td className="py-3 px-4 text-gray-500 whitespace-nowrap">{prof.joiningDate}</td>
+                    <td className="py-3 px-4 text-[#737b8b] whitespace-nowrap">{prof.name}</td>
+                    <td className="py-3 px-2 text-[#737b8b] whitespace-nowrap">{prof.department}</td>
+                    <td className="py-3 px-4 text-[#737b8b]">{prof.gender}</td>
+                    <td className="py-3 px-4 text-[#737b8b] whitespace-nowrap">{prof.education}</td>
+                    <td className="py-3 px-4 text-[#888888] whitespace-nowrap font-bold">{prof.mobile}</td>
+                    <td className="py-3 px-4 text-[#888888] whitespace-nowrap font-bold">{prof.email}</td>
+                    <td className="py-3 px-4 text-[#737b8b] whitespace-nowrap">{prof.joiningDate}</td>
                     <td className="py-3 px-4">
                       <div className="flex items-center gap-2">
                         <button
@@ -473,62 +481,114 @@ const ProfessorsTable = ({ data = defaultData, onEdit, onDelete }) => {
 
         {/* ===== GRID VIEW ===== */}
         {view === "grid" && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {visibleData.length === 0 && (
               <p className="text-center text-gray-400 col-span-full py-6">
-                Koi record nahi mila.
+                Professor not Found
               </p>
             )}
 
             {visibleData.map((prof, index) => (
               <div
                 key={index}
-                className="border border-gray-100 rounded-lg p-4 flex flex-col gap-2 hover:shadow-md transition-shadow"
+                className="relative bg-white border border-gray-100 rounded-xl shadow-sm p-6 flex flex-col items-center hover:shadow-md transition-shadow"
               >
-                <div className="flex items-center gap-3">
+                {/* Top-right menu icon */}
+                <button className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 cursor-pointer">
+                  <MoreVertical size={20} />
+                </button>
+
+                {/* Circular Profile Image */}
+                <div className="mb-4">
                   <img
                     src={prof.profile}
                     alt={prof.name}
-                    className="w-12 h-12 rounded-full object-cover"
+                    className="w-24 h-24 rounded-full border-4 border-white shadow-md object-cover"
                   />
-                  <div>
-                    <p className="text-gray-700 font-semibold">{prof.name}</p>
-                    <p className="text-gray-400 text-sm">{prof.department}</p>
+                </div>
+
+                {/* Name & Education */}
+                <h3 className="text-xl font-bold text-gray-800 text-center">{prof.name}</h3>
+                <p className="text-gray-500 text-sm text-center mb-4">{prof.education}</p>
+
+                {/* Horizontal divider */}
+                <div className="w-full border-t border-gray-100 my-2" />
+
+                {/* Info rows */}
+                <div className="w-full text-sm space-y-3 py-2">
+                  <div className="flex justify-between border-b border-gray-50 pb-2">
+                    <span className="text-gray-500">Gender :</span>
+                    <span className="font-bold text-gray-700">{prof.gender}</span>
+                  </div>
+                  <div className="flex justify-between border-b border-gray-50 pb-2">
+                    <span className="text-gray-500">Phone No. :</span>
+                    <span className="font-bold text-gray-700">{prof.mobile}</span>
+                  </div>
+                  <div className="flex justify-between border-b border-gray-50 pb-2">
+                    <span className="text-gray-500">Email :</span>
+                    <span className="font-bold text-gray-700">{prof.email}</span>
+                  </div>
+                  <div className="flex justify-between pb-1">
+                    <span className="text-gray-500">Address :</span>
+                    <span className="font-bold text-gray-700 text-right line-clamp-1">{prof.address || "New York, USA"}</span>
                   </div>
                 </div>
 
-                <div className="text-sm text-gray-500 mt-2 space-y-1">
-                  <p>Gender: <span className="text-gray-700">{prof.gender}</span></p>
-                  <p>Education: <span className="text-gray-700">{prof.education}</span></p>
-                  <p>Mobile: <span className="text-gray-700 font-medium">{prof.mobile}</span></p>
-                  <p>Email: <span className="text-gray-700 font-medium">{prof.email}</span></p>
-                  <p>Joining Date: <span className="text-gray-700">{prof.joiningDate}</span></p>
-                </div>
-
-                <div className="flex items-center gap-2 mt-3">
-                  <button
-                    onClick={() => onEdit && onEdit(prof, index)}
-                    className="bg-[#6A73FC] hover:bg-[#5961e0] text-white p-2 rounded-md transition-colors cursor-pointer"
-                    title="Edit"
-                  >
-                    <Pencil size={14} />
-                  </button>
-                  <button
-                    onClick={() => onDelete && onDelete(prof, index)}
-                    className="bg-red-500 hover:bg-red-600 text-white p-2 rounded-md transition-colors cursor-pointer"
-                    title="Delete"
-                  >
-                    <Trash2 size={14} />
-                  </button>
-                </div>
+                {/* Read More Button */}
+                <button className="mt-4 px-6 py-2 border border-[#6A73FC] text-[#6A73FC] font-medium rounded-full bg-white hover:bg-[#6A73FC] hover:text-white transition-all duration-200 cursor-pointer text-sm">
+                  Read More
+                </button>
               </div>
             ))}
           </div>
         )}
 
-        {/* Footer info */}
-        <div className="text-xs text-gray-400 mt-4">
-          Showing {visibleData.length} of {filteredData.length} entries
+        {/* ===== PAGINATION & FOOTER ===== */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-6 border-t border-gray-100 pt-6">
+          <div className="text-sm text-gray-400">
+            Showing {filteredData.length > 0 ? startIndex + 1 : 0} to{" "}
+            {Math.min(startIndex + entries, filteredData.length)} of {filteredData.length} entries
+          </div>
+
+          <div className="flex items-center gap-1">
+            <button
+              onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+              disabled={currentPage === 1}
+              className={`px-4 py-2 text-sm rounded transition-colors cursor-pointer ${
+                currentPage === 1
+                  ? "bg-gray-200 text-black cursor-not-allowed"
+                  : "text-white bg-[#6A73FC] hover:text-[rgb(106,115,252)] hover:bg-gray-200"
+              }`}
+            >
+              Previous
+            </button>
+
+            {[1, 2, 3].map((num) => (
+              <button
+                key={num}
+                onClick={() => setCurrentPage(num)}
+                className={`w-9 h-9 flex items-center justify-center rounded-md text-sm font-medium transition-all duration-200 cursor-pointer ${
+                  currentPage === num
+                    ? "bg-[#6A73FC] text-white shadow-[0_4px_10px_0_rgba(106,115,252,0.3)]"
+                    : "text-[#6A73FC] bg-black/10 hover:bg-[#6A73FC]/5 border border-transparent"
+                }`}
+              >
+                {num}
+              </button>
+            ))}
+
+            <button
+              onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+              disabled={currentPage === totalPages || totalPages === 0}
+              className={`px-4 py-2 text-sm rounded transition-colors cursor-pointer ${
+                currentPage === totalPages || totalPages === 0
+                  ? "bg-gray-200 text-black cursor-not-allowed"
+                  : "text-white bg-[#6A73FC] hover:text-[rgb(106,115,252)] hover:bg-gray-200"
+              }`}
+            >
+              Next
+            </button>
+          </div>
         </div>
       </div>
     </div>
