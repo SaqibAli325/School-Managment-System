@@ -100,10 +100,9 @@ const Dashboard1 = () => {
     <div className='w-screen h-screen bg-[#F2F2F3]'>
       <Navbar/>
       <Sidebar/>
-      {/* Main Div */}
-      {/** Use explicit classes so Tailwind generates both variants */}
+
       <div className={`absolute right-0 bottom-0 ${windowWidth < 1100 ? (mobileMenuOpen ? 'w-[calc(100vw-250px)]' : 'w-screen') : (sidebarCollapsed ? 'w-[calc(100vw-56px)]' : 'w-[calc(100vw-250px)]')} h-[calc(100vh-65px)] p-4 overflow-y-auto overflow-x-hidden`}>
-    {/* Cards */}
+    
     <div className='flex justify-between gap-6  pt-5 max-[1010px]:flex-col'>
       {stats.map((stat, index) => (
         <Card 
@@ -119,10 +118,8 @@ const Dashboard1 = () => {
       ))}
     </div>
     
-    {/* Charts */}
     <Chart />
     
-    {/* Course Card */}
     <div className='flex max-[1010px]:flex-col'>
     {courses.map((course, index) => {
       return <CourseCard key={index} title={course.title} likes={course.likes} professor={course.professor} img={course.img} />
@@ -138,8 +135,9 @@ const Dashboard1 = () => {
       <Toppers />
     </div>
   </div>
-  {/* Student List */}
+
   <StudentList />
+  
       <footer className="text-center pt-[4em] pb-[0.5em] text-sm text-gray-500">
                     <p>Copyright © Designed & Developed by <a className="text-[#6a73fa] cursor-pointer">DexignLab</a> 2023</p>
                 </footer>
