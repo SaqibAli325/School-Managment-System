@@ -67,8 +67,8 @@ function StatRow({ label, value }) {
 
 function InfoRow({ label, value }) {
   return (
-    <div className="flex items-center justify-between text-sm">
-      <span className="font-medium text-gray-700">{label}</span>
+    <div className="flex items-center justify-between text-sm border-b border-[#80808033] pb-1.5">
+      <span className="font-bold text-gray-700">{label}</span>
       <span className="text-gray-500">{value}</span>
     </div>
   );
@@ -109,7 +109,7 @@ function ProfileCard() {
         <img
           src={AVATAR_URL}
           alt={PROFILE.name}
-          className="relative z-10 mx-auto h-24 w-24 rounded border-4 border-white object-cover"
+          className="relative z-10 mx-auto h-24 w-24"
         />
         <h2 className="relative z-10 mt-4 text-lg font-semibold text-white">
           {PROFILE.name}
@@ -125,7 +125,7 @@ function ProfileCard() {
         <StatRow label="Friends" value={PROFILE.friends} />
       </div>
 
-      <div className="flex gap-3 p-4">
+      <div className="flex gap-1 w-[70%] mx-auto p-4">
         <button className="flex-1 rounded bg-indigo-500 py-2 text-sm font-medium text-white transition hover:bg-indigo-600">
           Follow
         </button>
@@ -139,8 +139,8 @@ function ProfileCard() {
 
 function AboutMeCard() {
   return (
-    <div className="mt-5 rounded bg-white p-5 shadow-sm">
-      <h3 className="mb-3 font-semibold text-gray-800">About Me</h3>
+    <div className="mt-5 rounded bg-white p-5 px-8 shadow-sm">
+      <h3 className="mb-3 text-gray-800 text-[1.2rem] font-medium border-b border-[#8080802b] pb-3.75">About Me</h3> 
       <p className="mb-4 text-sm leading-relaxed text-gray-500">
         {PROFILE.bio}
       </p>
@@ -178,11 +178,8 @@ function AboutMeCard() {
 
 function AddressCard() {
   return (
-    <div className="mt-5 rounded bg-white p-5 shadow-sm">
-      <h3 className="mb-3 flex items-center gap-2 font-semibold text-gray-800">
-        <MapPin size={16} className="text-indigo-500" />
-        Address
-      </h3>
+    <div className="mt-5 rounded bg-white p-5 px-8 shadow-sm">
+      <h3 className="mb-3 text-gray-800 text-[1.2rem] font-medium border-b border-[#8080802b] pb-3.75">Address</h3>
       <p className="whitespace-pre-line text-sm leading-relaxed text-gray-500">
         {PROFILE.address}
       </p>
@@ -192,8 +189,8 @@ function AddressCard() {
 
 function WorkExpertiseCard() {
   return (
-    <div className="mt-5 rounded bg-white p-5 shadow-sm">
-      <h3 className="mb-4 font-semibold text-gray-800">Work Expertise</h3>
+    <div className="mt-5 rounded bg-white p-5 px-8 shadow-sm">
+      <h3 className="mb-4 text-gray-800 text-[1.2rem] font-medium border-b border-[#8080802b] pb-3.75">Work Expertise</h3>
       <div className="space-y-4">
         {PROFILE.skills.map((skill) => (
           <SkillBar key={skill.name} {...skill} />
@@ -210,7 +207,7 @@ function Tabs({ active, onChange }) {
   ];
   return (
     <div className="px-6 pt-4">
-      <div className="flex gap-6 border-b border-gray-100">
+      <div className="flex gap-6 border-b border-gray-100 pt-4">
         {tabs.map((tab) => (
           <button
             key={tab.key}
@@ -231,7 +228,7 @@ function Tabs({ active, onChange }) {
 
 function Composer({ value, onChange, onSubmit }) {
   return (
-    <div className="mt-5 rounded bg-gray-50 p-5 border border-gray-100">
+    <div className="mt-5 rounded">
       <textarea
         value={value}
         onChange={(e) => onChange(e.target.value)}
@@ -257,7 +254,7 @@ function Composer({ value, onChange, onSubmit }) {
         <button
           type="button"
           onClick={onSubmit}
-          className="ml-auto rounded bg-indigo-500 px-5 py-2 text-sm font-medium text-white transition hover:bg-indigo-600"
+          className="rounded bg-indigo-500 px-5 py-2 text-sm font-medium text-white transition hover:bg-indigo-600"
         >
           Post
         </button>
@@ -268,13 +265,13 @@ function Composer({ value, onChange, onSubmit }) {
 
 function PostCard({ post }) {
   return (
-    <div className="mt-5 overflow-hidden rounded bg-white shadow-sm">
+    <div className="mt-5 overflow-hidden rounded">
       <img
         src={post.image}
         alt=""
-        className="h-48 w-full object-contain sm:h-64 bg-gray-50"
+        className="h-auto w-full sm:h-auto bg-gray-50"
       />
-      <div className="p-5">
+      <div>
         <h4 className="mb-2 text-lg font-semibold text-gray-800">
           {post.title}
         </h4>
