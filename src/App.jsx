@@ -8,6 +8,10 @@ import Professors from './pages/Professors.jsx'
 import AddProfessor from './components/Professors/AddProfessor.jsx'
 import EditProfessor from './components/Professors/EditProfessor.jsx'
 import ProfessorProfile from './components/Professors/ProfessorProfile.jsx'
+import Students from './pages/Students.jsx'
+import AddStudent from './components/Students/AddStudent.jsx'
+import EditStudent from './components/Students/EditStudent.jsx'
+import StudentProfile from './components/Students/AboutStudent.jsx'
 
 
 const App = () => {
@@ -22,6 +26,10 @@ const App = () => {
         <Route path="/add-professor" element={<AddProfessor/>} />
         <Route path="/edit-professor" element={<EditProfessor/>} />
         <Route path="/professor-profile" element={<ProfessorProfile/>} />
+        <Route path="/all-students" element={<Students/>} />
+        <Route path="/add-student" element={<AddStudent/>} />
+        <Route path="/edit-student" element={<EditStudent/>} />
+        <Route path="/about-student" element={<StudentProfile/>} />
       </Routes>
     </div>
   )
