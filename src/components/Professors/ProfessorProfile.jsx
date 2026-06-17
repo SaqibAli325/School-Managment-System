@@ -152,14 +152,14 @@ function AboutMeCard() {
         <InfoRow label="Operation Done" value={PROFILE.operationDone} />
       </div>
 
-      <div className="mt-5 grid grid-cols-3 gap-2 border-t border-gray-100 pt-4 text-center">
+      <div className=" grid grid-cols-3 gap-2   text-center">
         <div>
           <p className="text-lg font-bold text-indigo-500">
             {PROFILE.projects}
           </p>
           <p className="text-xs text-gray-400">Projects</p>
         </div>
-        <div>
+        <div className="border-l border-r border-gray-200">
           <p className="text-lg font-bold text-indigo-500">
             {PROFILE.uploads}
           </p>
@@ -253,7 +253,7 @@ function Composer({ value, onChange, onSubmit }) {
         </button>
         <button
           type="button"
-          onClick={onSubmit}
+          onClick={(e) => e.preventDefault()}
           className="rounded bg-indigo-500 px-5 py-2 text-sm font-medium text-white transition hover:bg-indigo-600"
         >
           Post

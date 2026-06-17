@@ -412,7 +412,7 @@ const ProfessorsTable = ({ data = defaultData, onEdit, onDelete }) => {
         {/* ===== LIST VIEW ===== */}
         {view === "list" && (
           <div className="-mx-4 sm:mx-0">
-            <table className="w-full min-w-[800px] text-sm">
+            <table className="w-full min-w-200 text-sm">
               <thead>
                 <tr className="text-left font-semibold border-y border-gray-100">
                   <th className="py-3 px-4 w-16">Profile</th>

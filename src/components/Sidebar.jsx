@@ -56,9 +56,9 @@ const Sidebar = () => {
   const displayCollapsed = isMobileView ? false : collapsed;
   
   return (
-    <div className={`fixed top-0 left-0 h-screen bg-[#FAF9FB] overflow-y-auto overflow-x-hidden z-90 border-r border-gray-200 transition-all duration-200 ${isMobileView ? 'w-62.5' : (displayCollapsed ? 'w-14' : 'w-62.5')} ${shouldHide ? 'hidden' : ''}`}>
+    <div className={`fixed top-0 left-0 h-screen bg-[#FAF9FB] overflow-y-auto overflow-x-hidden z-90 border-r border-gray-200 transition-all duration-200 ${isMobileView ? 'w-62.5' : (displayCollapsed ? 'w-14' : 'w-62.5')} ${shouldHide ? 'hidden' : ''} mt-16`}>
       <div>
-        <div className={`pt-8 border-b border-gray-200 pb-2 mr-4 ${displayCollapsed ? 'hidden' : 'ml-8 text-gray-500'}`}>
+        <div className={`pt-8  pb-2 mr-4 ${displayCollapsed ? 'hidden' : 'ml-8 text-gray-500'}`}>
           {!displayCollapsed && <small className="text-[70%] font-semibold">Main Menu</small>}
         </div>
 
@@ -82,7 +82,7 @@ const Sidebar = () => {
 
             {!collapsed && (
               <div className={`overflow-hidden transition-all duration-500 ease-in-out ${dashboardSections ? "max-h-40 opacity-100" : "max-h-0 opacity-0"}`}>
-                <div className="flex flex-col text-[12px] pl-10 gap-3 pb-3 text-[#737b8b] font-bold">
+                <div className="flex flex-col text-[12px] pl-10 gap-3 pb-3 text-[#737b8b] font-[500]">
                   <Link to="/" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Dashboard 1</Link>
                   <Link to="/dashboard2" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Dashboard 2</Link>
                   <Link to="/dashboard3" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Dashboard 3</Link>
@@ -117,7 +117,7 @@ const Sidebar = () => {
 
             {!collapsed && (
               <div className={`overflow-hidden transition-all duration-500 ease-in-out ${professorsSections ? "max-h-48 opacity-100" : "max-h-0 opacity-0"}`}>
-                <div className="flex flex-col text-[12px] pl-10 gap-3 pb-3 text-[#737b8b] font-bold">
+                <div className="flex flex-col text-[12px] pl-10 gap-3 pb-3 text-[#737b8b] font-[500]">
                   <Link to="/all-professors" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- All Professors</Link>
                   <Link to="/add-professor" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Add Professor</Link>
                   <Link to="/edit-professor" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Edit Professor</Link>
