@@ -12,6 +12,10 @@ import Students from './pages/Students.jsx'
 import AddStudent from './components/Students/AddStudent.jsx'
 import EditStudent from './components/Students/EditStudent.jsx'
 import StudentProfile from './components/Students/AboutStudent.jsx'
+import AllCourse from './components/Courses/AllCourse.jsx'
+import AddCourse from './components/Courses/AddCourse.jsx'
+import EditCourse from './components/Courses/EditCourse.jsx'
+import AboutCourse from './components/Courses/AboutCourse.jsx'
 
 
 const App = () => {
@@ -30,6 +34,10 @@ const App = () => {
         <Route path="/add-student" element={<AddStudent/>} />
         <Route path="/edit-student" element={<EditStudent/>} />
         <Route path="/about-student" element={<StudentProfile/>} />
+        <Route path="/all-courses" element={<AllCourse/>} />
+        <Route path="/add-course" element={<AddCourse/>} />
+        <Route path="/edit-course" element={<EditCourse/>} />
+        <Route path="/about-course" element={<AboutCourse/>} />
       </Routes>
     </div>
   )

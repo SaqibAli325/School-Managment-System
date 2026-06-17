@@ -25,6 +25,7 @@ const Sidebar = () => {
   const [dashboardSections,setdashboardSections] = useState(false);
   const [professorsSections, setProfessorsSections] = useState(false);
   const [studentsSections, setStudentsSections] = useState(false);
+  const [coursesSections, setCoursesSections] = useState(false);
   const [collapsed, setCollapsed] = useState(localStorage.getItem('sidebarCollapsed') === 'true');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -83,7 +84,7 @@ const Sidebar = () => {
 
             {!collapsed && (
               <div className={`overflow-hidden transition-all duration-500 ease-in-out ${dashboardSections ? "max-h-40 opacity-100" : "max-h-0 opacity-0"}`}>
-                <div className="flex flex-col text-[12px] pl-10 gap-3 pb-3 text-[#737b8b] font-[500]">
+                <div className="flex flex-col text-[12px] pl-10 gap-3 pb-3 text-[#737b8b] font-medium">
                   <Link to="/" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Dashboard 1</Link>
                   <Link to="/dashboard2" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Dashboard 2</Link>
                   <Link to="/dashboard3" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Dashboard 3</Link>
@@ -118,7 +119,7 @@ const Sidebar = () => {
 
             {!collapsed && (
               <div className={`overflow-hidden transition-all duration-500 ease-in-out ${professorsSections ? "max-h-48 opacity-100" : "max-h-0 opacity-0"}`}>
-                <div className="flex flex-col text-[12px] pl-10 gap-3 pb-3 text-[#737b8b] font-[500]">
+                <div className="flex flex-col text-[12px] pl-10 gap-3 pb-3 text-[#737b8b] font-medium">
                   <Link to="/all-professors" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- All Professors</Link>
                   <Link to="/add-professor" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Add Professor</Link>
                   <Link to="/edit-professor" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Edit Professor</Link>
@@ -146,7 +147,7 @@ const Sidebar = () => {
             </div>
             {!collapsed && (
               <div className={`overflow-hidden transition-all duration-500 ease-in-out ${studentsSections ? "max-h-48 opacity-100" : "max-h-0 opacity-0"}`}>
-                <div className="flex flex-col text-[12px] pl-10 gap-3 pb-3 text-[#737b8b] font-[500]">
+                <div className="flex flex-col text-[12px] pl-10 gap-3 pb-3 text-[#737b8b] font-medium">
                   <Link to="/all-students" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- All Students</Link>
                   <Link to="/add-student" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Add Student</Link>
                   <Link to="/edit-student" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Edit Student</Link>
@@ -156,12 +157,32 @@ const Sidebar = () => {
             )}
           </div>
 
-          <div className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}>
-              <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
-                <RiGraduationCapLine size={20} />
-                {!collapsed && <span>Courses</span>}
+          <div className="w-full">
+            <div 
+              onClick={() => setCoursesSections(!coursesSections)}
+              className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}
+            >
+                <div className={`${coursesSections ? "text-[#6A73FA]":""} flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]`}>
+                  <RiGraduationCapLine size={20} />
+                  {!collapsed && <h2 className="text-[12px]">Courses</h2>}
+                </div>
+                {!collapsed && (
+                  <RiPlayMiniFill 
+                    size={16} 
+                    className={`transition-transform duration-300 ${coursesSections ? "rotate-90 text-[#6A73FA]" : ""}`}
+                  />
+                )}
+            </div>
+            {!collapsed && (
+              <div className={`overflow-hidden transition-all duration-500 ease-in-out ${coursesSections ? "max-h-48 opacity-100" : "max-h-0 opacity-0"}`}>
+                <div className="flex flex-col text-[12px] pl-10 gap-3 pb-3 text-[#737b8b] font-medium">
+                  <Link to="/all-courses" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- All Courses</Link>
+                  <Link to="/add-course" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Add Course</Link>
+                  <Link to="/edit-course" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Edit Course</Link>
+                  <Link to="/about-course" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- About Course</Link>
+                </div>
               </div>
-              {!collapsed && <RiPlayMiniFill size={16} />}
+            )}
           </div>
 
           <div className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}>
