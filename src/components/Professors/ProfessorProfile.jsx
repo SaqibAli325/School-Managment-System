@@ -293,7 +293,7 @@ function PostCard({ post }) {
   );
 }
 
-export default function ProfessorProfile() {
+export default function ProfessorProfile({prof}) {
   const [activeTab, setActiveTab] = useState("posts");
   const [draft, setDraft] = useState("");
   const [posts, setPosts] = useState(INITIAL_POSTS);
@@ -345,7 +345,10 @@ export default function ProfessorProfile() {
       {/* Main Content Div */}
       <div className={`absolute right-0 bottom-0 ${windowWidth < 1100 ? (mobileMenuOpen ? 'w-[calc(100vw-250px)]' : 'w-screen') : (sidebarCollapsed ? 'w-[calc(100vw-56px)]' : 'w-[calc(100vw-250px)]')} h-[calc(100vh-65px)] p-4 overflow-y-auto overflow-x-hidden`}>
         
-        <Header parentTitle="Professor Profile" childTitle="Professors" grandChildTitle="Professor Profile"/>
+        {prof ? 
+        <Header parentTitle="Staff Profile" childTitle="Staff" grandChildTitle="Staff Profile"/>:
+        <Header parentTitle="Professor Profile" childTitle="Professors" grandChildTitle="Professor Profile"/> 
+        }
 
         <div className="mt-4 grid grid-cols-1 gap-6 lg:grid-cols-[320px_1fr]">
           <aside>

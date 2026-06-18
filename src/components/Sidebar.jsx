@@ -29,6 +29,7 @@ const Sidebar = () => {
   const [coursesSections, setCoursesSections] = useState(false);
   const [librarySections, setLibrarySections] = useState(false);
   const [departmentsSections, setDepartmentsSections] = useState(false);
+  const [staffSections, setStaffSections] = useState(false);
   const [collapsed, setCollapsed] = useState(localStorage.getItem('sidebarCollapsed') === 'true');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -237,6 +238,34 @@ const Sidebar = () => {
                   <Link to="/all-departments" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- All Departments</Link>
                   <Link to="/add-department" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Add Department</Link>
                   <Link to="/edit-department" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Edit Department</Link>
+                </div>
+              </div>
+            )}
+          </div>
+
+          <div className="w-full">
+            <div 
+              onClick={() => setStaffSections(!staffSections)}
+              className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}
+            >
+                <div className={`${staffSections ? "text-[#6A73FA]":""} flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]`}>
+                  <RiTeamLine size={20} />
+                  {!collapsed && <h2 className="text-[12px]">Staff</h2>}
+                </div>
+                {!collapsed && (
+                  <RiPlayMiniFill 
+                    size={16} 
+                    className={`transition-transform duration-300 ${staffSections ? "rotate-90 text-[#6A73FA]" : ""}`}
+                  />
+                )}
+            </div>
+            {!collapsed && (
+              <div className={`overflow-hidden transition-all duration-500 ease-in-out ${staffSections ? "max-h-40 opacity-100" : "max-h-0 opacity-0"}`}>
+                <div className="flex flex-col text-[12px] pl-10 gap-3 pb-3 text-[#737b8b] font-medium">
+                  <Link to="/all-staff" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- All Staff</Link>
+                  <Link to="/add-staff" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Add Staff</Link>
+                  <Link to="/edit-staff" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Edit Staff</Link>
+                  <Link to="/staff-profile" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Staff Profile</Link>
                 </div>
               </div>
             )}

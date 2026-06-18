@@ -1,5 +1,5 @@
 
-import { Routes,Route } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import Dashboard1 from './pages/Dashboard1.jsx'
 import Dashboard2 from './pages/Dashboard2.jsx'
 import Dashboard3 from './pages/Dashboard3.jsx'
@@ -22,8 +22,10 @@ import EditLibrary from './components/Library/EditLibrary.jsx'
 import AllDepartments from './components/Departments/AllDepartments.jsx'
 import AddDepartments from './components/Departments/AddDepartments.jsx'
 import EditDepartments from './components/Departments/EditDepartments.jsx'
-
-
+import Staff from './pages/Staff.jsx'
+import AddStaff from './components/Staff/AddStaff.jsx'
+import EditStaff from './components/Staff/EditStaff.jsx'
+import StaffProfile from './components/Staff/StaffProfile.jsx'
 
 const App = () => {
   return (
@@ -32,25 +34,30 @@ const App = () => {
         <Route path="/" element={<Dashboard1 />} />
         <Route path="/dashboard2" element={<Dashboard2 />} />
         <Route path="/dashboard3" element={<Dashboard3 />} />
-        <Route path="/event-management" element={<EventManagement/>} />
-        <Route path="/all-professors" element={<Professors/>} />
-        <Route path="/add-professor" element={<AddProfessor/>} />
-        <Route path="/edit-professor" element={<EditProfessor/>} />
-        <Route path="/professor-profile" element={<ProfessorProfile/>} />
-        <Route path="/all-students" element={<Students/>} />
-        <Route path="/add-student" element={<AddStudent/>} />
-        <Route path="/edit-student" element={<EditStudent/>} />
-        <Route path="/about-student" element={<StudentProfile/>} />
-        <Route path="/all-courses" element={<AllCourse/>} />
-        <Route path="/add-course" element={<AddCourse/>} />
-        <Route path="/edit-course" element={<EditCourse/>} />
-        <Route path="/about-course" element={<AboutCourse/>} />
-        <Route path="/all-library" element={<Library/>} />
-        <Route path="/add-library" element={<AddLibrary/>} />
-        <Route path="/edit-library" element={<EditLibrary/>} />
-        <Route path="/all-departments" element={<AllDepartments/>} />
-        <Route path="/add-department" element={<AddDepartments/>} />
-        <Route path="/edit-department" element={<EditDepartments/>} />
+        <Route path="/event-management" element={<EventManagement />} />
+        <Route path="/all-professors" element={<Professors />} />
+        <Route path="/add-professor" element={<AddProfessor />} />
+        <Route path="/edit-professor" element={<EditProfessor />} />
+        <Route path="/professor-profile" element={<ProfessorProfile />} />
+        <Route path="/all-students" element={<Students />} />
+        <Route path="/add-student" element={<AddStudent />} />
+        <Route path="/edit-student" element={<EditStudent />} />
+        <Route path="/about-student" element={<StudentProfile />} />
+        <Route path="/all-courses" element={<AllCourse />} />
+        <Route path="/add-course" element={<AddCourse />} />
+        <Route path="/edit-course" element={<EditCourse />} />
+        <Route path="/about-course" element={<AboutCourse />} />
+        <Route path="/all-library" element={<Library />} />
+        <Route path="/add-library" element={<AddLibrary />} />
+        <Route path="/edit-library" element={<EditLibrary />} />
+        <Route path="/all-departments" element={<AllDepartments />} />
+        <Route path="/add-department" element={<AddDepartments />} />
+        <Route path="/edit-department" element={<EditDepartments />} />
+        <Route path="/all-staff" element={<Staff />} />
+        <Route path="/add-staff" element={<AddStaff />} />
+        <Route path="/edit-staff" element={<EditStaff />} />
+        <Route path="/staff-profile" element={<StaffProfile />} />
+        <Route path="*" element={<Dashboard1 />} />
       </Routes>
     </div>
   )

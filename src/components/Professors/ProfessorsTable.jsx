@@ -305,7 +305,7 @@ const defaultData = [
   // ... and so on up to Dummy Person 72 to reach exactly 100 elements.
 ];
 
-const ProfessorsTable = ({ data = defaultData, onEdit, onDelete }) => {
+const ProfessorsTable = ({ title = "All Professors", data = defaultData, onEdit, onDelete }) => {
   const [view, setView] = useState("list"); // "list" | "grid"
   const [search, setSearch] = useState("");
   const [entries, setEntries] = useState(10);
@@ -361,7 +361,7 @@ const ProfessorsTable = ({ data = defaultData, onEdit, onDelete }) => {
       <div className="bg-white rounded-xl shadow-sm p-4 sm:p-6 w-full overflow-x-auto">
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
-          <h2 className="text-lg font-semibold text-gray-700">All Professors</h2>
+          <h2 className="text-lg font-semibold text-gray-700">{title}</h2>
           <button className="bg-[#6A73FC] hover:bg-[#5961e0] text-white text-sm font-medium px-4 py-2 rounded-md w-full sm:w-auto transition-colors cursor-pointer">
             + Add new
           </button>
