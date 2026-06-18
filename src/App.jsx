@@ -26,7 +26,10 @@ import Staff from './pages/Staff.jsx'
 import AddStaff from './components/Staff/AddStaff.jsx'
 import EditStaff from './components/Staff/EditStaff.jsx'
 import StaffProfile from './components/Staff/StaffProfile.jsx'
-
+import Holiday from './pages/Holiday.jsx'
+import AddHoliday from './components/Holidays/AddHoliday.jsx'
+import EditHoliday from './components/Holidays/EditHoliday.jsx'
+import HolidayCalendar from './components/Holidays/HolidayCalender.jsx'
 const App = () => {
   return (
     <div>
@@ -57,6 +60,10 @@ const App = () => {
         <Route path="/add-staff" element={<AddStaff />} />
         <Route path="/edit-staff" element={<EditStaff />} />
         <Route path="/staff-profile" element={<StaffProfile />} />
+        <Route path="/all-holiday" element={<Holiday />} />
+        <Route path="/add-holiday" element={<AddHoliday />} />
+        <Route path="/edit-holiday" element={<EditHoliday />} />
+        <Route path="/holiday-calendar" element={<HolidayCalendar />} />
         <Route path="*" element={<Dashboard1 />} />
       </Routes>
     </div>
