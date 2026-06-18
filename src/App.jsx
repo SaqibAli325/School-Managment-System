@@ -19,6 +19,9 @@ import AboutCourse from './components/Courses/AboutCourse.jsx'
 import Library from './pages/Library.jsx'
 import AddLibrary from './components/Library/AddLibrary.jsx'
 import EditLibrary from './components/Library/EditLibrary.jsx'
+import AllDepartments from './components/Departments/AllDepartments.jsx'
+import AddDepartments from './components/Departments/AddDepartments.jsx'
+import EditDepartments from './components/Departments/EditDepartments.jsx'
 
 
 
@@ -45,6 +48,9 @@ const App = () => {
         <Route path="/all-library" element={<Library/>} />
         <Route path="/add-library" element={<AddLibrary/>} />
         <Route path="/edit-library" element={<EditLibrary/>} />
+        <Route path="/all-departments" element={<AllDepartments/>} />
+        <Route path="/add-department" element={<AddDepartments/>} />
+        <Route path="/edit-department" element={<EditDepartments/>} />
       </Routes>
     </div>
   )
