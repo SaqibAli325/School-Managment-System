@@ -1,18 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Pencil, Trash2, MoreVertical } from "lucide-react";
 
-// data prop me array of objects aayega, jaise:
-// {
-//   profile: "image url",
-//   name: "Tiger Nixon",
-//   department: "Architect",
-//   gender: "Male",
-//   education: "M.COM., P.H.D.",
-//   mobile: "123 456 7890",
-//   email: "info@example.com",
-//   joiningDate: "2011/04/25",
-// }
-
 const defaultData = [
   {
     name: "Tiger Nixon",

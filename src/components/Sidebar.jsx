@@ -26,6 +26,7 @@ const Sidebar = () => {
   const [professorsSections, setProfessorsSections] = useState(false);
   const [studentsSections, setStudentsSections] = useState(false);
   const [coursesSections, setCoursesSections] = useState(false);
+  const [librarySections, setLibrarySections] = useState(false);
   const [collapsed, setCollapsed] = useState(localStorage.getItem('sidebarCollapsed') === 'true');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -185,12 +186,31 @@ const Sidebar = () => {
             )}
           </div>
 
-          <div className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}>
-              <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
-                <RiBuilding4Line size={20} />
-                {!collapsed && <span>Library</span>}
+          <div className="w-full">
+            <div 
+              onClick={() => setLibrarySections(!librarySections)}
+              className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}
+            >
+                <div className={`${librarySections ? "text-[#6A73FA]":""} flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]`}>
+                  <RiBuilding4Line size={20} />
+                  {!collapsed && <h2 className="text-[12px]">Library</h2>}
+                </div>
+                {!collapsed && (
+                  <RiPlayMiniFill 
+                    size={16} 
+                    className={`transition-transform duration-300 ${librarySections ? "rotate-90 text-[#6A73FA]" : ""}`}
+                  />
+                )}
+            </div>
+            {!collapsed && (
+              <div className={`overflow-hidden transition-all duration-500 ease-in-out ${librarySections ? "max-h-40 opacity-100" : "max-h-0 opacity-0"}`}>
+                <div className="flex flex-col text-[12px] pl-10 gap-3 pb-3 text-[#737b8b] font-medium">
+                  <Link to="/all-library" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- All Library</Link>
+                  <Link to="/add-library" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Add Library</Link>
+                  <Link to="/edit-library" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Edit Library</Link>
+                </div>
               </div>
-              {!collapsed && <RiPlayMiniFill size={16} />}
+            )}
           </div>
 
           <div className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}>

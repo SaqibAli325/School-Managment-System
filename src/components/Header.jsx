@@ -1,7 +1,6 @@
 import {RiArrowRightSLine} from '@remixicon/react'
 
 const Header = (props) => {
-  console.log(props)
   return (
     <div>
       <div className='flex flex-col sm:flex-row sm:items-center justify-between w-full bg-white p-3 rounded px-5 mt-3 gap-2'>
