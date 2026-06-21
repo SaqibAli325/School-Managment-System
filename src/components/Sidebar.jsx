@@ -1,20 +1,20 @@
-import { 
-  RiPlayMiniFill, 
-  RiHome4Line, 
-  RiCalendar2Line, 
-  RiUserLine, 
-  RiTeamLine, 
-  RiGraduationCapLine, 
-  RiBook2Line, 
-  RiBuilding4Line, 
-  RiGift2Line, 
-  RiInboxLine, 
-  RiSignalCellular3Fill, 
-  RiGlobalLine, 
-  RiFileAddLine, 
-  RiComputerLine, 
-  RiFileTextLine, 
-  RiLayoutGrid2Line ,
+import {
+  RiPlayMiniFill,
+  RiHome4Line,
+  RiCalendar2Line,
+  RiUserLine,
+  RiTeamLine,
+  RiGraduationCapLine,
+  RiBook2Line,
+  RiBuilding4Line,
+  RiGift2Line,
+  RiInboxLine,
+  RiSignalCellular3Fill,
+  RiGlobalLine,
+  RiFileAddLine,
+  RiComputerLine,
+  RiFileTextLine,
+  RiLayoutGrid2Line,
   RiMoneyDollarCircleLine,
   RiHeartFill,
   RiStackLine,
@@ -23,7 +23,7 @@ import { useState, useEffect } from "react";
 import { Link, Links } from "react-router-dom";
 
 const Sidebar = () => {
-  const [dashboardSections,setdashboardSections] = useState(false);
+  const [dashboardSections, setdashboardSections] = useState(false);
   const [professorsSections, setProfessorsSections] = useState(false);
   const [studentsSections, setStudentsSections] = useState(false);
   const [coursesSections, setCoursesSections] = useState(false);
@@ -34,34 +34,35 @@ const Sidebar = () => {
   const [collapsed, setCollapsed] = useState(localStorage.getItem('sidebarCollapsed') === 'true');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [FeesSection, setFeesSection] = useState(false)
 
   useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
     };
     window.addEventListener("resize", handleResize);
-    
+
     const handleToggle = (e) => {
       setCollapsed(e.detail.collapsed);
     };
     window.addEventListener("sidebarToggle", handleToggle);
-    
+
     const handleMobileToggle = (e) => {
       setMobileMenuOpen(e.detail.isOpen);
     };
     window.addEventListener("mobileSidebarToggle", handleMobileToggle);
-    
+
     return () => {
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("sidebarToggle", handleToggle);
       window.removeEventListener("mobileSidebarToggle", handleMobileToggle);
     };
   }, []);
-  
+
   const isMobileView = windowWidth < 1100;
   const shouldHide = isMobileView && !mobileMenuOpen;
   const displayCollapsed = isMobileView ? false : collapsed;
-  
+
   return (
     <div className={`fixed top-0 left-0 h-screen bg-[#FAF9FB] overflow-y-auto overflow-x-hidden z-90 border-r border-gray-200 transition-all duration-200 ${isMobileView ? 'w-62.5' : (displayCollapsed ? 'w-14' : 'w-62.5')} ${shouldHide ? 'hidden' : ''} mt-16`}>
       <div>
@@ -71,20 +72,20 @@ const Sidebar = () => {
 
         <div className="flex flex-col gap-1 mt-2 border-b border-gray-200 pb-5">
           <div className="w-full">
-            <div 
+            <div
               onClick={() => setdashboardSections(!dashboardSections)}
               className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}
             >
-                <div className={`${dashboardSections ? "text-[#6A73FA]":""} flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]`}>
-                  <RiHome4Line size={20} />
-                  {!collapsed && <h2 className="text-[12px]">Dashboard</h2>}
-                </div>
-                {!collapsed && (
-                  <RiPlayMiniFill 
-                    size={16} 
-                    className={`transition-transform duration-300 ${dashboardSections ? "rotate-90 text-[#6A73FA]" : ""}`}
-                  />
-                )}
+              <div className={`${dashboardSections ? "text-[#6A73FA]" : ""} flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]`}>
+                <RiHome4Line size={20} />
+                {!collapsed && <h2 className="text-[12px]">Dashboard</h2>}
+              </div>
+              {!collapsed && (
+                <RiPlayMiniFill
+                  size={16}
+                  className={`transition-transform duration-300 ${dashboardSections ? "rotate-90 text-[#6A73FA]" : ""}`}
+                />
+              )}
             </div>
 
             {!collapsed && (
@@ -99,27 +100,27 @@ const Sidebar = () => {
           </div>
 
           <Link to="/event-management" className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}>
-              <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
-                <RiCalendar2Line size={20} />
-                {!collapsed && <span>Event Management</span>}
-              </div>
+            <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
+              <RiCalendar2Line size={20} />
+              {!collapsed && <span>Event Management</span>}
+            </div>
           </Link>
 
           <div className="w-full">
-            <div 
+            <div
               onClick={() => setProfessorsSections(!professorsSections)}
               className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}
             >
-                <div className={`${professorsSections ? "text-[#6A73FA]":""} flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]`}>
-                  <RiUserLine size={20} />
-                  {!collapsed && <h2 className="text-[12px]">Professors</h2>}
-                </div>
-                {!collapsed && (
-                  <RiPlayMiniFill 
-                    size={16} 
-                    className={`transition-transform duration-300 ${professorsSections ? "rotate-90 text-[#6A73FA]" : ""}`}
-                  />
-                )}
+              <div className={`${professorsSections ? "text-[#6A73FA]" : ""} flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]`}>
+                <RiUserLine size={20} />
+                {!collapsed && <h2 className="text-[12px]">Professors</h2>}
+              </div>
+              {!collapsed && (
+                <RiPlayMiniFill
+                  size={16}
+                  className={`transition-transform duration-300 ${professorsSections ? "rotate-90 text-[#6A73FA]" : ""}`}
+                />
+              )}
             </div>
 
             {!collapsed && (
@@ -135,20 +136,20 @@ const Sidebar = () => {
           </div>
 
           <div className="w-full">
-            <div 
+            <div
               onClick={() => setStudentsSections(!studentsSections)}
               className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}
             >
-                <div className={`${studentsSections ? "text-[#6A73FA]":""} flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]`}>
-                  <RiTeamLine size={20} />
-                  {!collapsed && <h2 className="text-[12px]">Students</h2>}
-                </div>
-                {!collapsed && (
-                  <RiPlayMiniFill 
-                    size={16} 
-                    className={`transition-transform duration-300 ${studentsSections ? "rotate-90 text-[#6A73FA]" : ""}`}
-                  />
-                )}
+              <div className={`${studentsSections ? "text-[#6A73FA]" : ""} flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]`}>
+                <RiTeamLine size={20} />
+                {!collapsed && <h2 className="text-[12px]">Students</h2>}
+              </div>
+              {!collapsed && (
+                <RiPlayMiniFill
+                  size={16}
+                  className={`transition-transform duration-300 ${studentsSections ? "rotate-90 text-[#6A73FA]" : ""}`}
+                />
+              )}
             </div>
             {!collapsed && (
               <div className={`overflow-hidden transition-all duration-500 ease-in-out ${studentsSections ? "max-h-48 opacity-100" : "max-h-0 opacity-0"}`}>
@@ -163,20 +164,20 @@ const Sidebar = () => {
           </div>
 
           <div className="w-full">
-            <div 
+            <div
               onClick={() => setCoursesSections(!coursesSections)}
               className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}
             >
-                <div className={`${coursesSections ? "text-[#6A73FA]":""} flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]`}>
-                  <RiGraduationCapLine size={20} />
-                  {!collapsed && <h2 className="text-[12px]">Courses</h2>}
-                </div>
-                {!collapsed && (
-                  <RiPlayMiniFill 
-                    size={16} 
-                    className={`transition-transform duration-300 ${coursesSections ? "rotate-90 text-[#6A73FA]" : ""}`}
-                  />
-                )}
+              <div className={`${coursesSections ? "text-[#6A73FA]" : ""} flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]`}>
+                <RiGraduationCapLine size={20} />
+                {!collapsed && <h2 className="text-[12px]">Courses</h2>}
+              </div>
+              {!collapsed && (
+                <RiPlayMiniFill
+                  size={16}
+                  className={`transition-transform duration-300 ${coursesSections ? "rotate-90 text-[#6A73FA]" : ""}`}
+                />
+              )}
             </div>
             {!collapsed && (
               <div className={`overflow-hidden transition-all duration-500 ease-in-out ${coursesSections ? "max-h-48 opacity-100" : "max-h-0 opacity-0"}`}>
@@ -191,20 +192,20 @@ const Sidebar = () => {
           </div>
 
           <div className="w-full">
-            <div 
+            <div
               onClick={() => setLibrarySections(!librarySections)}
               className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}
             >
-                <div className={`${librarySections ? "text-[#6A73FA]":""} flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]`}>
-                  <RiBook2Line size={20} />
-                  {!collapsed && <h2 className="text-[12px]">Library</h2>}
-                </div>
-                {!collapsed && (
-                  <RiPlayMiniFill 
-                    size={16} 
-                    className={`transition-transform duration-300 ${librarySections ? "rotate-90 text-[#6A73FA]" : ""}`}
-                  />
-                )}
+              <div className={`${librarySections ? "text-[#6A73FA]" : ""} flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]`}>
+                <RiBook2Line size={20} />
+                {!collapsed && <h2 className="text-[12px]">Library</h2>}
+              </div>
+              {!collapsed && (
+                <RiPlayMiniFill
+                  size={16}
+                  className={`transition-transform duration-300 ${librarySections ? "rotate-90 text-[#6A73FA]" : ""}`}
+                />
+              )}
             </div>
             {!collapsed && (
               <div className={`overflow-hidden transition-all duration-500 ease-in-out ${librarySections ? "max-h-40 opacity-100" : "max-h-0 opacity-0"}`}>
@@ -218,20 +219,20 @@ const Sidebar = () => {
           </div>
 
           <div className="w-full">
-            <div 
+            <div
               onClick={() => setDepartmentsSections(!departmentsSections)}
               className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}
             >
-                <div className={`${departmentsSections ? "text-[#6A73FA]":""} flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]`}>
-                  <RiBuilding4Line size={20} />
-                  {!collapsed && <h2 className="text-[12px]">Departments</h2>}
-                </div>
-                {!collapsed && (
-                  <RiPlayMiniFill 
-                    size={16} 
-                    className={`transition-transform duration-300 ${departmentsSections ? "rotate-90 text-[#6A73FA]" : ""}`}
-                  />
-                )}
+              <div className={`${departmentsSections ? "text-[#6A73FA]" : ""} flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]`}>
+                <RiBuilding4Line size={20} />
+                {!collapsed && <h2 className="text-[12px]">Departments</h2>}
+              </div>
+              {!collapsed && (
+                <RiPlayMiniFill
+                  size={16}
+                  className={`transition-transform duration-300 ${departmentsSections ? "rotate-90 text-[#6A73FA]" : ""}`}
+                />
+              )}
             </div>
             {!collapsed && (
               <div className={`overflow-hidden transition-all duration-500 ease-in-out ${departmentsSections ? "max-h-40 opacity-100" : "max-h-0 opacity-0"}`}>
@@ -245,20 +246,20 @@ const Sidebar = () => {
           </div>
 
           <div className="w-full">
-            <div 
+            <div
               onClick={() => setStaffSections(!staffSections)}
               className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}
             >
-                <div className={`${staffSections ? "text-[#6A73FA]":""} flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]`}>
-                  <RiTeamLine size={20} />
-                  {!collapsed && <h2 className="text-[12px]">Staff</h2>}
-                </div>
-                {!collapsed && (
-                  <RiPlayMiniFill 
-                    size={16} 
-                    className={`transition-transform duration-300 ${staffSections ? "rotate-90 text-[#6A73FA]" : ""}`}
-                  />
-                )}
+              <div className={`${staffSections ? "text-[#6A73FA]" : ""} flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]`}>
+                <RiTeamLine size={20} />
+                {!collapsed && <h2 className="text-[12px]">Staff</h2>}
+              </div>
+              {!collapsed && (
+                <RiPlayMiniFill
+                  size={16}
+                  className={`transition-transform duration-300 ${staffSections ? "rotate-90 text-[#6A73FA]" : ""}`}
+                />
+              )}
             </div>
             {!collapsed && (
               <div className={`overflow-hidden transition-all duration-500 ease-in-out ${staffSections ? "max-h-40 opacity-100" : "max-h-0 opacity-0"}`}>
@@ -273,20 +274,20 @@ const Sidebar = () => {
           </div>
 
           <div className="w-full">
-            <div 
+            <div
               onClick={() => setHolidaySections(!holidaySections)}
               className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}
             >
-                <div className={`${holidaySections ? "text-[#6A73FA]":""} flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]`}>
-                  <RiGift2Line size={20} />
-                  {!collapsed && <h2 className="text-[12px]">Holiday</h2>}
-                </div>
-                {!collapsed && (
-                  <RiPlayMiniFill 
-                    size={16} 
-                    className={`transition-transform duration-300 ${holidaySections ? "rotate-90 text-[#6A73FA]" : ""}`}
-                  />
-                )}
+              <div className={`${holidaySections ? "text-[#6A73FA]" : ""} flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]`}>
+                <RiGift2Line size={20} />
+                {!collapsed && <h2 className="text-[12px]">Holiday</h2>}
+              </div>
+              {!collapsed && (
+                <RiPlayMiniFill
+                  size={16}
+                  className={`transition-transform duration-300 ${holidaySections ? "rotate-90 text-[#6A73FA]" : ""}`}
+                />
+              )}
             </div>
             {!collapsed && (
               <div className={`overflow-hidden transition-all duration-500 ease-in-out ${holidaySections ? "max-h-40 opacity-100" : "max-h-0 opacity-0"}`}>
@@ -300,13 +301,30 @@ const Sidebar = () => {
             )}
           </div>
 
-          <div className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}>
-              <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
+          <div className="w-full">
+            <div
+              onClick={() => { setFeesSection(!FeesSection) }}
+              className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}>
+
+              <div className={`${FeesSection ? "text-[#6A73FA]" : ""} flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]`}>
                 <span className="text-[20px] pl-1">$</span>
                 {!collapsed && <span className="pl-1">Fees</span>}
               </div>
               {!collapsed && <RiPlayMiniFill size={16} />}
+            </div>
+
+
+            {!collapsed && (
+              <div className={`overflow-hidden transition-all duration-500 ease-in-out ${FeesSection ? "max-h-40 opacity-100" : "max-h-0 opacity-0"}`}>
+                <div className="flex flex-col text-[12px] pl-10 gap-3 pb-3 text-[#737b8b] font-medium">
+                  <Link to="/fees-collection" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Fees Collection</Link>
+                  <Link to="/add-fees" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Add Fees</Link>
+                  <Link to="/fees-reciept" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Fees Reciept</Link>
+                </div>
+              </div>
+            )}
           </div>
+
         </div>
 
         <div className={`pt-3 pb-2 mr-4 ${collapsed ? 'hidden' : 'ml-8 text-gray-500'}`}>
@@ -315,32 +333,32 @@ const Sidebar = () => {
 
         <div className="flex flex-col gap-1 mt-2 border-b border-gray-200 pb-5">
           <div className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}>
-              <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
-                <RiTeamLine size={20} />
-                {!collapsed && <span>Apps</span>}
-              </div>
-              {!collapsed && <RiPlayMiniFill size={16} />}
+            <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
+              <RiTeamLine size={20} />
+              {!collapsed && <span>Apps</span>}
+            </div>
+            {!collapsed && <RiPlayMiniFill size={16} />}
           </div>
 
           <div className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}>
-              <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
-                <RiInboxLine size={20} />
-                {!collapsed && (
-                  <div className="flex items-center gap-1.25">
-                    <span>CMS</span>
-                    <div className="bg-red-500 text-white text-[10px] px-2 py-0.5 rounded-sm">New</div>
-                  </div>
-                )}
-              </div>
-              {!collapsed && <RiPlayMiniFill size={16} />}
+            <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
+              <RiInboxLine size={20} />
+              {!collapsed && (
+                <div className="flex items-center gap-1.25">
+                  <span>CMS</span>
+                  <div className="bg-red-500 text-white text-[10px] px-2 py-0.5 rounded-sm">New</div>
+                </div>
+              )}
+            </div>
+            {!collapsed && <RiPlayMiniFill size={16} />}
           </div>
 
           <div className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}>
-              <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
-                <RiSignalCellular3Fill size={20} />
-                {!collapsed && <span>Charts</span>}
-              </div>
-              {!collapsed && <RiPlayMiniFill size={16} />}
+            <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
+              <RiSignalCellular3Fill size={20} />
+              {!collapsed && <span>Charts</span>}
+            </div>
+            {!collapsed && <RiPlayMiniFill size={16} />}
           </div>
         </div>
 
@@ -350,24 +368,24 @@ const Sidebar = () => {
 
         <div className="flex flex-col gap-1 mt-2 border-b border-gray-200 pb-5">
           <div className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}>
-              <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
-                <RiGlobalLine size={20} />
-                {!collapsed && <span>Bootstrap</span>}
-              </div>
-                {!collapsed && <RiPlayMiniFill size={16} />}
+            <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
+              <RiGlobalLine size={20} />
+              {!collapsed && <span>Bootstrap</span>}
+            </div>
+            {!collapsed && <RiPlayMiniFill size={16} />}
           </div>
           <div className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}>
-              <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
-                <RiFileAddLine size={20} />
-                {!collapsed && <span>Plugins</span>}
-              </div>
-                {!collapsed && <RiPlayMiniFill size={16} />}
+            <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
+              <RiFileAddLine size={20} />
+              {!collapsed && <span>Plugins</span>}
+            </div>
+            {!collapsed && <RiPlayMiniFill size={16} />}
           </div>
           <div className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}>
-              <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
-                <RiComputerLine size={20} />
-                {!collapsed && <span>Widget</span>}
-              </div>
+            <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
+              <RiComputerLine size={20} />
+              {!collapsed && <span>Widget</span>}
+            </div>
 
           </div>
         </div>
@@ -377,11 +395,11 @@ const Sidebar = () => {
         </div>
         <div className="flex flex-col gap-1 mt-2 border-b border-gray-200 pb-5">
           <div className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}>
-              <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
-                <RiFileTextLine size={20} />
-                {!collapsed && <span>Forms</span>}
-              </div>
-              {!collapsed && <RiPlayMiniFill size={16} />}
+            <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
+              <RiFileTextLine size={20} />
+              {!collapsed && <span>Forms</span>}
+            </div>
+            {!collapsed && <RiPlayMiniFill size={16} />}
           </div>
         </div>
 
@@ -390,11 +408,11 @@ const Sidebar = () => {
         </div>
         <div className="flex flex-col gap-1 mt-2 border-b border-gray-200 pb-5">
           <div className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}>
-              <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
-                <RiLayoutGrid2Line size={20} />
-                {!collapsed && <span>Table</span>}
-              </div>
-              {!collapsed && <RiPlayMiniFill size={16} />}
+            <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
+              <RiLayoutGrid2Line size={20} />
+              {!collapsed && <span>Table</span>}
+            </div>
+            {!collapsed && <RiPlayMiniFill size={16} />}
           </div>
         </div>
 
@@ -403,11 +421,11 @@ const Sidebar = () => {
         </div>
         <div className="flex flex-col gap-1 mt-2">
           <div className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}>
-              <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
-                <RiFileTextLine size={20} />
-                {!collapsed && <span>Pages</span>}
-              </div>
-              {!collapsed && <RiPlayMiniFill size={16} />}
+            <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
+              <RiFileTextLine size={20} />
+              {!collapsed && <span>Pages</span>}
+            </div>
+            {!collapsed && <RiPlayMiniFill size={16} />}
           </div>
         </div>
 

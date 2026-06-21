@@ -30,6 +30,10 @@ import Holiday from './pages/Holiday.jsx'
 import AddHoliday from './components/Holidays/AddHoliday.jsx'
 import EditHoliday from './components/Holidays/EditHoliday.jsx'
 import HolidayCalendar from './components/Holidays/HolidayCalender.jsx'
+import FeesSection from './pages/Fees.jsx'
+import AddFees from './components/Fees/AddFees.jsx'
+import FeesReciept from './components/Fees/FeesReciept.jsx'
+
 const App = () => {
   return (
     <div>
@@ -64,6 +68,9 @@ const App = () => {
         <Route path="/add-holiday" element={<AddHoliday />} />
         <Route path="/edit-holiday" element={<EditHoliday />} />
         <Route path="/holiday-calendar" element={<HolidayCalendar />} />
+        <Route path="/fees-collection" element={<FeesSection />} />
+        <Route path="/add-fees" element={<AddFees />} />
+        <Route path="/fees-reciept" element={<FeesReciept />} />
         <Route path="*" element={<Dashboard1 />} />
       </Routes>
     </div>
