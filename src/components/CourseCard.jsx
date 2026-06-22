@@ -2,22 +2,22 @@ import React from 'react';
 
 export default function CourseCard({ title, likes, professor, img }) {
   return (
-    <div className="flex items-center justify-center bg-gray-100 p-2 w-full">
+    <div className="flex items-center justify-center bg-gray-100 w-full">
       {/* Card Container */}
-      <div className="w-full bg-white rounded shadow-lg border border-gray-100 overflow-hidden font-sans">
-        
+      <div className="w-full bg-white rounded shadow-lg border border-gray-100 overflow-hidden ">
+
         {/* Card Image */}
         <div className="w-full h-56 bg-slate-900 relative">
-          <img 
-            src={img} 
-            alt="Course Workspace" 
+          <img
+            src={img}
+            alt="Course Workspace"
             className="w-full h-full object-cover opacity-90"
           />
         </div>
 
         {/* Card Content */}
         <div className="p-6">
-          
+
           {/* Title */}
           <h2 className="text-[15px] font-bold text-gray-900 leading-snug mb-5">
             {title}
@@ -25,7 +25,7 @@ export default function CourseCard({ title, likes, professor, img }) {
 
           {/* Info Rows Container */}
           <div className="space-y-4 text-sm mb-6">
-            
+
             {/* Row 1: Date & Likes */}
             <div className="flex justify-between items-center pb-3 border-b border-gray-100">
               <span className="text-gray-500 font-medium">April 23</span>
@@ -65,7 +65,7 @@ export default function CourseCard({ title, likes, professor, img }) {
           </div>
 
           {/* Button */}
-          <button className="w-auto px-6 py-3 bg-[#6A73FA] hover:bg-indigo-700 text-white font-semibold rounded-xl shadow-md shadow-indigo-100 transition-all duration-200 active:scale-95 cursor-pointer">
+          <button className="w-auto px-5 py-2 text-[14px] font-bold text-white rounded bg-[#6A73FA] hover:bg-indigo-700 transition-all duration-200 active:scale-95 cursor-pointer">
             Read More
           </button>
 

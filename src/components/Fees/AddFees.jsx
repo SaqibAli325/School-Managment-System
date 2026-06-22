@@ -49,17 +49,17 @@ const AddFees = () => {
                     </div>
 
                     <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div className="flex flex-col gap-2">
+                        <div className="flex flex-col">
                             <label className="ml-1 text-[0.875rem] font-medium text-[#312a2a] mb-2">Roll No.</label>
                             <input type="text" placeholder="Roll No" className="border border-gray-200 rounded px-[0.95rem] py-1.25 h-[2.7rem] focus:outline-none focus:ring-2 focus:ring-[#6A73FC]/30" />
                         </div>
 
-                        <div className="flex flex-col gap-2">
+                        <div className="flex flex-col">
                             <label className="ml-1 text-[0.875rem] font-medium text-[#312a2a] mb-2">Student Name</label>
                             <input type="text" placeholder="Student Name" className="border border-gray-200 rounded px-[0.95rem] py-1.25 h-[2.7rem] focus:outline-none focus:ring-2 focus:ring-[#6A73FC]/30" />
                         </div>
 
-                        <div className="flex flex-col gap-2">
+                        <div className="flex flex-col">
                             <label className="ml-1 text-[0.875rem] font-medium text-[#312a2a] mb-2">Department</label>
                             <select className="border border-gray-200 rounded px-[0.95rem] py-1.25 h-[2.7rem] focus:outline-none focus:ring-2 focus:ring-[#6A73FC]/30 bg-white">
                                 <option value="">Department</option>
@@ -69,7 +69,7 @@ const AddFees = () => {
                             </select>
                         </div>
 
-                        <div className="flex flex-col gap-2">
+                        <div className="flex flex-col">
                             <label className="ml-1 text-[0.875rem] font-medium text-[#312a2a] mb-2">Type</label>
                             <select className="border border-gray-200 rounded px-[0.95rem] py-1.25 h-[2.7rem] focus:outline-none focus:ring-2 focus:ring-[#6A73FC]/30 bg-white">
                                 <option value="">Fees Type</option>
@@ -116,17 +116,17 @@ const AddFees = () => {
                             </label>
                         </div>
 
-                        <div className="flex flex-col gap-2 md:col-span-2">
+                        <div className="flex flex-col md:col-span-2">
                             <label className="ml-1 text-[0.875rem] font-medium text-[#312a2a] mb-2">Amount</label>
                             <input type="text" placeholder="Amount" className="border border-gray-200 rounded px-[0.95rem] py-1.25 h-[2.7rem] focus:outline-none focus:ring-2 focus:ring-[#6A73FC]/30" />
                         </div>
 
-                        <div className="flex flex-col gap-2">
+                        <div className="flex flex-col">
                             <label className="ml-1 text-[0.875rem] font-medium text-[#312a2a] mb-2">Collection Date</label>
                             <input type="date" className="border border-gray-200 rounded px-[0.95rem] py-1.25 h-[2.7rem] focus:outline-none focus:ring-2 focus:ring-[#6A73FC]/30" />
                         </div>
 
-                        <div className="flex flex-col gap-2">
+                        <div className="flex flex-col">
                             <label className="ml-1 text-[0.875rem] font-medium text-[#312a2a] mb-2">Payment Type</label>
                             <select className="border border-gray-200 rounded px-[0.95rem] py-1.25 h-[2.7rem] focus:outline-none focus:ring-2 focus:ring-[#6A73FC]/30 bg-white">
                                 <option value="">Payment Type</option>
@@ -136,12 +136,12 @@ const AddFees = () => {
                             </select>
                         </div>
 
-                        <div className="flex flex-col gap-2">
+                        <div className="flex flex-col">
                             <label className="ml-1 text-[0.875rem] font-medium text-[#312a2a] mb-2">Payment Reference Number</label>
                             <input type="text" placeholder="Payment Reference Number" className="border border-gray-200 rounded px-[0.95rem] py-1.25 h-[2.7rem] focus:outline-none focus:ring-2 focus:ring-[#6A73FC]/30" />
                         </div>
 
-                        <div className="flex flex-col gap-2">
+                        <div className="flex flex-col">
                             <label className="ml-1 text-[0.875rem] font-medium text-[#312a2a] mb-2">Status</label>
                             <select className="border border-gray-200 rounded px-[0.95rem] py-1.25 h-[2.7rem] focus:outline-none focus:ring-2 focus:ring-[#6A73FC]/30 bg-white">
                                 <option value="">Status</option>
@@ -151,7 +151,7 @@ const AddFees = () => {
                             </select>
                         </div>
 
-                        <div className="flex flex-col gap-2 md:col-span-2">
+                        <div className="flex flex-col md:col-span-2">
                             <label className="ml-1 text-[0.875rem] font-medium text-[#312a2a] mb-2">Payment Details</label>
                             <textarea placeholder="Payment Details" rows="4" className="border border-gray-200 rounded px-[0.95rem] py-2 focus:outline-none focus:ring-2 focus:ring-[#6A73FC]/30 resize-none"></textarea>
                         </div>

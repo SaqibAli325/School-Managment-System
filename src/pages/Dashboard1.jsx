@@ -7,7 +7,7 @@ import CourseCard from '../components/CourseCard.jsx'
 import Editor from '../components/ComposeEmail.jsx'
 import Toppers from '../components/ExamToppers.jsx'
 import StudentList from '../components/StudentList.jsx'
-import { RiTeamLine ,RiUserLine,RiGraduationCapLine,RiMoneyDollarCircleLine} from '@remixicon/react'
+import { RiTeamLine, RiUserLine, RiGraduationCapLine, RiMoneyDollarCircleLine } from '@remixicon/react'
 
 const Dashboard1 = () => {
   const stats = [
@@ -16,32 +16,32 @@ const Dashboard1 = () => {
       num: 3280,
       percent: 80,
       days: 20,
-      color : '#6A73FA',
-      img : RiTeamLine
+      color: '#6A73FA',
+      img: RiTeamLine
     },
     {
       title: 'NEW STUDENTS',
       num: 245,
       percent: 50,
       days: 25,
-      color : '#FFAA16',
-      img : RiUserLine
+      color: '#FFAA16',
+      img: RiUserLine
     },
     {
       title: 'TOTAL COURSE',
       num: 28,
       percent: 76,
       days: 20,
-      color : '#673BB7',
-      img : RiGraduationCapLine
+      color: '#673BB7',
+      img: RiGraduationCapLine
     },
     {
       title: 'FEES COLLECTION',
-      num: 25160,
+      num: "25160$",
       percent: 30,
       days: 30,
-      color : '#FB1515',
-      img : RiMoneyDollarCircleLine
+      color: '#FB1515',
+      img: RiMoneyDollarCircleLine
     },
   ];
 
@@ -78,7 +78,7 @@ const Dashboard1 = () => {
   useEffect(() => {
     const handleResize = () => setWindowWidth(window.innerWidth);
     window.addEventListener('resize', handleResize);
-    
+
     const handleToggle = (e) => {
       setSidebarCollapsed(e.detail.collapsed);
     };
@@ -88,7 +88,7 @@ const Dashboard1 = () => {
       setMobileMenuOpen(e.detail.isOpen);
     };
     window.addEventListener('mobileSidebarToggle', handleMobileToggle);
-    
+
     return () => {
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('sidebarToggle', handleToggle);
@@ -98,49 +98,49 @@ const Dashboard1 = () => {
 
   return (
     <div className='w-screen h-screen bg-[#F2F2F3]'>
-      <Navbar/>
-      <Sidebar/>
+      <Navbar />
+      <Sidebar />
 
-      <div className={`absolute right-0 bottom-0 ${windowWidth < 1100 ? (mobileMenuOpen ? 'w-[calc(100vw-250px)]' : 'w-screen') : (sidebarCollapsed ? 'w-[calc(100vw-56px)]' : 'w-[calc(100vw-250px)]')} h-[calc(100vh-65px)] p-4 overflow-y-auto overflow-x-hidden`}>
-    
-    <div className='flex justify-between gap-6  pt-5 max-[1010px]:flex-col'>
-      {stats.map((stat, index) => (
-        <Card 
-          key={index} 
-          title={stat.title} 
-          num={stat.num} 
-          percent={stat.percent} 
-          days={stat.days} 
-          color={stat.color} 
-          img={stat.img} 
-          textColor={'white'}
-        />
-      ))}
-    </div>
-    
-    <Chart />
-    
-    <div className='flex max-[1010px]:flex-col'>
-    {courses.map((course, index) => {
-      return <CourseCard key={index} title={course.title} likes={course.likes} professor={course.professor} img={course.img} />
-    })}
-    </div>
+      <div className={`absolute right-0 bottom-0 ${windowWidth < 1100 ? (mobileMenuOpen ? 'w-[calc(100vw-270px)]' : 'w-screen') : (sidebarCollapsed ? 'w-[calc(100vw-56px)]' : 'w-[calc(100vw-270px)]')} h-[calc(100vh-65px)] p-4 overflow-y-auto overflow-x-hidden`}>
 
-<div className='flex gap-3  items-stretch mt-4 max-[860px]:flex-col'>
-    <div className='flex-1 h-130'>
-      <Editor />
-    </div>
+        <div className='flex justify-between gap-6 pt-5 max-[1010px]:flex-col'>
+          {stats.map((stat, index) => (
+            <Card
+              key={index}
+              title={stat.title}
+              num={stat.num}
+              percent={stat.percent}
+              days={stat.days}
+              color={stat.color}
+              img={stat.img}
+              textColor={'white'}
+            />
+          ))}
+        </div>
 
-    <div className='flex-1 h-130'>
-      <Toppers />
-    </div>
-  </div>
+        <Chart />
 
-  <StudentList />
-  
-      <footer className="text-center pt-[4em] pb-[0.5em] text-sm text-gray-500">
-                    <p>Copyright © Designed & Developed by <a className="text-[#6a73fa] cursor-pointer">DexignLab</a> 2023</p>
-                </footer>
+        <div className='flex max-[1010px]:flex-col gap-6'>
+          {courses.map((course, index) => {
+            return <CourseCard key={index} title={course.title} likes={course.likes} professor={course.professor} img={course.img} />
+          })}
+        </div>
+
+        <div className='flex gap-6  items-stretch mt-4 max-[860px]:flex-col'>
+          <div className='flex-1 h-130'>
+            <Editor />
+          </div>
+
+          <div className='flex-1 h-130'>
+            <Toppers />
+          </div>
+        </div>
+
+        <StudentList />
+
+        <footer className="text-center pt-[4em] pb-[0.5em] text-sm text-gray-500">
+          <p>Copyright © Designed & Developed by <a className="text-[#6a73fa] cursor-pointer">DexignLab</a> 2023</p>
+        </footer>
       </div>
     </div>
   )

@@ -9,28 +9,28 @@ export default function ComposeEmail() {
   const editorRef = useRef(null);
   const fileRef = useRef(null);
 
-function handleHeading(e) {
-  const val = e.target.value;
-  if (!val) return;
+  function handleHeading(e) {
+    const val = e.target.value;
+    if (!val) return;
 
-  const editor = editorRef.current;
-  editor.focus(); // pehle focus do
+    const editor = editorRef.current;
+    editor.focus(); // pehle focus do
 
-  if (!editor.innerText.trim()) {
-    const tempNode = document.createElement("br");
-    editor.appendChild(tempNode);
+    if (!editor.innerText.trim()) {
+      const tempNode = document.createElement("br");
+      editor.appendChild(tempNode);
 
-    const range = document.createRange();
-    const sel = window.getSelection();
-    range.setStart(editor, 0);
-    range.collapse(true);
-    sel.removeAllRanges();
-    sel.addRange(range); // cursor set karo
+      const range = document.createRange();
+      const sel = window.getSelection();
+      range.setStart(editor, 0);
+      range.collapse(true);
+      sel.removeAllRanges();
+      sel.addRange(range); // cursor set karo
+    }
+
+    document.execCommand("formatBlock", false, val === "p" ? "p" : val);
+    e.target.value = "";
   }
-
-  document.execCommand("formatBlock", false, val === "p" ? "p" : val);
-  e.target.value = "";
-}
 
   function showToast(msg) {
     setToast(msg);
@@ -120,7 +120,7 @@ function handleHeading(e) {
   ];
 
   return (
-    <div className="h-full flex items-center justify-center p-4">
+    <div className="h-full flex items-center justify-center ">
       {/* Toast */}
       {toast && (
         <div className="fixed bottom-5 left-1/2 -translate-x-1/2 bg-gray-900 text-white text-sm px-5 py-2.5 rounded-lg z-50 shadow-lg transition-all">
@@ -155,70 +155,70 @@ function handleHeading(e) {
           />
         </div>
 
-<div className="bg-[#F5F5F5] rounded">
+        <div className="bg-[#F5F5F5] rounded">
 
 
-        <div className="flex items-center gap-1 px-2 py-1.5 border-b border-gray-200 flex-wrap">
-          <select
-            className="text-sm text-gray-500 border-none outline-none bg-transparent cursor-pointer px-1 py-1 rounded hover:bg-gray-100"
-            onChange={handleHeading}
-            defaultValue=""
-          >
-            <option value="" disabled>Choose heading</option>
-            <option value="h1">Heading 1</option>
-            <option value="h2">Heading 2</option>
-            <option value="h3">Heading 3</option>
-            <option value="p">Paragraph</option>
-          </select>
-
-          <div className="w-px h-4 bg-gray-200 mx-1" />
-
-          {toolbarButtons.map(({ cmd, label, id, val }) => (
-            <button
-              key={id}
-              onMouseDown={(e) => { e.preventDefault(); execCmd(cmd, val); }}
-              className={`${tbBtn} ${activeFormats[id] ? tbBtnActive : ""}`}
+          <div className="flex items-center gap-1 px-2 py-1.5 border-b border-gray-200 flex-wrap">
+            <select
+              className="text-sm text-gray-500 border-none outline-none bg-transparent cursor-pointer px-1 py-1 rounded hover:bg-gray-100"
+              onChange={handleHeading}
+              defaultValue=""
             >
-              {label}
-            </button>
-          ))}
-        </div>
+              <option value="" disabled>Choose heading</option>
+              <option value="h1">Heading 1</option>
+              <option value="h2">Heading 2</option>
+              <option value="h3">Heading 3</option>
+              <option value="p">Paragraph</option>
+            </select>
 
-        {/* Toolbar Row 2 */}
-        <div className="flex items-center gap-1 px-2 py-1.5 border-b border-gray-200 flex-wrap">
-          {toolbarButtons2.map(({ cmd, label, id, val }) => (
-            <button
-              key={id}
-              onMouseDown={(e) => { e.preventDefault(); execCmd(cmd, val); }}
-              className={tbBtn}
-            >
-              {label}
-            </button>
-          ))}
-        </div>
+            <div className="w-px h-4 bg-gray-200 mx-1" />
 
-        {/* Editor */}
-        <style>{`.rich-editor h1{font-size:1.5rem !important}
+            {toolbarButtons.map(({ cmd, label, id, val }) => (
+              <button
+                key={id}
+                onMouseDown={(e) => { e.preventDefault(); execCmd(cmd, val); }}
+                className={`${tbBtn} ${activeFormats[id] ? tbBtnActive : ""}`}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+
+          {/* Toolbar Row 2 */}
+          <div className="flex items-center gap-1 px-2 py-1.5 border-b border-gray-200 flex-wrap">
+            {toolbarButtons2.map(({ cmd, label, id, val }) => (
+              <button
+                key={id}
+                onMouseDown={(e) => { e.preventDefault(); execCmd(cmd, val); }}
+                className={tbBtn}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+
+          {/* Editor */}
+          <style>{`.rich-editor h1{font-size:1.5rem !important}
 .rich-editor h2{font-size:1.25rem !important}
 .rich-editor h3{font-size:1.125rem !important}
 .rich-editor p{font-size:0.875rem !important}
 .rich-editor blockquote{font-size:0.95rem !important}`}</style>
-        <div
-          ref={editorRef}
-          contentEditable
-          suppressContentEditableWarning
-          onKeyUp={updateActive}
-          onMouseUp={updateActive}
-          data-placeholder="Write your message..."
-          className="rich-editor min-h-40 px-4 py-3 text-sm text-gray-800 outline-none leading-relaxed empty:before:content-[attr(data-placeholder)] empty:before:text-gray-400"
-        />
+          <div
+            ref={editorRef}
+            contentEditable
+            suppressContentEditableWarning
+            onKeyUp={updateActive}
+            onMouseUp={updateActive}
+            data-placeholder="Write your message..."
+            className="rich-editor min-h-40 px-4 py-3 text-sm text-gray-800 outline-none leading-relaxed empty:before:content-[attr(data-placeholder)] empty:before:text-gray-400"
+          />
 
-        {/* Powered by */}
-        <div className="text-right text-[10px] text-gray-400 px-3 pb-1 border-t border-gray-100">
-          POWERED BY ✦ RichEditor
+          {/* Powered by */}
+          <div className="text-right text-[10px] text-gray-400 px-3 pb-1 border-t border-gray-100">
+            POWERED BY ✦ RichEditor
+          </div>
+
         </div>
-
-</div>
         {/* Footer */}
         <div className="flex items-center justify-between  py-3 border-t border-gray-200 gap-3 max-[400px]:flex-col">
           <div className="flex items-center gap-2">

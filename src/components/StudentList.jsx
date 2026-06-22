@@ -1,16 +1,16 @@
 import { useState } from "react";
 
 const initialStudents = [
-  { id: 1, no: "01", name: "Jack Ronan",      professor: "Airi Satou",      date: "01 August 2021", status: "Checkin",   subject: "Commerce",    fees: "120$" },
-  { id: 2, no: "02", name: "Jimmy Morris",    professor: "Angelica Ramos",  date: "31 July 2021",   status: "Pending",   subject: "Mechanical",  fees: "120$" },
-  { id: 3, no: "03", name: "Nashid Martines", professor: "Ashton Cox",      date: "30 July 2021",   status: "Canceled",  subject: "Science",     fees: "520$" },
-  { id: 4, no: "04", name: "Roman Aurora",    professor: "Cara Stevens",    date: "29 July 2021",   status: "Checkin",   subject: "Arts",        fees: "220$" },
-  { id: 5, no: "05", name: "Samantha",        professor: "Bruno Nash",      date: "28 July 2021",   status: "Checkin",   subject: "Maths",       fees: "130$" },
+  { id: 1, no: "01", name: "Jack Ronan", professor: "Airi Satou", date: "01 August 2021", status: "Checkin", subject: "Commerce", fees: "120$" },
+  { id: 2, no: "02", name: "Jimmy Morris", professor: "Angelica Ramos", date: "31 July 2021", status: "Pending", subject: "Mechanical", fees: "120$" },
+  { id: 3, no: "03", name: "Nashid Martines", professor: "Ashton Cox", date: "30 July 2021", status: "Canceled", subject: "Science", fees: "520$" },
+  { id: 4, no: "04", name: "Roman Aurora", professor: "Cara Stevens", date: "29 July 2021", status: "Checkin", subject: "Arts", fees: "220$" },
+  { id: 5, no: "05", name: "Samantha", professor: "Bruno Nash", date: "28 July 2021", status: "Checkin", subject: "Maths", fees: "130$" },
 ];
 
 const statusStyles = {
-  Checkin:  "bg-indigo-500 text-white",
-  Pending:  "bg-yellow-400 text-white",
+  Checkin: "bg-indigo-500 text-white",
+  Pending: "bg-yellow-400 text-white",
   Canceled: "bg-red-500 text-white",
 };
 
@@ -50,7 +50,7 @@ export default function StudentList() {
   const inputCls = "border border-gray-300 rounded px-2 py-1 text-sm w-full focus:outline-none focus:border-indigo-400";
 
   return (
-    <div className="bg-gray-100 flex items-center justify-center p-5">
+    <div className="bg-gray-100 flex items-center justify-center mt-4">
       <div className="w-full bg-white rounded shadow-sm overflow-x-auto pb-2">
         {/* Header */}
         <div className="px-6 py-5 border-b border-gray-100 min-w-max">
@@ -110,8 +110,8 @@ export default function StudentList() {
                           aria-label={`Edit ${s.name}`}
                         >
                           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
                           </svg>
                         </button>
                         <button
@@ -120,10 +120,10 @@ export default function StudentList() {
                           aria-label={`Delete ${s.name}`}
                         >
                           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                            <polyline points="3 6 5 6 21 6"/>
-                            <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
-                            <path d="M10 11v6M14 11v6"/>
-                            <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>
+                            <polyline points="3 6 5 6 21 6" />
+                            <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" />
+                            <path d="M10 11v6M14 11v6" />
+                            <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2" />
                           </svg>
                         </button>
                       </div>
