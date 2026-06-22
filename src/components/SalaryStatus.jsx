@@ -40,26 +40,25 @@ const SalaryStatus = () => {
   return (
     <div className="bg-white rounded mt-5 shadow-sm w-full">
       <div className="px-6 pt-5 pb-3 border-b border-gray-100">
-        <h2 className="text-lg font-semibold text-gray-800">Salary Status</h2>
+        <h2 className="text-lg font-semibold text-gray-800 pl-[.7em]">Salary Status</h2>
       </div>
 
-      <div className="flex gap-6 px-6 border-b border-gray-100">
+      <div className="flex gap-6 px-6 border-b border-gray-100 pl-[2.5rem] pt-[1rem]">
         {tabs.map((tab) => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
-            className={`py-3 text-sm font-medium border-b-2 transition-colors ${
-              activeTab === tab
-                ? "border-indigo-500 text-indigo-600"
-                : "border-transparent text-gray-400 hover:text-gray-600"
-            }`}
+            className={`py-3 text-sm font-medium border-b-2 transition-colors ${activeTab === tab
+              ? "border-indigo-500 text-indigo-600"
+              : "border-transparent text-gray-400 hover:text-gray-600"
+              }`}
           >
             {tab}
           </button>
         ))}
       </div>
 
-      <div className="px-6 py-4">
+      <div className="px-6 py-4 pl-[2.5rem]">
         <table className="w-full text-sm">
           <thead>
             <tr className="text-gray-600 text-left">

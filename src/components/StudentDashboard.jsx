@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Chart, registerables } from "https://esm.sh/chart.js@4.4.1";
 Chart.register(...registerables);
 
@@ -11,7 +11,7 @@ const lineData = [25, 20, 60, 40, 65, 45, 83];
 function StatCard({ title, value, bg, children }) {
   return (
     <div className={`${bg} rounded p-5 flex flex-col justify-between min-h-50 text-white`}>
-      <div className="flex justify-between items-center border-b border-white/20 pb-3 mb-4 w-full">
+      <div className="flex justify-between items-center border-b border-white/20 pb-3 mb-4 -mx-5 px-5">
         <span className="text-[1.2rem] font-medium opacity-100">{title}</span>
         <span className="text-sm font-bold opacity-90">▲ {value}</span>
       </div>
@@ -21,45 +21,91 @@ function StatCard({ title, value, bg, children }) {
 }
 
 function PieChart() {
-  const r = 26, cx = 30, cy = 30;
-  const circ = 2 * Math.PI * r;
-  return (
-    <svg width="60" height="60" viewBox="0 0 60 60" aria-hidden="true">
-      <circle cx={cx} cy={cy} r={r} fill="none" stroke="rgba(255,255,255,0.25)" strokeWidth="8" />
-      <circle
-        cx={cx} cy={cy} r={r} fill="none"
-        stroke="rgba(255,255,255,0.75)" strokeWidth="8"
-        strokeDasharray={`${circ * 0.63} ${circ * 0.37}`}
-        strokeLinecap="round"
-        transform="rotate(-90 30 30)"
-      />
-    </svg>
-  );
+  const ref = useRef(null);
+  const instance = useRef(null);
+
+  useEffect(() => {
+    if (!ref.current) return;
+    instance.current = new Chart(ref.current, {
+      type: 'doughnut',
+      data: {
+        labels: ['Active', 'Inactive', 'New'],
+        datasets: [{
+          data: [210, 122, 90],
+          backgroundColor: [
+            '#b3b3ff',
+            '#ffffff',
+            '#7B7FD4',
+          ],
+          borderColor: 'transparent',
+          borderWidth: 0,
+          hoverOffset: 6,
+        }],
+      },
+      options: {
+        responsive: false,
+        cutout: '60%',
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: (ctx) => ` ${ctx.label}: ${ctx.parsed}`,
+            },
+          },
+        },
+      },
+    });
+    return () => instance.current?.destroy();
+  }, []);
+
+  return <canvas ref={ref} width={70} height={70} className="m-auto" />
 }
 
 function MiniBars({ heights }) {
+  const labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const [tooltip, setTooltip] = useState(null);
+
   return (
-    <div className="flex items-end gap-2.5 h-13.75">
+    <div className="relative flex items-end gap-1 sm:gap-2.5 h-14 w-full">
       {heights.map((h, i) => (
         <div
           key={i}
-          className="w-2 rounded-t-sm"
+          className="relative flex-1 rounded-t-sm cursor-pointer"
           style={{ height: `${h}%`, background: "rgba(255,255,255,0.65)" }}
-        />
+          onMouseEnter={() => setTooltip({ i, h })}
+          onMouseLeave={() => setTooltip(null)}
+        >
+          {tooltip?.i === i && (
+            <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-black/70 text-white text-[10px] px-1.5 py-0.5 rounded whitespace-nowrap z-10">
+              {labels[i]}: {h}%
+            </div>
+          )}
+        </div>
       ))}
     </div>
   );
 }
 
 function MiniCandlestick({ heights }) {
+  const labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const [tooltip, setTooltip] = useState(null);
+
   return (
-    <div className="flex items-center gap-2.5 h-13.75">
+    <div className="relative flex items-center gap-1 sm:gap-2.5 h-14 w-full">
       {heights.map((h, i) => (
         <div
           key={i}
-          className="w-1.25 rounded-sm"
+          className="relative flex-1 rounded-sm cursor-pointer"
           style={{ height: `${h}%`, background: "rgba(255,255,255,0.6)" }}
-        />
+          onMouseEnter={() => setTooltip({ i, h })}
+          onMouseLeave={() => setTooltip(null)}
+        >
+          {tooltip?.i === i && (
+            <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-black/70 text-white text-[10px] px-1.5 py-0.5 rounded whitespace-nowrap z-10">
+              {labels[i]}: {h}%
+            </div>
+          )}
+        </div>
       ))}
     </div>
   );
@@ -181,7 +227,7 @@ function ChartCard({ title, children }) {
 
 export default function StudentDashboard() {
   return (
-    <div className=" bg-gray-100 p-6 font-sans">
+    <div className=" bg-gray-100 p-6">
 
       {/* Stat Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
