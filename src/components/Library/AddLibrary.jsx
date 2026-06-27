@@ -11,7 +11,7 @@ const AddLibrary = () => {
     useEffect(() => {
         const handleResize = () => setWindowWidth(window.innerWidth);
         window.addEventListener('resize', handleResize);
-        
+
         const handleToggle = (e) => {
             setSidebarCollapsed(e.detail.collapsed);
         };
@@ -21,7 +21,7 @@ const AddLibrary = () => {
             setMobileMenuOpen(e.detail.isOpen);
         };
         window.addEventListener('mobileSidebarToggle', handleMobileToggle);
-        
+
         return () => {
             window.removeEventListener('resize', handleResize);
             window.removeEventListener('sidebarToggle', handleToggle);
@@ -37,11 +37,13 @@ const AddLibrary = () => {
             {/* Main Content Div */}
             <div className={`absolute right-0 bottom-0 ${windowWidth < 1100 ? (mobileMenuOpen ? 'w-[calc(100vw-250px)]' : 'w-screen') : (sidebarCollapsed ? 'w-[calc(100vw-56px)]' : 'w-[calc(100vw-250px)]')} h-[calc(100vh-65px)] p-4 overflow-y-auto overflow-x-hidden`}>
 
-                <Header parentTitle="Add Library Assets" childTitle="Library" grandChildTitle="Add Library"/>
+                <Header parentTitle="Add Library Assets" childTitle="Library" grandChildTitle="Add Library" />
 
                 <div className="bg-white rounded shadow-sm p-4 sm:p-6 mt-4">
-                    <div className="border-b border-gray-100 pb-4 mb-6">
-                        <h2 className="text-lg font-semibold text-gray-700">Add Library Assets</h2>
+                    <div className="pb-4 mb-6 border-b border-gray-200 -mx-4 sm:-mx-6 px-4 sm:px-6">
+                        <h2 className="text-lg font-semibold text-gray-700">
+                            Add Library Assets
+                        </h2>
                     </div>
 
                     <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -124,14 +126,14 @@ const AddLibrary = () => {
                         </div>
 
                         <div className="md:col-span-2 flex gap-3 mt-4">
-                            <button 
-                                type="submit"  
+                            <button
+                                type="submit"
                                 className="bg-[#6A73FC] border-[#6A73FC] hover:bg-[#5961e0] text-white px-5 py-[0.55rem] rounded-[5px] transition-colors font-medium text-[.9375rem] cursor-pointer"
                             >
                                 Submit
                             </button>
-                            <button 
-                                type="reset" 
+                            <button
+                                type="reset"
                                 className="bg-[#ffd8d8] border-[#ffd8d8] text-[#FF1616] px-5 py-[0.55rem] rounded-[5px] transition-colors font-medium text-[.9375rem] cursor-pointer"
                             >
                                 Cancel

@@ -140,7 +140,7 @@ function ProfileCard() {
 function AboutMeCard() {
   return (
     <div className="mt-5 rounded bg-white p-5 px-8 shadow-sm">
-      <h3 className="mb-3 text-gray-800 text-[1.2rem] font-medium border-b border-[#8080802b] pb-3.75">About Me</h3> 
+      <h3 className="mb-3 text-gray-800 text-[1.2rem] font-medium border-b border-[#8080802b] pb-3 -mx-8 px-8">About Me</h3>
       <p className="mb-4 text-sm leading-relaxed text-gray-500">
         {PROFILE.bio}
       </p>
@@ -179,7 +179,7 @@ function AboutMeCard() {
 function AddressCard() {
   return (
     <div className="mt-5 rounded bg-white p-5 px-8 shadow-sm">
-      <h3 className="mb-3 text-gray-800 text-[1.2rem] font-medium border-b border-[#8080802b] pb-3.75">Address</h3>
+      <h3 className="mb-3 text-gray-800 text-[1.2rem] font-medium border-b border-[#8080802b] pb-3 -mx-8 px-8">Address</h3>
       <p className="whitespace-pre-line text-sm leading-relaxed text-gray-500">
         {PROFILE.address}
       </p>
@@ -190,7 +190,7 @@ function AddressCard() {
 function WorkExpertiseCard() {
   return (
     <div className="mt-5 rounded bg-white p-5 px-8 shadow-sm">
-      <h3 className="mb-4 text-gray-800 text-[1.2rem] font-medium border-b border-[#8080802b] pb-3.75">Work Expertise</h3>
+      <h3 className="mb-4 text-gray-800 text-[1.2rem] font-medium border-b border-[#8080802b] pb-3 -mx-8 px-8">Work Expertise</h3>
       <div className="space-y-4">
         {PROFILE.skills.map((skill) => (
           <SkillBar key={skill.name} {...skill} />
@@ -212,11 +212,10 @@ function Tabs({ active, onChange }) {
           <button
             key={tab.key}
             onClick={() => onChange(tab.key)}
-            className={`pb-3 text-sm font-medium transition ${
-              active === tab.key
+            className={`pb-3 text-sm font-medium transition ${active === tab.key
                 ? "border-b-2 border-indigo-500 text-indigo-500"
                 : "text-gray-400 hover:text-gray-600"
-            }`}
+              }`}
           >
             {tab.label}
           </button>
@@ -304,21 +303,21 @@ export default function AboutStudent() {
   useEffect(() => {
     const handleResize = () => setWindowWidth(window.innerWidth);
     window.addEventListener('resize', handleResize);
-    
+
     const handleToggle = (e) => {
-        setSidebarCollapsed(e.detail.collapsed);
+      setSidebarCollapsed(e.detail.collapsed);
     };
     window.addEventListener('sidebarToggle', handleToggle);
 
     const handleMobileToggle = (e) => {
-        setMobileMenuOpen(e.detail.isOpen);
+      setMobileMenuOpen(e.detail.isOpen);
     };
     window.addEventListener('mobileSidebarToggle', handleMobileToggle);
-    
+
     return () => {
-        window.removeEventListener('resize', handleResize);
-        window.removeEventListener('sidebarToggle', handleToggle);
-        window.removeEventListener('mobileSidebarToggle', handleMobileToggle);
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('sidebarToggle', handleToggle);
+      window.removeEventListener('mobileSidebarToggle', handleMobileToggle);
     };
   }, []);
 
@@ -344,8 +343,8 @@ export default function AboutStudent() {
 
       {/* Main Content Div */}
       <div className={`absolute right-0 bottom-0 ${windowWidth < 1100 ? (mobileMenuOpen ? 'w-[calc(100vw-250px)]' : 'w-screen') : (sidebarCollapsed ? 'w-[calc(100vw-56px)]' : 'w-[calc(100vw-250px)]')} h-[calc(100vh-65px)] p-4 overflow-y-auto overflow-x-hidden`}>
-        
-        <Header parentTitle="About Student" childTitle="Students" grandChildTitle="About Student"/>
+
+        <Header parentTitle="About Student" childTitle="Students" grandChildTitle="About Student" />
 
         <div className="mt-4 grid grid-cols-1 gap-6 lg:grid-cols-[320px_1fr]">
           <aside>
@@ -359,32 +358,32 @@ export default function AboutStudent() {
             <div className="rounded bg-white shadow-sm">
               <Tabs active={activeTab} onChange={setActiveTab} />
               <div className="p-5">
-              {activeTab === "posts" ? (
-                <>
-                  <Composer value={draft} onChange={setDraft} onSubmit={handlePost} />
-                  {posts.map((post) => (
-                    <PostCard key={post.id} post={post} />
-                  ))}
-                </>
-              ) : (
-                <>
-                <h3 className="mb-3 font-semibold text-gray-800">
-                  About {PROFILE.name}
-                </h3>
-                <p className="text-sm leading-relaxed text-gray-500">
-                  {PROFILE.bio}
-                </p>
-                <div className="mt-4 space-y-3">
-                  <InfoRow label="Gender" value={PROFILE.gender} />
-                  <InfoRow label="Education" value={PROFILE.education} />
-                  <InfoRow label="Designation" value={PROFILE.designation} />
-                  <InfoRow
-                    label="Roll No."
-                    value={PROFILE.rollNo}
-                  />
-                </div>
-                </>
-              )}
+                {activeTab === "posts" ? (
+                  <>
+                    <Composer value={draft} onChange={setDraft} onSubmit={handlePost} />
+                    {posts.map((post) => (
+                      <PostCard key={post.id} post={post} />
+                    ))}
+                  </>
+                ) : (
+                  <>
+                    <h3 className="mb-3 font-semibold text-gray-800">
+                      About {PROFILE.name}
+                    </h3>
+                    <p className="text-sm leading-relaxed text-gray-500">
+                      {PROFILE.bio}
+                    </p>
+                    <div className="mt-4 space-y-3">
+                      <InfoRow label="Gender" value={PROFILE.gender} />
+                      <InfoRow label="Education" value={PROFILE.education} />
+                      <InfoRow label="Designation" value={PROFILE.designation} />
+                      <InfoRow
+                        label="Roll No."
+                        value={PROFILE.rollNo}
+                      />
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           </main>

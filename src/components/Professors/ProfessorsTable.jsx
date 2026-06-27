@@ -1,586 +1,401 @@
 import React, { useState, useEffect } from "react";
-import { Pencil, Trash2, MoreVertical } from "lucide-react";
+import { Link2, Camera, Heart, Reply, MapPin } from "lucide-react";
+import Navbar from '../Navbar.jsx'
+import Sidebar from '../Sidebar.jsx'
+import Header from '../Header.jsx'
 
-const defaultData = [
+const AVATAR_URL = "https://edumin.dexignlab.com/xhtml/images/profile/profile.png";
+const POST_IMG_URL = "https://edumin.dexignlab.com/xhtml/images/profile/9.jpg";
+const POST_IMG_URL_2 = "https://edumin.dexignlab.com/xhtml/images/profile/8.jpg";
+
+const PROFILE = {
+  name: "Deangelo Sena",
+  title: "Senior Manager",
+  followers: 1204,
+  following: 2540,
+  friends: 2540,
+  bio: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+  gender: "Male",
+  education: "PHD",
+  designation: "Sr. Professor",
+  operationDone: 120,
+  projects: 150,
+  uploads: 140,
+  tasks: 45,
+  address: "Demo Address #8901 Marmora Road\nChi Minh City, Vietnam",
+  skills: [
+    { name: "Photoshop", percent: 85, color: "bg-red-500" },
+    { name: "Code editor", percent: 90, color: "bg-teal-400" },
+    { name: "Illustrator", percent: 65, color: "bg-lime-500" },
+  ],
+};
+
+const INITIAL_POSTS = [
   {
-    name: "Tiger Nixon",
-    department: "Architect",
-    gender: "Male",
-    education: "M.COM, P.H.D.",
-    mobile: "123 456 7890",
-    email: "info@example.com",
-    joiningDate: "2011/04/25",
-    profile: "https://edumin.dexignlab.com/xhtml/images/profile/small/pic1.jpg"
+    id: 1,
+    image: POST_IMG_URL_2,
+    title:
+      "\u201cEmbark on a Journey of Unparalleled Excellence, Where Innovation and Elegance Converge to Shape Tomorrow's World.\u201d",
+    body:
+      "A wonderful serenity has take possession of my entire soul like these sweet morning of spare which enjoy whole heart.A wonderful serenity has take possession of my entire soul like these sweet morning of spare which enjoy whole heart.",
   },
   {
-    name: "Garrett Winters",
-    department: "Accountant",
-    gender: "Female",
-    education: "M.COM, P.H.D.",
-    mobile: "987 654 3210",
-    email: "info@example.com",
-    joiningDate: "2011/07/25",
-    profile: "https://edumin.dexignlab.com/xhtml/images/profile/small/pic2.jpg"
+    id: 2,
+    image: POST_IMG_URL,
+    title: "Collection of textile samples lay spread",
+    body:
+      "A wonderful serenity has take possession of my entire soul like these sweet morning of spare which enjoy whole heart.A wonderful serenity has take possession of my entire soul like these sweet morning of spare which enjoy whole heart.",
   },
   {
-    name: "Ashton Cox",
-    department: "Junior Technical",
-    gender: "Male",
-    education: "B.COM, M.COM.",
-    mobile: "(123) 4567 890",
-    email: "info@example.com",
-    joiningDate: "2009/01/12",
-    profile: "https://edumin.dexignlab.com/xhtml/images/profile/small/pic3.jpg"
+    id: 3,
+    image: POST_IMG_URL_2,
+    title:
+      "\u201cBreakthrough Study Reveals Promising New Treatment Strategy for Alzheimer's Disease\u201d",
+    body:
+      "A wonderful serenity has take possession of my entire soul like these sweet morning of spare which enjoy whole heart.A wonderful serenity has take possession of my entire soul like these sweet morning of spare which enjoy whole heart.",
   },
-  {
-    name: "Cedric Kelly",
-    department: "Developer",
-    gender: "Male",
-    education: "B.COM, M.COM.",
-    mobile: "123 456 7890",
-    email: "info@example.com",
-    joiningDate: "2012/03/29",
-    profile: "https://edumin.dexignlab.com/xhtml/images/profile/small/pic4.jpg"
-  },
-  {
-    name: "Airi Satou",
-    department: "Accountant",
-    gender: "Female",
-    education: "B.A, B.C.A",
-    mobile: "987 654 3210",
-    email: "info@example.com",
-    joiningDate: "2008/11/28",
-    profile: "https://edumin.dexignlab.com/xhtml/images/profile/small/pic5.jpg"
-  },
-  {
-    name: "Brielle Williamson",
-    department: "Specialist",
-    gender: "Male",
-    education: "B.COM, M.COM.",
-    mobile: "123 456 7890",
-    email: "info@example.com",
-    joiningDate: "2012/12/02",
-    profile: "https://edumin.dexignlab.com/xhtml/images/profile/small/pic1.jpg"
-  },
-  {
-    name: "Herrod Chandler",
-    department: "Sales Assistant",
-    gender: "Female",
-    education: "B.A, B.C.A",
-    mobile: "987 654 3210",
-    email: "info@example.com",
-    joiningDate: "2012/08/06",
-    profile: "https://edumin.dexignlab.com/xhtml/images/profile/small/pic2.jpg"
-  },
-  {
-    name: "Rhona Davidson",
-    department: "Integration",
-    gender: "Male",
-    education: "B.TACH, M.TACH",
-    mobile: "(123) 4567 890",
-    email: "info@example.com",
-    joiningDate: "2010/10/14",
-    profile: "https://edumin.dexignlab.com/xhtml/images/profile/small/pic3.jpg"
-  },
-  {
-    name: "Colleen Hurst",
-    department: "Javascript Developer",
-    gender: "Female",
-    education: "B.A, B.C.A",
-    mobile: "(123) 4567 890",
-    email: "info@example.com",
-    joiningDate: "2009/09/15",
-    profile: "https://edumin.dexignlab.com/xhtml/images/profile/small/pic4.jpg"
-  },
-  {
-    name: "Sonya Frost",
-    department: "Software Engineer",
-    gender: "Male",
-    education: "B.COM, M.COM.",
-    mobile: "123 456 7890",
-    email: "info@example.com",
-    joiningDate: "2008/12/13",
-    profile: "https://edumin.dexignlab.com/xhtml/images/profile/small/pic5.jpg"
-  },
-  {
-    name: "Jena Gaines",
-    department: "Office Manager",
-    gender: "Female",
-    education: "B.TACH, M.TACH",
-    mobile: "987 654 3210",
-    email: "info@example.com",
-    joiningDate: "2008/12/19",
-    profile: "https://edumin.dexignlab.com/xhtml/images/profile/small/pic1.jpg"
-  },
-  {
-    name: "Quinn Flynn",
-    department: "Support Lead",
-    gender: "Male",
-    education: "B.TACH, M.TACH",
-    mobile: "(123) 4567 890",
-    email: "info@example.com",
-    joiningDate: "2013/03/03",
-    profile: "https://edumin.dexignlab.com/xhtml/images/profile/small/pic2.jpg"
-  },
-  {
-    name: "Charde Marshall",
-    department: "Regional Director",
-    gender: "Female",
-    education: "B.A, B.C.A",
-    mobile: "123 456 7890",
-    email: "info@example.com",
-    joiningDate: "2008/10/16",
-    profile: "https://edumin.dexignlab.com/xhtml/images/profile/small/pic3.jpg"
-  },
-  {
-    name: "Haley Kennedy",
-    department: "Senior Marketing",
-    gender: "Male",
-    education: "B.COM, M.COM.",
-    mobile: "987 654 3210",
-    email: "info@example.com",
-    joiningDate: "2012/12/18",
-    profile: "https://edumin.dexignlab.com/xhtml/images/profile/small/pic4.jpg"
-  },
-  {
-    name: "Tatyana Fitzpatrick",
-    department: "Regional Director",
-    gender: "Male",
-    education: "B.TACH, M.TACH",
-    mobile: "(123) 4567 890",
-    email: "info@example.com",
-    joiningDate: "2010/03/17",
-    profile: "https://edumin.dexignlab.com/xhtml/images/profile/small/pic5.jpg"
-  },
-  {
-    name: "Michael Silva",
-    department: "Marketing Designer",
-    gender: "Female",
-    education: "B.A, B.C.A",
-    mobile: "123 456 7890",
-    email: "info@example.com",
-    joiningDate: "2012/11/27",
-    profile: "https://edumin.dexignlab.com/xhtml/images/profile/small/pic1.jpg"
-  },
-  {
-    name: "Paul Byrd",
-    department: "Financial Officer",
-    gender: "Male",
-    education: "B.TACH, M.TACH",
-    mobile: "987 654 3210",
-    email: "info@example.com",
-    joiningDate: "2010/06/09",
-    profile: "https://edumin.dexignlab.com/xhtml/images/profile/small/pic2.jpg"
-  },
-  {
-    name: "Gloria Little",
-    department: "Systems Administrator",
-    gender: "Female",
-    education: "B.A, B.C.A",
-    mobile: "(123) 4567 890",
-    email: "info@example.com",
-    joiningDate: "2009/04/10",
-    profile: "https://edumin.dexignlab.com/xhtml/images/profile/small/pic3.jpg"
-  },
-  {
-    name: "Bradley Greer",
-    department: "Software Engineer",
-    gender: "Male",
-    education: "B.COM, M.COM.",
-    mobile: "(123) 4567 890",
-    email: "info@example.com",
-    joiningDate: "2012/10/13",
-    profile: "https://edumin.dexignlab.com/xhtml/images/profile/small/pic4.jpg"
-  },
-  {
-    name: "Dai Rios",
-    department: "Personnel Lead",
-    gender: "Male",
-    education: "B.TACH, M.TACH",
-    mobile: "123 456 7890",
-    email: "info@example.com",
-    joiningDate: "2012/09/28",
-    profile: "https://edumin.dexignlab.com/xhtml/images/profile/small/pic5.jpg"
-  },
-  {
-    name: "Jenette Caldwell",
-    department: "Development Lead",
-    gender: "Female",
-    education: "B.A, B.C.A",
-    mobile: "987 654 3210",
-    email: "info@example.com",
-    joiningDate: "2011/09/03",
-    profile: "https://edumin.dexignlab.com/xhtml/images/profile/small/pic1.jpg"
-  },
-  {
-    name: "Yuri Berry",
-    department: "Marketing Officer",
-    gender: "Male",
-    education: "B.TACH, M.TACH",
-    mobile: "(123) 4567 890",
-    email: "info@example.com",
-    joiningDate: "2009/06/25",
-    profile: "https://edumin.dexignlab.com/xhtml/images/profile/small/pic2.jpg"
-  },
-  {
-    name: "Caesar Vance",
-    department: "Pre-Sales Support",
-    gender: "Male",
-    education: "B.TACH, M.TACH",
-    mobile: "(123) 4567 890",
-    email: "info@example.com",
-    joiningDate: "2011/12/12",
-    profile: "https://edumin.dexignlab.com/xhtml/images/profile/small/pic3.jpg"
-  },
-  {
-    name: "Doris Wilder",
-    department: "Sales Assistant",
-    gender: "Female",
-    education: "B.A, B.C.A",
-    mobile: "123 456 7890",
-    email: "info@example.com",
-    joiningDate: "2010/09/20",
-    profile: "https://edumin.dexignlab.com/xhtml/images/profile/small/pic4.jpg"
-  },
-  {
-    name: "Angelica Ramos",
-    department: "Executive Officer",
-    gender: "Male",
-    education: "B.COM, M.COM.",
-    mobile: "987 654 3210",
-    email: "info@example.com",
-    joiningDate: "2009/10/09",
-    profile: "https://edumin.dexignlab.com/xhtml/images/profile/small/pic5.jpg"
-  },
-  {
-    name: "Gavin Joyce",
-    department: "Developer",
-    gender: "Female",
-    education: "B.TACH, M.TACH",
-    mobile: "(123) 4567 890",
-    email: "info@example.com",
-    joiningDate: "2010/12/22",
-    profile: "https://edumin.dexignlab.com/xhtml/images/profile/small/pic1.jpg"
-  },
-  {
-    name: "Jennifer Chang",
-    department: "Regional Director",
-    gender: "Male",
-    education: "B.A, B.C.A",
-    mobile: "(123) 4567 890",
-    email: "info@example.com",
-    joiningDate: "2010/11/14",
-    profile: "https://edumin.dexignlab.com/xhtml/images/profile/small/pic2.jpg"
-  },
-  {
-    name: "Brenden Wagner",
-    department: "Software Engineer",
-    gender: "Female",
-    education: "B.TACH, M.TACH",
-    mobile: "123 456 7890",
-    email: "info@example.com",
-    joiningDate: "2011/08/07",
-    profile: "https://edumin.dexignlab.com/xhtml/images/profile/small/pic3.jpg"
-  },
-  {
-    name: "Dummy Person 29",
-    department: "Developer",
-    gender: "Male",
-    education: "B.COM, M.COM.",
-    mobile: "123 456 7890",
-    email: "dummy29@example.com",
-    joiningDate: "2015/01/01",
-    profile: "https://edumin.dexignlab.com/xhtml/images/profile/small/pic4.jpg"
-  },
-  {
-    name: "Dummy Person 30",
-    department: "Accountant",
-    gender: "Female",
-    education: "B.A, B.C.A",
-    mobile: "987 654 3210",
-    email: "dummy30@example.com",
-    joiningDate: "2016/05/12",
-    profile: "https://edumin.dexignlab.com/xhtml/images/profile/small/pic5.jpg"
-  },
-  // ... and so on up to Dummy Person 72 to reach exactly 100 elements.
 ];
 
-const ProfessorsTable = ({ title = "All Professors", data = defaultData, onEdit, onDelete }) => {
-  const [view, setView] = useState("list"); // "list" | "grid"
-  const [search, setSearch] = useState("");
-  const [entries, setEntries] = useState(10);
-  const [currentPage, setCurrentPage] = useState(1);
-
-  // Filter ya entries change hone par page 1 par reset karein
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [search, entries]);
-
-  // Search filter - name, department, email me se kahin bhi match kare
-  const filteredData = data.filter((prof) => {
-    const term = search.toLowerCase();
-    return (
-      prof.name?.toLowerCase().includes(term) ||
-      prof.department?.toLowerCase().includes(term) ||
-      prof.email?.toLowerCase().includes(term)
-    );
-  });
-
-  // Pagination logic
-  const totalPages = Math.ceil(filteredData.length / entries);
-  const startIndex = (currentPage - 1) * entries;
-  const visibleData = filteredData.slice(startIndex, startIndex + entries);
-
+function StatRow({ label, value }) {
   return (
-    <div className="pt-4">
-      {/* View toggle buttons */}
-      <div className="mt-2 mb-6 flex gap-2">
-        <button
-          onClick={() => setView("list")}
-          className={`rounded-[5px] px-5 py-3 transition-colors duration-150 ease-in-out cursor-pointer ${
-            view === "list"
-              ? "bg-[#6A73FC] shadow-[0_0_20px_0_rgba(106,115,250,0.2)] text-white"
-              : "text-[#6A73FC]"
-          }`}
+    <div className="flex items-center justify-between px-6 py-3 text-sm">
+      <span className="text-gray-500">{label}</span>
+      <span className="font-semibold text-gray-700">{value}</span>
+    </div>
+  );
+}
+
+function InfoRow({ label, value }) {
+  return (
+    <div className="flex items-center justify-between text-sm border-b border-[#80808033] pb-1.5">
+      <span className="font-bold text-gray-700">{label}</span>
+      <span className="text-gray-500">{value}</span>
+    </div>
+  );
+}
+
+function SkillBar({ name, percent, color }) {
+  return (
+    <div>
+      <div className="mb-1.5 flex items-center justify-between text-sm">
+        <span className="text-gray-700">{name}</span>
+        <span className="text-gray-500">{percent}%</span>
+      </div>
+      <div className="h-1.5 w-full overflow-hidden rounded-full bg-gray-100">
+        <div
+          className={`h-full rounded-full ${color}`}
+          style={{ width: `${percent}%` }}
+        />
+      </div>
+    </div>
+  );
+}
+
+function ProfileCard() {
+  return (
+    <div className=" rounded bg-white shadow-sm">
+      <div className="relative overflow-hidden bg-indigo-500 px-6 pb-6 pt-8 text-center">
+        {/* decorative pattern */}
+        <svg
+          className="pointer-events-none absolute inset-0 h-full w-full opacity-10"
+          viewBox="0 0 300 200"
+          fill="none"
         >
-          List View
-        </button>
-        <button
-          onClick={() => setView("grid")}
-          className={`rounded-[5px] px-5 py-3 transition-colors duration-150 ease-in-out cursor-pointer ${
-            view === "grid"
-              ? "bg-[#6A73FC] shadow-[0_0_20px_0_rgba(106,115,250,0.2)] text-white"
-              : "text-[#6A73FC]"
-          }`}
-        >
-          Grid View
-        </button>
+          <circle cx="30" cy="20" r="40" stroke="white" strokeWidth="2" />
+          <circle cx="90" cy="10" r="20" stroke="white" strokeWidth="2" />
+          <circle cx="270" cy="180" r="50" stroke="white" strokeWidth="2" />
+        </svg>
+
+        <img
+          src={AVATAR_URL}
+          alt={PROFILE.name}
+          className="relative z-10 mx-auto h-24 w-24"
+        />
+        <h2 className="relative z-10 mt-4 text-lg font-semibold text-white">
+          {PROFILE.name}
+        </h2>
+        <p className="relative z-10 text-sm text-indigo-100">
+          {PROFILE.title}
+        </p>
       </div>
 
-      {/* Card wrapper */}
-      <div className="bg-white rounded-xl shadow-sm p-4 sm:p-6 w-full overflow-x-auto">
-        {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
-          <h2 className="text-lg font-semibold text-gray-700">{title}</h2>
-          <button className="bg-[#6A73FC] hover:bg-[#5961e0] text-white text-sm font-medium px-4 py-2 rounded-md w-full sm:w-auto transition-colors cursor-pointer">
-            + Add new
-          </button>
+      <div className="divide-y divide-gray-100">
+        <StatRow label="Followers" value={PROFILE.followers} />
+        <StatRow label="Following" value={PROFILE.following} />
+        <StatRow label="Friends" value={PROFILE.friends} />
+      </div>
+
+      <div className="flex gap-1 w-[70%] mx-auto p-4">
+        <button className="flex-1 rounded bg-indigo-500 py-2 text-sm font-medium text-white transition hover:bg-indigo-600">
+          Follow
+        </button>
+        <button className="flex-1 rounded bg-amber-500 py-2 text-sm font-medium text-white transition hover:bg-amber-600">
+          Message
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function AboutMeCard() {
+  return (
+    <div className="mt-5 rounded bg-white p-5 px-8 shadow-sm">
+      <h3 className="mb-3 text-gray-800 text-[1.2rem] font-medium pb-3 border-b border-[#8080802b] -mx-8 px-8">About Me</h3>
+      <p className="mb-4 text-sm leading-relaxed text-gray-500">
+        {PROFILE.bio}
+      </p>
+
+      <div className="space-y-3">
+        <InfoRow label="Gender" value={PROFILE.gender} />
+        <InfoRow label="Education" value={PROFILE.education} />
+        <InfoRow label="Designation" value={PROFILE.designation} />
+        <InfoRow label="Operation Done" value={PROFILE.operationDone} />
+      </div>
+
+      <div className=" grid grid-cols-3 gap-2   text-center">
+        <div>
+          <p className="text-lg font-bold text-indigo-500">
+            {PROFILE.projects}
+          </p>
+          <p className="text-xs text-gray-400">Projects</p>
         </div>
-
-        <div className="border-t border-gray-100" />
-
-        {/* Controls: Show entries + Search */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 py-4">
-          <div className="flex items-center gap-2 text-sm text-gray-500">
-            <span>Show</span>
-            <select
-              value={entries}
-              onChange={(e) => setEntries(Number(e.target.value))}
-              className="border border-gray-200 rounded-md px-2 py-1 text-gray-600 focus:outline-none focus:ring-2 focus:ring-[#6A73FC]/30 cursor-pointer"
-            >
-              <option value={10}>10</option>
-              <option value={25}>25</option>
-              <option value={50}>50</option>
-              <option value={100}>100</option>
-            </select>
-            <span>entries</span>
-          </div>
-
-          <div className="flex items-center gap-2 text-sm">
-            <span>Search:</span>
-            <input
-              type="text"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="border border-gray-200 rounded px-3 py-2  sm:w-45 focus:outline-none focus:ring-2 focus:ring-[#6A73FC]/30"
-            />
-          </div>
+        <div className="border-l border-r border-gray-200">
+          <p className="text-lg font-bold text-indigo-500">
+            {PROFILE.uploads}
+          </p>
+          <p className="text-xs text-gray-400">Uploads</p>
         </div>
-
-        {/* ===== LIST VIEW ===== */}
-        {view === "list" && (
-          <div className="-mx-4 sm:mx-0">
-            <table className="w-full min-w-200 text-sm">
-              <thead>
-                <tr className="text-left font-semibold border-y border-gray-100">
-                  <th className="py-3 px-4 w-16">Profile</th>
-                  <th className="py-3 px-4">Name</th>
-                  <th className="py-3 px-2">Department</th>
-                  <th className="py-3 px-4">Gender</th>
-                  <th className="py-3 px-4">Education</th>
-                  <th className="py-3 px-4">Mobile</th>
-                  <th className="py-3 px-4">Email</th>
-                  <th className="py-3 px-4">Joining Date</th>
-                  <th className="py-3 px-4">Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {visibleData.length === 0 && (
-                  <tr>
-                    <td colSpan={9} className="text-center py-6 text-gray-400">
-                      Professor not Found
-                    </td>
-                  </tr>
-                )}
-
-                {visibleData.map((prof, index) => (
-                  <tr
-                    key={index}
-                    className="border-b border-gray-100 hover:bg-gray-50 transition-colors"
-                  >
-                    <td className="py-3 px-4">
-                      <img
-                        src={prof.profile}
-                        alt={prof.name}
-                        className="w-9 h-9 rounded-full object-cover"
-                      />
-                    </td>
-                    <td className="py-3 px-4 text-[#737b8b] whitespace-nowrap">{prof.name}</td>
-                    <td className="py-3 px-2 text-[#737b8b] whitespace-nowrap">{prof.department}</td>
-                    <td className="py-3 px-4 text-[#737b8b]">{prof.gender}</td>
-                    <td className="py-3 px-4 text-[#737b8b] whitespace-nowrap">{prof.education}</td>
-                    <td className="py-3 px-4 text-[#888888] whitespace-nowrap font-bold">{prof.mobile}</td>
-                    <td className="py-3 px-4 text-[#888888] whitespace-nowrap font-bold">{prof.email}</td>
-                    <td className="py-3 px-4 text-[#737b8b] whitespace-nowrap">{prof.joiningDate}</td>
-                    <td className="py-3 px-4">
-                      <div className="flex items-center gap-2">
-                        <button
-                          onClick={() => onEdit && onEdit(prof, index)}
-                          className="bg-[#6A73FC] hover:bg-[#5961e0] text-white p-2 rounded-md transition-colors cursor-pointer"
-                          title="Edit"
-                        >
-                          <Pencil size={14} />
-                        </button>
-                        <button
-                          onClick={() => onDelete && onDelete(prof, index)}
-                          className="bg-red-500 hover:bg-red-600 text-white p-2 rounded-md transition-colors cursor-pointer"
-                          title="Delete"
-                        >
-                          <Trash2 size={14} />
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
-
-        {/* ===== GRID VIEW ===== */}
-        {view === "grid" && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {visibleData.length === 0 && (
-              <p className="text-center text-gray-400 col-span-full py-6">
-                Professor not Found
-              </p>
-            )}
-
-            {visibleData.map((prof, index) => (
-              <div
-                key={index}
-                className="relative bg-white border border-gray-100 rounded-xl shadow-sm p-6 flex flex-col items-center hover:shadow-md transition-shadow"
-              >
-                {/* Top-right menu icon */}
-                <button className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 cursor-pointer">
-                  <MoreVertical size={20} />
-                </button>
-
-                {/* Circular Profile Image */}
-                <div className="mb-4">
-                  <img
-                    src={prof.profile}
-                    alt={prof.name}
-                    className="w-24 h-24 rounded-full border-4 border-white shadow-md object-cover"
-                  />
-                </div>
-
-                {/* Name & Education */}
-                <h3 className="text-xl font-bold text-gray-800 text-center">{prof.name}</h3>
-                <p className="text-gray-500 text-sm text-center mb-4">{prof.education}</p>
-
-                {/* Horizontal divider */}
-                <div className="w-full border-t border-gray-100 my-2" />
-
-                {/* Info rows */}
-                <div className="w-full text-sm space-y-3 py-2">
-                  <div className="flex justify-between border-b border-gray-50 pb-2">
-                    <span className="text-gray-500">Gender :</span>
-                    <span className="font-bold text-gray-700">{prof.gender}</span>
-                  </div>
-                  <div className="flex justify-between border-b border-gray-50 pb-2">
-                    <span className="text-gray-500">Phone No. :</span>
-                    <span className="font-bold text-gray-700">{prof.mobile}</span>
-                  </div>
-                  <div className="flex justify-between border-b border-gray-50 pb-2">
-                    <span className="text-gray-500">Email :</span>
-                    <span className="font-bold text-gray-700">{prof.email}</span>
-                  </div>
-                  <div className="flex justify-between pb-1">
-                    <span className="text-gray-500">Address :</span>
-                    <span className="font-bold text-gray-700 text-right line-clamp-1">{prof.address || "New York, USA"}</span>
-                  </div>
-                </div>
-
-                {/* Read More Button */}
-                <button className="mt-4 px-6 py-2 border border-[#6A73FC] text-[#6A73FC] font-medium rounded-full bg-white hover:bg-[#6A73FC] hover:text-white transition-all duration-200 cursor-pointer text-sm">
-                  Read More
-                </button>
-              </div>
-            ))}
-          </div>
-        )}
-
-        {/* ===== PAGINATION & FOOTER ===== */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-6 border-t border-gray-100 pt-6">
-          <div className="text-sm text-gray-400">
-            Showing {filteredData.length > 0 ? startIndex + 1 : 0} to{" "}
-            {Math.min(startIndex + entries, filteredData.length)} of {filteredData.length} entries
-          </div>
-
-          <div className="flex items-center gap-1">
-            <button
-              onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-              disabled={currentPage === 1}
-              className={`px-4 py-2 text-sm rounded transition-colors cursor-pointer ${
-                currentPage === 1
-                  ? "bg-gray-200 text-black cursor-not-allowed"
-                  : "text-white bg-[#6A73FC] hover:text-[rgb(106,115,252)] hover:bg-gray-200"
-              }`}
-            >
-              Previous
-            </button>
-
-            {[1, 2, 3].map((num) => (
-              <button
-                key={num}
-                onClick={() => setCurrentPage(num)}
-                className={`w-9 h-9 flex items-center justify-center rounded-md text-sm font-medium transition-all duration-200 cursor-pointer ${
-                  currentPage === num
-                    ? "bg-[#6A73FC] text-white shadow-[0_4px_10px_0_rgba(106,115,252,0.3)]"
-                    : "text-[#6A73FC] bg-black/10 hover:bg-[#6A73FC]/5 border border-transparent"
-                }`}
-              >
-                {num}
-              </button>
-            ))}
-
-            <button
-              onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
-              disabled={currentPage === totalPages || totalPages === 0}
-              className={`px-4 py-2 text-sm rounded transition-colors cursor-pointer ${
-                currentPage === totalPages || totalPages === 0
-                  ? "bg-gray-200 text-black cursor-not-allowed"
-                  : "text-white bg-[#6A73FC] hover:text-[rgb(106,115,252)] hover:bg-gray-200"
-              }`}
-            >
-              Next
-            </button>
-          </div>
+        <div>
+          <p className="text-lg font-bold text-indigo-500">
+            {PROFILE.tasks}
+          </p>
+          <p className="text-xs text-gray-400">Tasks</p>
         </div>
       </div>
     </div>
   );
-};
+}
 
-export default ProfessorsTable;
+function AddressCard() {
+  return (
+    <div className="mt-5 rounded bg-white p-5 px-8 shadow-sm">
+      <h3 className="mb-3 text-gray-800 text-[1.2rem] font-medium pb-3 border-b border-[#8080802b] -mx-8 px-8">Address</h3>
+      <p className="whitespace-pre-line text-sm leading-relaxed text-gray-500">
+        {PROFILE.address}
+      </p>
+    </div>
+  );
+}
+
+function WorkExpertiseCard() {
+  return (
+    <div className="mt-5 rounded bg-white p-5 px-8 shadow-sm">
+      <h3 className="mb-4 text-gray-800 text-[1.2rem] font-medium pb-3 border-b border-[#8080802b] -mx-8 px-8">Work Expertise</h3>
+      <div className="space-y-4">
+        {PROFILE.skills.map((skill) => (
+          <SkillBar key={skill.name} {...skill} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function Tabs({ active, onChange }) {
+  const tabs = [
+    { key: "posts", label: "Posts" },
+    { key: "about", label: "About Me" },
+  ];
+  return (
+    <div className="px-6 pt-4">
+      <div className="flex gap-6 border-b border-gray-100 pt-4">
+        {tabs.map((tab) => (
+          <button
+            key={tab.key}
+            onClick={() => onChange(tab.key)}
+            className={`pb-3 text-sm font-medium transition ${active === tab.key
+                ? "border-b-2 border-indigo-500 text-indigo-500"
+                : "text-gray-400 hover:text-gray-600"
+              }`}
+          >
+            {tab.label}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function Composer({ value, onChange, onSubmit }) {
+  return (
+    <div className="mt-5 rounded">
+      <textarea
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        rows={3}
+        placeholder="Please type what you want...."
+        className="w-full resize-none rounded border border-gray-200 p-3 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-200"
+      />
+      <div className="mt-3 flex items-center gap-3">
+        <button
+          type="button"
+          aria-label="Attach link"
+          className="rounded bg-indigo-50 p-2 text-indigo-500 transition hover:bg-indigo-100"
+        >
+          <Link2 size={18} />
+        </button>
+        <button
+          type="button"
+          aria-label="Attach photo"
+          className="rounded bg-indigo-50 p-2 text-indigo-500 transition hover:bg-indigo-100"
+        >
+          <Camera size={18} />
+        </button>
+        <button
+          type="button"
+          onClick={(e) => e.preventDefault()}
+          className="rounded bg-indigo-500 px-5 py-2 text-sm font-medium text-white transition hover:bg-indigo-600"
+        >
+          Post
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function PostCard({ post }) {
+  return (
+    <div className="mt-5 overflow-hidden rounded">
+      <img
+        src={post.image}
+        alt=""
+        className="h-auto w-full sm:h-auto bg-gray-50"
+      />
+      <div>
+        <h4 className="mb-2 text-lg font-semibold text-gray-800">
+          {post.title}
+        </h4>
+        <p className="mb-4 text-sm leading-relaxed text-gray-500">
+          {post.body}
+        </p>
+        <div className="flex gap-3">
+          <button className="flex items-center gap-2 rounded bg-indigo-500 px-4 py-2 text-sm font-medium text-white transition hover:bg-indigo-600">
+            <Heart size={16} fill="currentColor" />
+            Like
+          </button>
+          <button className="flex items-center gap-2 rounded bg-violet-800 px-4 py-2 text-sm font-medium text-white transition hover:bg-violet-900">
+            <Reply size={16} />
+            Reply
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function ProfessorProfile({ prof }) {
+  const [activeTab, setActiveTab] = useState("posts");
+  const [draft, setDraft] = useState("");
+  const [posts, setPosts] = useState(INITIAL_POSTS);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(localStorage.getItem('sidebarCollapsed') === 'true');
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+
+    const handleToggle = (e) => {
+      setSidebarCollapsed(e.detail.collapsed);
+    };
+    window.addEventListener('sidebarToggle', handleToggle);
+
+    const handleMobileToggle = (e) => {
+      setMobileMenuOpen(e.detail.isOpen);
+    };
+    window.addEventListener('mobileSidebarToggle', handleMobileToggle);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('sidebarToggle', handleToggle);
+      window.removeEventListener('mobileSidebarToggle', handleMobileToggle);
+    };
+  }, []);
+
+  const handlePost = () => {
+    const text = draft.trim();
+    if (!text) return;
+    setPosts((prev) => [
+      {
+        id: Date.now(),
+        image: AVATAR_URL,
+        title: text,
+        body: "",
+      },
+      ...prev,
+    ]);
+    setDraft("");
+  };
+
+  return (
+    <div className='w-screen h-screen bg-[#F2F2F3]'>
+      <Navbar />
+      <Sidebar />
+
+      {/* Main Content Div */}
+      <div className={`absolute right-0 bottom-0 ${windowWidth < 1100 ? (mobileMenuOpen ? 'w-[calc(100vw-250px)]' : 'w-screen') : (sidebarCollapsed ? 'w-[calc(100vw-56px)]' : 'w-[calc(100vw-250px)]')} h-[calc(100vh-65px)] p-4 overflow-y-auto overflow-x-hidden`}>
+
+        {prof ?
+          <Header parentTitle="Staff Profile" childTitle="Staff" grandChildTitle="Staff Profile" /> :
+          <Header parentTitle="Professor Profile" childTitle="Professors" grandChildTitle="Professor Profile" />
+        }
+
+        <div className="mt-4 grid grid-cols-1 gap-6 lg:grid-cols-[320px_1fr]">
+          <aside>
+            <ProfileCard />
+            <AboutMeCard />
+            <AddressCard />
+            <WorkExpertiseCard />
+          </aside>
+
+          <main>
+            <div className="rounded bg-white shadow-sm">
+              <Tabs active={activeTab} onChange={setActiveTab} />
+              <div className="p-5">
+                {activeTab === "posts" ? (
+                  <>
+                    <Composer value={draft} onChange={setDraft} onSubmit={handlePost} />
+                    {posts.map((post) => (
+                      <PostCard key={post.id} post={post} />
+                    ))}
+                  </>
+                ) : (
+                  <>
+                    <h3 className="mb-3 font-semibold text-gray-800">
+                      About {PROFILE.name}
+                    </h3>
+                    <p className="text-sm leading-relaxed text-gray-500">
+                      {PROFILE.bio}
+                    </p>
+                    <div className="mt-4 space-y-3">
+                      <InfoRow label="Gender" value={PROFILE.gender} />
+                      <InfoRow label="Education" value={PROFILE.education} />
+                      <InfoRow label="Designation" value={PROFILE.designation} />
+                      <InfoRow
+                        label="Operation Done"
+                        value={PROFILE.operationDone}
+                      />
+                    </div>
+                  </>
+                )}
+              </div>
+            </div>
+          </main>
+        </div>
+
+        <footer className="text-center pt-[4em] pb-[0.5em] text-sm text-gray-500">
+          <p>Copyright © Designed & Developed by <a className="text-[#6a73fa] cursor-pointer">DexignLab</a> 2023</p>
+        </footer>
+      </div>
+    </div>
+  );
+}

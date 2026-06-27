@@ -380,21 +380,19 @@ const AllStudents = ({ data = defaultData, onEdit, onDelete }) => {
       <div className="mt-2 mb-6 flex gap-2">
         <button
           onClick={() => setView("list")}
-          className={`rounded-[5px] px-5 py-3 transition-colors duration-150 ease-in-out cursor-pointer ${
-            view === "list"
+          className={`rounded-[5px] px-5 py-3 transition-colors duration-150 ease-in-out cursor-pointer ${view === "list"
               ? "bg-[#6A73FC] shadow-[0_0_20px_0_rgba(106,115,250,0.2)] text-white"
               : "text-[#6A73FC]"
-          }`}
+            }`}
         >
           List View
         </button>
         <button
           onClick={() => setView("grid")}
-          className={`rounded-[5px] px-5 py-3 transition-colors duration-150 ease-in-out cursor-pointer ${
-            view === "grid"
+          className={`rounded-[5px] px-5 py-3 transition-colors duration-150 ease-in-out cursor-pointer ${view === "grid"
               ? "bg-[#6A73FC] shadow-[0_0_20px_0_rgba(106,115,250,0.2)] text-white"
               : "text-[#6A73FC]"
-          }`}
+            }`}
         >
           Grid View
         </button>
@@ -403,14 +401,14 @@ const AllStudents = ({ data = defaultData, onEdit, onDelete }) => {
       {/* Card wrapper */}
       <div className="bg-white rounded-xl shadow-sm p-4 sm:p-6 w-full overflow-x-auto">
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4 border-b border-gray-200 pb-4 -mx-4 sm:-mx-6 px-4 sm:px-6">
           <h2 className="text-lg font-semibold text-gray-700">All Students</h2>
           <button className="bg-[#6A73FC] hover:bg-[#5961e0] text-white text-sm font-medium px-4 py-2 rounded-md w-full sm:w-auto transition-colors cursor-pointer">
             + Add new
           </button>
         </div>
 
-        <div className="border-t border-gray-100" />
+
 
         {/* Controls: Show entries + Search */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 py-4">
@@ -591,11 +589,10 @@ const AllStudents = ({ data = defaultData, onEdit, onDelete }) => {
             <button
               onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
               disabled={currentPage === 1}
-              className={`px-4 py-2 text-sm rounded transition-colors cursor-pointer ${
-                currentPage === 1
+              className={`px-4 py-2 text-sm rounded transition-colors cursor-pointer ${currentPage === 1
                   ? "bg-gray-200 text-black cursor-not-allowed"
                   : "text-white bg-[#6A73FC] hover:text-[rgb(106,115,252)] hover:bg-gray-200"
-              }`}
+                }`}
             >
               Previous
             </button>
@@ -604,11 +601,10 @@ const AllStudents = ({ data = defaultData, onEdit, onDelete }) => {
               <button
                 key={num}
                 onClick={() => setCurrentPage(num)}
-                className={`w-9 h-9 flex items-center justify-center rounded-md text-sm font-medium transition-all duration-200 cursor-pointer ${
-                  currentPage === num
+                className={`w-9 h-9 flex items-center justify-center rounded-md text-sm font-medium transition-all duration-200 cursor-pointer ${currentPage === num
                     ? "bg-[#6A73FC] text-white shadow-[0_4px_10px_0_rgba(106,115,252,0.3)]"
                     : "text-[#6A73FC] bg-black/10 hover:bg-[#6A73FC]/5 border border-transparent"
-                }`}
+                  }`}
               >
                 {num}
               </button>
@@ -617,11 +613,10 @@ const AllStudents = ({ data = defaultData, onEdit, onDelete }) => {
             <button
               onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
               disabled={currentPage === totalPages || totalPages === 0}
-              className={`px-4 py-2 text-sm rounded transition-colors cursor-pointer ${
-                currentPage === totalPages || totalPages === 0
+              className={`px-4 py-2 text-sm rounded transition-colors cursor-pointer ${currentPage === totalPages || totalPages === 0
                   ? "bg-gray-200 text-black cursor-not-allowed"
                   : "text-white bg-[#6A73FC] hover:text-[rgb(106,115,252)] hover:bg-gray-200"
-              }`}
+                }`}
             >
               Next
             </button>
