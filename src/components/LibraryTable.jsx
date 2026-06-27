@@ -117,7 +117,7 @@ const LibraryTable = ({ data = defaultData, onEdit, onDelete, onAddNew }) => {
             <select
               value={entries}
               onChange={(e) => setEntries(Number(e.target.value))}
-              className="border border-gray-200 rounded-md px-2 py-1 text-gray-600 focus:outline-none focus:ring-2 focus:ring-[#6A73FC]/30 cursor-pointer"
+              className="border border-gray-200 rounded-md pl-[10px] pr-[35px] py-[10px] text-gray-600 focus:outline-none focus:ring-2 focus:ring-[#6A73FC]/30 cursor-pointer"
             >
               <option value={10}>10</option>
               <option value={25}>25</option>
@@ -216,8 +216,8 @@ const LibraryTable = ({ data = defaultData, onEdit, onDelete, onAddNew }) => {
               onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
               disabled={currentPage === 1}
               className={`px-4 py-2 text-sm rounded transition-colors cursor-pointer ${currentPage === 1
-                  ? "bg-gray-200 text-black cursor-not-allowed"
-                  : "text-white bg-[#6A73FC] hover:text-[rgb(106,115,252)] hover:bg-gray-200"
+                ? "bg-gray-200 text-black cursor-not-allowed"
+                : "text-white bg-[#6A73FC] hover:text-[rgb(106,115,252)] hover:bg-gray-200"
                 }`}
             >
               Previous
@@ -228,8 +228,8 @@ const LibraryTable = ({ data = defaultData, onEdit, onDelete, onAddNew }) => {
                 key={num}
                 onClick={() => setCurrentPage(num)}
                 className={`w-9 h-9 flex items-center justify-center rounded-md text-sm font-medium transition-all duration-200 cursor-pointer ${currentPage === num
-                    ? "bg-[#6A73FC] text-white shadow-[0_4px_10px_0_rgba(106,115,252,0.3)]"
-                    : "text-[#6A73FC] bg-black/10 hover:bg-[#6A73FC]/5 border border-transparent"
+                  ? "bg-[#6A73FC] text-white shadow-[0_4px_10px_0_rgba(106,115,252,0.3)]"
+                  : "text-[#6A73FC] bg-black/10 hover:bg-[#6A73FC]/5 border border-transparent"
                   }`}
               >
                 {num}
@@ -240,8 +240,8 @@ const LibraryTable = ({ data = defaultData, onEdit, onDelete, onAddNew }) => {
               onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
               disabled={currentPage === totalPages || totalPages === 0}
               className={`px-4 py-2 text-sm rounded transition-colors cursor-pointer ${currentPage === totalPages || totalPages === 0
-                  ? "bg-gray-200 text-black cursor-not-allowed"
-                  : "text-white bg-[#6A73FC] hover:text-[rgb(106,115,252)] hover:bg-gray-200"
+                ? "bg-gray-200 text-black cursor-not-allowed"
+                : "text-white bg-[#6A73FC] hover:text-[rgb(106,115,252)] hover:bg-gray-200"
                 }`}
             >
               Next

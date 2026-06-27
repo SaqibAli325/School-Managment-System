@@ -122,7 +122,7 @@ const FeesTable = ({ data = defaultData, onEdit, onDelete, onAddNew }) => {
                         <select
                             value={entries}
                             onChange={(e) => setEntries(Number(e.target.value))}
-                            className="border border-gray-200 rounded-md px-2 py-1 text-gray-600 focus:outline-none focus:ring-2 focus:ring-[#6A73FC]/30 cursor-pointer"
+                            className="border border-gray-200 rounded-md pl-[10px] pr-[35px] py-[10px] text-gray-600 focus:outline-none focus:ring-2 focus:ring-[#6A73FC]/30 cursor-pointer"
                         >
                             <option value={10}>10</option>
                             <option value={25}>25</option>
