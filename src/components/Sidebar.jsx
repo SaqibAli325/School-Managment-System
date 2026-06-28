@@ -64,7 +64,7 @@ const Sidebar = () => {
   const displayCollapsed = isMobileView ? false : collapsed;
 
   return (
-    <div className={`fixed top-0 left-0 h-screen bg-[#FAF9FB] overflow-y-auto overflow-x-hidden z-90 border-r border-gray-200 transition-all duration-200 ${isMobileView ? 'w-62.5' : (displayCollapsed ? 'w-14' : 'w-62.5')} ${shouldHide ? 'hidden' : ''} mt-16`}>
+    <div className={`custom-scrollbar fixed top-0 left-0 h-screen bg-[#FAF9FB] overflow-y-auto overflow-x-hidden z-90 border-r border-gray-200 transition-all duration-200 ${isMobileView ? 'w-62.5' : (displayCollapsed ? 'w-14' : 'w-58.5')} ${shouldHide ? 'hidden' : ''} mt-16`}>
       <div>
         <div className={`pt-8  pb-2 mr-4 ${displayCollapsed ? 'hidden' : 'ml-8 text-gray-500'}`}>
           {!displayCollapsed && <small className="text-[70%] font-semibold">Main Menu</small>}
