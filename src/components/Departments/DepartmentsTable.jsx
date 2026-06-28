@@ -132,7 +132,7 @@ const DepartmentsTable = ({ data = defaultData, onEdit, onDelete, onAddNew }) =>
         <div className="-mx-4 sm:mx-0">
           <table className="w-full min-w-200 text-sm">
             <thead>
-              <tr className="text-left font-semibold border-y border-gray-100">
+              <tr className="text-left font-semibold">
                 {columns.map((col) => (
                   <th
                     key={col.key}
@@ -159,7 +159,7 @@ const DepartmentsTable = ({ data = defaultData, onEdit, onDelete, onAddNew }) =>
               {visibleData.map((item, index) => (
                 <tr
                   key={index}
-                  className="border-b border-gray-100 hover:shadow-[0px_0px_5px_#00000029] transition-all"
+                  className="border-b border-gray-200 hover:shadow-[0px_0px_5px_#00000029] transition-all"
                 >
                   <td className="py-3 px-4 text-[#737b8b] font-bold">
                     {String(startIndex + index + 1).padStart(2, "0")}
