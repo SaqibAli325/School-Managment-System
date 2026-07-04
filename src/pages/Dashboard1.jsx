@@ -76,7 +76,7 @@ const Dashboard1 = () => {
       <Navbar />
       <Sidebar />
 
-      <PageContainer width="270px">
+      <PageContainer>
 
         <div className='flex justify-between gap-6 pt-5 max-[1010px]:flex-col'>
           {stats.map((stat, index) => (
