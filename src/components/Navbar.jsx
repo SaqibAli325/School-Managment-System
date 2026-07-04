@@ -5,7 +5,7 @@ import { RiMoonFill } from "@remixicon/react";
 import { RiMessage2Line } from "@remixicon/react";
 import { RiNotification2Line } from "@remixicon/react";
 import { RiSettings3Line } from "@remixicon/react";
-import { RiArrowRightLongLine } from "@remixicon/react";
+import { RiArrowRightLongLine, } from "@remixicon/react";
 import { useState } from "react";
 
 const Header = () => {
@@ -32,11 +32,26 @@ const Header = () => {
   return (
     <div className="fixed top-0 left-0 w-full h-16.25 bg-white flex items-center z-100 shadow-sm">
 
-      <h1 className="uppercase text-[#6A73FA] flex gap-2 tracking-[4px] text-[1.8rem] font-black items-center pl-[0.3rem]"><RiGraduationCapFill className="w-16.25 h-10" /> <span className={`max-[515px]:hidden ${sidebarCollapsed ? 'hidden' : ''}`}>edumin</span></h1>
-      <div onClick={toggleSidebar} className="cursor-pointer"><RiBarChartHorizontalLine className={`text-gray-400 ml-8 font-bold max-[340px]:ml-0 hover:text-gray-600 transition-colors`} /></div>
+      <h1 className={`uppercase  bg-[#6A73FA] text-white h-full  flex gap-2 tracking-[4px] text-[1.8rem] font-black items-center  ${sidebarCollapsed ? 'p-[0]' : 'pr-[1.3rem] pl-[0.3rem]'}`}><RiGraduationCapFill className="w-16.25 h-10" /> <span className={`max-[515px]:hidden ${sidebarCollapsed ? 'hidden' : ''}`}>edumin</span></h1>
+      <div
+        onClick={toggleSidebar}
+        className="cursor-pointer flex items-center"
+      >
+        {sidebarCollapsed ? (
+          <RiArrowRightLongLine
+            size={24}
+            className="ml-8 max-[340px]:ml-0 text-[#6A73FA] hover:translate-x-1 transition-all duration-300"
+          />
+        ) : (
+          <RiBarChartHorizontalLine
+            size={22}
+            className="ml-8 max-[340px]:ml-0 text-gray-400 hover:text-gray-600 transition-all duration-300"
+          />
+        )}
+      </div>
 
       <div className="max-[860px]:hidden flex ml-9 p-4 rounded-[3rem] bg-[#F5F5F5] h-[70%] items-center gap-4 w-[320px]">
-        <RiSearchLine className="text-[#888892] w-5" />
+        <RiSearchLine className={`${sidebarCollapsed ? 'hidden' : ''} text-[#888892] w-5`} />
         <input type="text" placeholder="Search" className="outline-none text-[14px] text-[#00000094] font-semibold placeholder:text-[#00000094]" />
       </div>
 
@@ -59,7 +74,7 @@ const Header = () => {
           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSDdc7ZHr1gAvUADsK2GDUuyffGCX61n8zJA&s" alt="user" className="w-full h-full object-cover" />
         </div>
       </div>
-    </div>
+    </div >
   )
 }
 

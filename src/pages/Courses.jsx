@@ -1,52 +1,27 @@
-import React, { useState, useEffect } from 'react'
+import PageContainer from '../components/Layout/PageContainer'
 import Navbar from '../components/Navbar.jsx'
 import Sidebar from '../components/Sidebar.jsx'
 import Header from '../components/Header.jsx'
 import AllCourse from '../components/Courses/AllCourse.jsx'
 
 const Courses = () => {
-    const [sidebarCollapsed, setSidebarCollapsed] = useState(localStorage.getItem('sidebarCollapsed') === 'true');
-    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    return (
+        <div className='w-screen h-screen bg-[#F2F2F3]'>
+            <Navbar />
+            <Sidebar />
 
-    useEffect(() => {
-        const handleResize = () => setWindowWidth(window.innerWidth);
-        window.addEventListener('resize', handleResize);
-        
-        const handleToggle = (e) => {
-            setSidebarCollapsed(e.detail.collapsed);
-        };
-        window.addEventListener('sidebarToggle', handleToggle);
+            <PageContainer>
 
-        const handleMobileToggle = (e) => {
-            setMobileMenuOpen(e.detail.isOpen);
-        };
-        window.addEventListener('mobileSidebarToggle', handleMobileToggle);
-        
-        return () => {
-            window.removeEventListener('resize', handleResize);
-            window.removeEventListener('sidebarToggle', handleToggle);
-            window.removeEventListener('mobileSidebarToggle', handleMobileToggle);
-        };
-    }, []);
+                <Header parentTitle="All Courses" childTitle="Courses" grandChildTitle="All Courses" />
 
-  return (
-    <div className='w-screen h-screen bg-[#F2F2F3]'>
-        <Navbar />
-        <Sidebar />
+                <AllCourse />
 
-        <div className={`absolute right-0 bottom-0 ${windowWidth < 1100 ? (mobileMenuOpen ? 'w-[calc(100vw-250px)]' : 'w-screen') : (sidebarCollapsed ? 'w-[calc(100vw-56px)]' : 'w-[calc(100vw-250px)]')} h-[calc(100vh-65px)] p-4 overflow-y-auto overflow-x-hidden`}>
-            
-            <Header parentTitle="All Courses" childTitle="Courses" grandChildTitle="All Courses"/>
-
-            <AllCourse />
-
-            <footer className="text-center pt-[4em] pb-[0.5em] text-sm text-gray-500">
-                <p>Copyright © Designed & Developed by <a className="text-[#6a73fa] cursor-pointer">DexignLab</a> 2023</p>
-            </footer>
+                <footer className="text-center pt-[4em] pb-[0.5em] text-sm text-gray-500">
+                    <p>Copyright © Designed & Developed by <a className="text-[#6a73fa] cursor-pointer">DexignLab</a> 2023</p>
+                </footer>
+            </PageContainer>
         </div>
-    </div>
-  )
+    )
 }
 
 export default Courses
