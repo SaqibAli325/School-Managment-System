@@ -6,11 +6,27 @@ import { RiMessage2Line } from "@remixicon/react";
 import { RiNotification2Line } from "@remixicon/react";
 import { RiSettings3Line } from "@remixicon/react";
 import { RiArrowRightLongLine, } from "@remixicon/react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+// Must always match the widths used in Sidebar.jsx / PageContainer.jsx
+const SIDEBAR_EXPANDED_WIDTH = 250;
+const SIDEBAR_COLLAPSED_WIDTH = 56;
 
 const Header = () => {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(localStorage.getItem('sidebarCollapsed') === 'true');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Same rule Sidebar.jsx uses: collapse only applies on non-mobile widths
+  const isMobileView = windowWidth < 1100;
+  const displayCollapsed = isMobileView ? false : sidebarCollapsed;
+  const logoWidth = displayCollapsed ? SIDEBAR_COLLAPSED_WIDTH : SIDEBAR_EXPANDED_WIDTH;
 
   const toggleSidebar = () => {
     const windowWidth = window.innerWidth;
@@ -32,7 +48,13 @@ const Header = () => {
   return (
     <div className="fixed top-0 left-0 w-full h-16.25 bg-white flex items-center z-100 shadow-sm">
 
-      <h1 className={`uppercase  bg-[#6A73FA] text-white h-full  flex gap-2 tracking-[4px] text-[1.8rem] font-black items-center  ${sidebarCollapsed ? 'p-[0]' : 'pr-[1.3rem] pl-[0.3rem]'}`}><RiGraduationCapFill className="w-16.25 h-10" /> <span className={`max-[515px]:hidden ${sidebarCollapsed ? 'hidden' : ''}`}>edumin</span></h1>
+      <h1
+        className={`uppercase bg-[#6A73FA] text-white h-full flex items-center gap-2 tracking-[4px] text-[1.8rem] font-black shrink-0 overflow-hidden transition-all duration-200 ${displayCollapsed ? 'justify-center' : 'pr-[1.3rem] pl-[0.3rem]'}`}
+        style={{ width: `${logoWidth}px` }}
+      >
+        <RiGraduationCapFill className="w-8 h-8 shrink-0" />
+        <span className={`max-[515px]:hidden ${displayCollapsed ? 'hidden' : ''}`}>edumin</span>
+      </h1>
       <div
         onClick={toggleSidebar}
         className="cursor-pointer flex items-center"
