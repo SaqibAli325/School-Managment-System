@@ -33,6 +33,7 @@ import HolidayCalendar from './components/Holidays/HolidayCalender.jsx'
 import FeesSection from './pages/Fees.jsx'
 import AddFees from './components/Fees/AddFees.jsx'
 import FeesReciept from './components/Fees/FeesReciept.jsx'
+import ProfilePage from './pages/AppSection.jsx'
 
 const App = () => {
   return (
@@ -71,6 +72,7 @@ const App = () => {
         <Route path="/fees-collection" element={<FeesSection />} />
         <Route path="/add-fees" element={<AddFees />} />
         <Route path="/fees-reciept" element={<FeesReciept />} />
+        <Route path="/profile" element={<ProfilePage />} />
         <Route path="*" element={<Dashboard1 />} />
       </Routes>
     </div>
