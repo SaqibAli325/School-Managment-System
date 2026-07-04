@@ -1,8 +1,15 @@
 import { useState, useEffect } from 'react'
 
-const PageContainer = ({ children, width = '250px', className = '' }) => {
+// These must always match the widths used in Sidebar.jsx
+const SIDEBAR_EXPANDED_WIDTH = 250;
+const SIDEBAR_COLLAPSED_WIDTH = 56;
+
+// Fixed visual gap between the sidebar and the page content.
+// This stays 30px whether the sidebar is open or collapsed.
+const SIDEBAR_CONTENT_GAP = 30;
+
+const PageContainer = ({ children, className = '' }) => {
     const [sidebarCollapsed, setSidebarCollapsed] = useState(localStorage.getItem('sidebarCollapsed') === 'true');
-    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
     useEffect(() => {
@@ -14,24 +21,23 @@ const PageContainer = ({ children, width = '250px', className = '' }) => {
         };
         window.addEventListener('sidebarToggle', handleToggle);
 
-        const handleMobileToggle = (e) => {
-            setMobileMenuOpen(e.detail.isOpen);
-        };
-        window.addEventListener('mobileSidebarToggle', handleMobileToggle);
-
         return () => {
             window.removeEventListener('resize', handleResize);
             window.removeEventListener('sidebarToggle', handleToggle);
-            window.removeEventListener('mobileSidebarToggle', handleMobileToggle);
         };
     }, []);
 
+    const isMobileView = windowWidth < 1100;
+    const sidebarWidth = sidebarCollapsed ? SIDEBAR_COLLAPSED_WIDTH : SIDEBAR_EXPANDED_WIDTH;
+
+    // On mobile the sidebar becomes an overlay drawer, so the content takes the
+    // full width and doesn't need to leave room for it.
+    const leftOffset = isMobileView ? 0 : sidebarWidth + SIDEBAR_CONTENT_GAP;
+
     return (
         <div
-            className={`absolute right-0 bottom-0 ${windowWidth < 1100
-                ? (mobileMenuOpen ? `w-[calc(100vw-${width})]` : 'w-screen')
-                : (sidebarCollapsed ? 'w-[calc(100vw-56px)]' : `w-[calc(100vw-${width})]`)
-                } h-[calc(100vh-65px)] p-4 overflow-y-auto overflow-x-hidden${className ? ` ${className}` : ''}`}
+            className={`absolute top-[65px] right-0 bottom-0 py-4 pr-4 overflow-y-auto overflow-x-hidden transition-[left] duration-200 ${className}`}
+            style={{ left: leftOffset }}
         >
             {children}
         </div>

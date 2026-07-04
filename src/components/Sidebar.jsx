@@ -22,6 +22,9 @@ import {
 import { useState, useEffect } from "react";
 import { Link, Links, useLocation } from "react-router-dom";
 
+const EXPANDED_WIDTH = 250;
+const COLLAPSED_WIDTH = 56;
+
 const Sidebar = () => {
   const [dashboardSections, setdashboardSections] = useState(false);
   const [professorsSections, setProfessorsSections] = useState(false);
@@ -35,6 +38,9 @@ const Sidebar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [FeesSection, setFeesSection] = useState(false)
+  const [appsSection, setAppsSection] = useState(false)
+  const [emailSection, setEmailSection] = useState(false)
+  const [shopSection, setShopSection] = useState(false)
 
   useEffect(() => {
     const handleResize = () => {
@@ -64,7 +70,11 @@ const Sidebar = () => {
   const displayCollapsed = isMobileView ? false : collapsed;
 
   return (
-    <div className={`custom-scrollbar fixed top-0 left-0 h-screen bg-[#FAF9FB] overflow-y-auto overflow-x-hidden z-90 border-r border-gray-200 transition-all duration-200 ${isMobileView ? 'w-62.5' : (displayCollapsed ? 'w-16.5' : 'w-58.5')} ${shouldHide ? 'hidden' : ''} mt-16`}>
+    <div className={`custom-scrollbar fixed top-0 left-0 h-screen bg-[#FAF9FB] overflow-y-auto overflow-x-hidden z-90 border-r border-gray-200 transition-all duration-200 ${isMobileView
+      ? "w-[250px]"
+      : displayCollapsed
+        ? "w-14"
+        : "w-[250px]"} mt-16`}>
       <div>
         <div className={`pt-8  pb-2 mr-4 ${displayCollapsed ? 'hidden' : 'ml-8 text-gray-500'}`}>
           {!displayCollapsed && <small className="text-[70%] font-semibold">Main Menu</small>}
@@ -332,12 +342,86 @@ const Sidebar = () => {
         </div>
 
         <div className="flex flex-col gap-1 mt-2 border-b border-gray-200 pb-5">
-          <div className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}>
-            <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
-              <RiTeamLine size={20} />
-              {!collapsed && <span>Apps</span>}
+          <div className="w-full">
+            <div
+              onClick={() => setAppsSection(!appsSection)}
+              className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}
+            >
+              <div className={`${appsSection ? "text-[#6A73FA]" : ""} flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]`}>
+                <RiTeamLine size={20} />
+                {!collapsed && <h2 className="text-[12px]">Apps</h2>}
+              </div>
+              {!collapsed && (
+                <RiPlayMiniFill
+                  size={16}
+                  className={`transition-transform duration-300 ${appsSection ? "rotate-90 text-[#6A73FA]" : ""}`}
+                />
+              )}
             </div>
-            {!collapsed && <RiPlayMiniFill size={16} />}
+
+            {!collapsed && (
+              <div className={`overflow-hidden transition-all duration-500 ease-in-out ${appsSection ? "max-h-160 opacity-100" : "max-h-0 opacity-0"}`}>
+                <div className="flex flex-col text-[12px] pl-10 gap-3 pb-3 text-[#737b8b] font-medium">
+                  <span className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Profile</span>
+
+                  <div className="flex items-center gap-1.25">
+                    <span className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Post Details</span>
+                    <div className="bg-red-500 text-white text-[10px] px-2 py-0.5 rounded-sm">New</div>
+                  </div>
+
+                  <div className="flex items-center gap-1.25">
+                    <span className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Edit Profile</span>
+                    <div className="bg-red-500 text-white text-[10px] px-2 py-0.5 rounded-sm">New</div>
+                  </div>
+
+                  <div>
+                    <div
+                      onClick={() => setEmailSection(!emailSection)}
+                      className="flex items-center justify-between pr-2 cursor-pointer hover:pl-2 transition-all duration-500"
+                    >
+                      <span className={emailSection ? "text-[#6A73FA]" : ""}>- Email</span>
+                      <RiPlayMiniFill
+                        size={14}
+                        className={`transition-transform duration-300 ${emailSection ? "rotate-90 text-[#6A73FA]" : ""}`}
+                      />
+                    </div>
+                    <div className={`overflow-hidden transition-all duration-500 ease-in-out ${emailSection ? "max-h-40 opacity-100" : "max-h-0 opacity-0"}`}>
+                      <div className="flex flex-col gap-3 pt-3 pl-4">
+                        <span className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Compose</span>
+                        <span className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Inbox</span>
+                        <span className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Read</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <span className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Calender</span>
+
+                  <div>
+                    <div
+                      onClick={() => setShopSection(!shopSection)}
+                      className="flex items-center justify-between pr-2 cursor-pointer hover:pl-2 transition-all duration-500"
+                    >
+                      <span className={shopSection ? "text-[#6A73FA]" : ""}>- Shop</span>
+                      <RiPlayMiniFill
+                        size={14}
+                        className={`transition-transform duration-300 ${shopSection ? "rotate-90 text-[#6A73FA]" : ""}`}
+                      />
+                    </div>
+                    <div className={`overflow-hidden transition-all duration-500 ease-in-out ${shopSection ? "max-h-80 opacity-100" : "max-h-0 opacity-0"}`}>
+                      <div className="flex flex-col gap-3 pt-3 pl-4">
+                        <span className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Product Grid</span>
+                        <span className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Product List</span>
+                        <span className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Product Details</span>
+                        <span className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Order</span>
+                        <span className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Checkout</span>
+                        <span className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Invoice</span>
+                        <span className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Customers</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
 
           <div className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}>
