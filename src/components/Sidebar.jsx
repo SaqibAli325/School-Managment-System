@@ -394,7 +394,7 @@ const Sidebar = () => {
                     </div>
                   </div>
 
-                  <span className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Calender</span>
+                  <Link to="/app-calender" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Calender</Link>
 
                   <div>
                     <div

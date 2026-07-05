@@ -233,7 +233,7 @@ function DayView({ current }) {
 }
 
 // ─── Main Calendar ────────────────────────────────────────────────────────────
-export default function Calendar() {
+export default function Calendar({ reverse = false }) {
   const [view, setView] = useState("month");
   const [current, setCurrent] = useState(new Date(2021, 1, 1));
 
@@ -258,7 +258,10 @@ export default function Calendar() {
   }
 
   return (
-    <div className="flex gap-4 h-fit flex-col sm:flex-row">
+    <div
+      className={`flex gap-4 h-fit flex-col ${reverse ? "sm:flex-row-reverse" : "sm:flex-row"
+        }`}
+    >
       {/* ── Calendar area ── */}
       <div className="flex flex-col w-full sm:w-[70%] bg-white overflow-hidden rounded shadow-sm border border-gray-200 p-[1rem]">
         {/* Header */}

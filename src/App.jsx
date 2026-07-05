@@ -39,6 +39,7 @@ import EditAppProfile from './components/App/EditAppProfile.jsx'
 import ComposeEmail from './components/App/Email/Compose.jsx'
 import Inbox from './components/App/Email/inbox.jsx'
 import Read from './components/App/Email/Read.jsx'
+import AppCalender from './components/App/AppCalender.jsx'
 
 const App = () => {
   return (
@@ -83,6 +84,7 @@ const App = () => {
         <Route path='/compose-email' element={<ComposeEmail />} />
         <Route path='/inbox' element={<Inbox />} />
         <Route path='/read' element={<Read />} />
+        <Route path='/app-calender' element={<AppCalender />} />
         <Route path="*" element={<Dashboard1 />} />
       </Routes>
     </div>
