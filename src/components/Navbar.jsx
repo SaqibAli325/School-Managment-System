@@ -32,12 +32,11 @@ const Header = () => {
     const windowWidth = window.innerWidth;
 
     if (windowWidth < 1100) {
-      // On small screens, toggle mobile menu
       const newMobileState = !mobileMenuOpen;
       setMobileMenuOpen(newMobileState);
       window.dispatchEvent(new CustomEvent('mobileSidebarToggle', { detail: { isOpen: newMobileState } }));
-    } else {
-      // On large screens, toggle collapse state
+    }
+    else {
       const newState = !sidebarCollapsed;
       setSidebarCollapsed(newState);
       localStorage.setItem('sidebarCollapsed', newState);
@@ -49,7 +48,7 @@ const Header = () => {
     <div className="fixed top-0 left-0 w-full h-16.25 bg-white flex items-center z-100 shadow-sm">
 
       <h1
-        className={`uppercase bg-[#6A73FA] text-white h-full flex items-center gap-2 tracking-[4px] text-[1.8rem] font-black shrink-0 overflow-hidden transition-all duration-200 ${displayCollapsed ? 'justify-center' : 'pr-[1.3rem] pl-[0.3rem]'}`}
+        className={`flex justify-center uppercase bg-[#6A73FA] text-white h-full flex items-center gap-2 tracking-[4px] text-[1.8rem] font-black shrink-0 overflow-hidden transition-all duration-200 ${displayCollapsed ? 'justify-center' : 'pr-[1.3rem] pl-[0.3rem]'}`}
         style={{ width: `${logoWidth}px` }}
       >
         <RiGraduationCapFill className="w-8 h-8 shrink-0" />

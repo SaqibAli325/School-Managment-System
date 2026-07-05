@@ -8,7 +8,7 @@ import Navbar from '../Navbar'
 import PageContainer from '../Layout/PageContainer'
 import Header from '../Header'
 
-export default function UserProfile() {
+export default function PostDetails() {
     const [activeTab, setActiveTab] = useState('posts');
 
     // Dummy Interest Data
@@ -29,7 +29,7 @@ export default function UserProfile() {
                     parentTitle="Hi, welcome back!"
                     subtitle="Your business dashboard template"
                     childTitle="App"
-                    grandChildTitle="Profile"
+                    grandChildTitle="Post Details"
                 />
                 <div className="mt-5 w-full min-h-screen text-[#7e7e7e]">
                     {/* 1. TOP PROFILE HEADER BANNER */}
