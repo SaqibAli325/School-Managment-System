@@ -120,7 +120,7 @@ export default function UserProfile() {
                                 <h4 className="text-base font-bold text-[#6a73fa] mb-4">Today Highlights</h4>
                                 <div className="rounded overflow-hidden mb-4 bg-gray-100 h-40">
                                     <img
-                                        src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=500"
+                                        src="https://edumin.dexignlab.com/xhtml/images/profile/1.jpg"
                                         alt="Highlight"
                                         className="w-full h-full object-cover"
                                     />
@@ -222,21 +222,21 @@ export default function UserProfile() {
                                     {/* FEED POSTS ITEMS */}
                                     {[
                                         {
-                                            img: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=800",
+                                            img: "https://edumin.dexignlab.com/xhtml/images/profile/8.jpg",
                                             title: '"Embark on a Journey of Unparalleled Excellence, Where Innovation and Elegance Converge to Shape Tomorrow\'s World."',
                                         },
                                         {
-                                            img: "https://images.unsplash.com/photo-1491845338219-4f53c1cd7927?q=80&w=800",
+                                            img: "https://edumin.dexignlab.com/xhtml/images/profile/9.jpg",
                                             title: 'Collection of textile samples lay spread',
                                         },
                                         {
-                                            img: "https://images.unsplash.com/photo-1525921429624-479b6c294521?q=80&w=800",
+                                            img: "https://edumin.dexignlab.com/xhtml/images/profile/8.jpg",
                                             title: '"Breakthrough Study Reveals Promising New Treatment Strategy for Alzheimer\'s Disease"',
                                         }
                                     ].map((post, index) => (
                                         <div key={index} className="pt-6 first:pt-0 flex flex-col gap-4">
-                                            <div className="w-full h-64 md:h-80 bg-gray-100 rounded overflow-hidden">
-                                                <img src={post.img} alt="Post Content" className="w-full h-full object-cover" />
+                                            <div className="w-full h-64 md:h-80 rounded overflow-hidden">
+                                                <img src={post.img} alt="Post Content" className="" />
                                             </div>
                                             <h3 className="text-base md:text-lg font-bold text-[#333333] leading-snug hover:text-[#6a73fa] cursor-pointer">
                                                 {post.title}
