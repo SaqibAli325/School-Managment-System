@@ -9,6 +9,8 @@ import Header from '../../Header'
 import PageContainer from '../../Layout/PageContainer'
 
 const Inbox = () => {
+    const [selectedEmails, setSelectedEmails] = useState({});
+    const [selectAll, setSelectAll] = useState(false);
     const [starred, setStarred] = useState({});
 
     const handleStar = (id) => {
@@ -52,6 +54,31 @@ const Inbox = () => {
     const [currentPage, setCurrentPage] = useState(2);
     const totalPages = [1, 2, 3, 4];
 
+    const handleSelectAll = (e) => {
+        const checked = e.target.checked;
+
+        setSelectAll(checked);
+
+        const updated = {};
+        emails.forEach((email) => {
+            updated[email.id] = checked;
+        });
+
+        setSelectedEmails(updated);
+    };
+
+    const handleSelectEmail = (id) => {
+        const updated = {
+            ...selectedEmails,
+            [id]: !selectedEmails[id],
+        };
+
+        setSelectedEmails(updated);
+
+        // Agar sab selected hain to top checkbox bhi check ho jaye
+        const allSelected = emails.every((email) => updated[email.id]);
+        setSelectAll(allSelected);
+    };
     return (
         <div className='w-screen h-screen bg-[#F2F2F3]'>
             <Navbar />
@@ -120,7 +147,12 @@ const Inbox = () => {
                             {/* Toolbar */}
                             <div className="flex items-center justify-between flex-wrap gap-3">
                                 <div className="flex items-center gap-4">
-                                    <input type="checkbox" className="w-4 h-4 rounded border-gray-300" />
+                                    <input
+                                        type="checkbox"
+                                        checked={selectAll}
+                                        onChange={handleSelectAll}
+                                        className="w-4 h-4 rounded border-gray-300 cursor-pointer"
+                                    />
                                     <button className="w-8 h-8 flex items-center justify-center rounded bg-[rgba(106,115,250,0.1)] text-[#6a73fa]">
                                         <FaSyncAlt size={13} />
                                     </button>
@@ -158,8 +190,12 @@ const Inbox = () => {
                                     <div
                                         key={email.id}
                                         className="flex items-center gap-4  py-3 border-b border-gray-100 hover:bg-gray-50 cursor-pointer transition-colors"
-                                    >
-                                        <input type="checkbox" className="w-4 h-4 rounded border-gray-300 shrink-0" />
+                                    ><input
+                                            type="checkbox"
+                                            checked={selectedEmails[email.id]}
+                                            onChange={() => handleSelectEmail(email.id)}
+                                            className="w-4 h-4 rounded border-gray-300 shrink-0"
+                                        />
                                         <FaStar
                                             size={18}
                                             onClick={() => handleStar(email.id)}
