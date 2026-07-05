@@ -389,7 +389,7 @@ const Sidebar = () => {
                       <div className="flex flex-col gap-3 pt-3 pl-4">
                         <Link to="/compose-email" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Compose</Link>
                         <Link to="/inbox" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Inbox</Link>
-                        <span className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Read</span>
+                        <Link to="/read" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Read</Link>
                       </div>
                     </div>
                   </div>
