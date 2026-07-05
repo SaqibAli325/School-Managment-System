@@ -37,6 +37,7 @@ import ProfilePage from './pages/AppSection.jsx'
 import PostDetails from './components/App/PostDetails.jsx'
 import EditAppProfile from './components/App/EditAppProfile.jsx'
 import ComposeEmail from './components/App/Email/Compose.jsx'
+import Inbox from './components/App/Email/inbox.jsx'
 
 const App = () => {
   return (
@@ -79,6 +80,7 @@ const App = () => {
         <Route path="/post-details" element={<PostDetails />} />
         <Route path="/edit-app-profile" element={<EditAppProfile />} />
         <Route path='/compose-email' element={<ComposeEmail />} />
+        <Route path='/inbox' element={<Inbox />} />
         <Route path="*" element={<Dashboard1 />} />
       </Routes>
     </div>
