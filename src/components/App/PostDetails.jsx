@@ -84,54 +84,54 @@ export default function PostDetails() {
                         <div className="lg:col-span-4 bg-white rounded p-6 shadow-sm border border-gray-100 flex flex-col divide-y divide-gray-100">
 
                             {/* STATS SECTION */}
-                            <div className="pb-6 text-center">
+                            <div className="pb-8 text-center">
                                 <div className="grid grid-cols-3 gap-2">
                                     <div>
-                                        <h3 className="text-xl font-bold text-[#333333]">150</h3>
-                                        <p className="text-xs text-gray-400 mt-1 uppercase font-semibold">Follower</p>
+                                        <h3 className="text-2xl font-bold text-[#333333]">150</h3>
+                                        <p className="text-xs text-gray-400 mt-1.5 uppercase font-semibold">Follower</p>
                                     </div>
                                     <div>
-                                        <h3 className="text-xl font-bold text-[#333333]">140</h3>
-                                        <p className="text-xs text-gray-400 mt-1 uppercase font-semibold">Place Stay</p>
+                                        <h3 className="text-2xl font-bold text-[#333333]">140</h3>
+                                        <p className="text-xs text-gray-400 mt-1.5 uppercase font-semibold">Place Stay</p>
                                     </div>
                                     <div>
-                                        <h3 className="text-xl font-bold text-[#333333]">45</h3>
-                                        <p className="text-xs text-gray-400 mt-1 uppercase font-semibold">Reviews</p>
+                                        <h3 className="text-2xl font-bold text-[#333333]">45</h3>
+                                        <p className="text-xs text-gray-400 mt-1.5 uppercase font-semibold">Reviews</p>
                                     </div>
                                 </div>
-                                <div className="flex items-center justify-center gap-3 mt-6">
-                                    <button className="bg-[#6A73FC] hover:bg-[#5961e0] text-white text-sm font-medium py-2.5 px-6 rounded transition-colors shadow-sm whitespace-nowrap">
+                                <div className="flex items-center justify-center gap-3 mt-8 w-[80%] m-auto">
+                                    <button className="bg-[#6a73fa] hover:bg-[#8088fb] text-white rounded-[5px] font-medium text-[0.7rem] flex justify-center py-[0.55rem] px-5 transition-colors whitespace-nowrap w-[50%]">
                                         Follow
                                     </button>
-                                    <button className="bg-[#6A73FC] hover:bg-[#5961e0] text-white text-sm font-medium py-2.5 px-6 rounded transition-colors shadow-sm whitespace-nowrap">
+                                    <button className="bg-[#6a73fa] hover:bg-[#8088fb] text-white rounded-[5px] font-medium text-[0.7rem] flex justify-center py-[0.55rem] px-5 transition-colors whitespace-nowrap w-[50%]">
                                         Send Message
                                     </button>
                                 </div>
                             </div>
 
                             {/* TODAY HIGHLIGHTS SECTION */}
-                            <div className="py-6">
-                                <div className="flex items-center justify-between mb-4">
-                                    <h4 className="text-base font-bold text-[#6A73FC]">Today Highlights</h4>
-                                    <span className="text-xs font-semibold text-[#6A73FC] cursor-pointer">More</span>
+                            <div className="py-8">
+                                <div className="flex items-center justify-between mb-5">
+                                    <h4 className="text-lg font-bold text-[#6A73FC]">Today Highlights</h4>
+                                    <span className="text-sm font-semibold text-[#6A73FC] cursor-pointer">More</span>
                                 </div>
-                                <div className="rounded overflow-hidden mb-4 bg-gray-100 h-40">
+                                <div className="rounded overflow-hidden mb-4">
                                     <img
                                         src="https://edumin.dexignlab.com/xhtml/images/profile/1.jpg"
                                         alt="Highlight"
-                                        className="w-full h-full object-cover"
+                                        className="w-full h-[auto]"
                                     />
                                 </div>
-                                <h5 className="text-sm font-bold text-[#333333] mb-2">Darwin Creative Agency Theme</h5>
-                                <p className="text-xs leading-relaxed text-[#7e7e7e]">
+                                <h5 className="text-base font-bold text-[#333333] mb-2">Darwin Creative Agency Theme</h5>
+                                <p className="text-sm leading-relaxed text-[#7e7e7e]">
                                     A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.
                                 </p>
                             </div>
 
                             {/* INTEREST SECTION */}
-                            <div className="py-6">
-                                <h4 className="text-base font-bold text-[#6A73FC] mb-4">Interest</h4>
-                                <div className="grid grid-cols-3 gap-2">
+                            <div className="py-8">
+                                <h4 className="text-lg font-bold text-[#6A73FC] mb-5">Interest</h4>
+                                <div className="grid grid-cols-3 gap-3">
                                     {[
                                         "https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=150",
                                         "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=150",
@@ -140,7 +140,7 @@ export default function PostDetails() {
                                         "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=150",
                                         "https://images.unsplash.com/photo-1529390079861-591de354faf5?q=80&w=150"
                                     ].map((imgUrl, i) => (
-                                        <div key={i} className="rounded overflow-hidden h-16 bg-gray-100 shadow-sm">
+                                        <div key={i} className="rounded overflow-hidden h-20 bg-gray-100 shadow-sm">
                                             <img src={imgUrl} alt="Interest preview" className="w-full h-full object-cover" />
                                         </div>
                                     ))}
@@ -148,19 +148,19 @@ export default function PostDetails() {
                             </div>
 
                             {/* OUR LATEST NEWS SECTION */}
-                            <div className="pt-6">
-                                <h4 className="text-base font-bold text-[#6A73FC] mb-4">Our Latest News</h4>
-                                <div className="flex flex-col gap-4">
+                            <div className="pt-8">
+                                <h4 className="text-lg font-bold text-[#6A73FC] mb-5">Our Latest News</h4>
+                                <div className="flex flex-col gap-6">
                                     {[
                                         { title: "Transform Yourself, Conquer Limits.", blurb: "I shared this on my fb wall a few months back, and I thought.", img: "https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=100" },
                                         { title: "Elevate Fitness, Ignite Potential, Achieve.", blurb: "I shared this on my twitter wall a few months back and I thought.", img: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=100" },
                                         { title: "Strength, Endurance, Progress: Unleash", blurb: "I shared this on my insta wall a few months back and I thought.", img: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=100" }
                                     ].map((news, i) => (
                                         <div key={i} className="flex gap-3 items-center">
-                                            <img src={news.img} alt="" className="w-12 h-12 object-cover rounded bg-gray-100" />
+                                            <img src={news.img} alt="" className="w-14 h-14 object-cover rounded bg-gray-100" />
                                             <div>
-                                                <h6 className="text-xs font-bold text-[#333333] line-clamp-1 hover:text-[#6A73FC] cursor-pointer">{news.title}</h6>
-                                                <p className="text-[11px] text-gray-400 mt-0.5">{news.blurb}</p>
+                                                <h6 className="text-sm font-bold text-[#333333] line-clamp-1 hover:text-[#6A73FC] cursor-pointer">{news.title}</h6>
+                                                <p className="text-xs text-gray-400 mt-1">{news.blurb}</p>
                                             </div>
                                         </div>
                                     ))}
@@ -187,11 +187,11 @@ export default function PostDetails() {
                             </div>
 
                             {/* POST IMAGE */}
-                            <div className="w-full h-64 md:h-96 rounded overflow-hidden mb-6 bg-gray-100">
+                            <div className="w-full rounded overflow-hidden mb-6">
                                 <img
-                                    src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1200"
+                                    src="https://edumin.dexignlab.com/xhtml/images/profile/8.jpg"
                                     alt="Post Content"
-                                    className="w-full h-full object-cover"
+                                    className="w-full h-[auto] "
                                 />
                             </div>
 
@@ -261,7 +261,7 @@ export default function PostDetails() {
                                         className="w-full resize-none border border-gray-200 rounded px-[0.95rem] py-2 focus:outline-none focus:ring-2 focus:ring-[#6A73FC]/30"
                                     ></textarea>
                                 </div>
-                                <button className="bg-[#6A73FC] hover:bg-[#5961e0] text-white text-sm font-semibold px-6 py-2.5 rounded transition-colors shadow-sm">
+                                <button className="bg-[#6a73fa] hover:bg-[#8088fb] text-white rounded-[5px] font-medium text-[.9375rem] py-[0.55rem] px-5 transition-colors">
                                     Post Comment
                                 </button>
                             </div>

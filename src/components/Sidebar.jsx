@@ -370,7 +370,7 @@ const Sidebar = () => {
                   </div>
 
                   <div className="flex items-center gap-1.25">
-                    <span className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Edit Profile</span>
+                    <Link to="/edit-app-profile" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Edit Profile</Link>
                     <div className="bg-red-500 text-white text-[10px] px-2 py-0.5 rounded-sm">New</div>
                   </div>
 

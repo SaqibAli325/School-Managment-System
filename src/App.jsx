@@ -35,6 +35,7 @@ import AddFees from './components/Fees/AddFees.jsx'
 import FeesReciept from './components/Fees/FeesReciept.jsx'
 import ProfilePage from './pages/AppSection.jsx'
 import PostDetails from './components/App/PostDetails.jsx'
+import EditAppProfile from './components/App/EditAppProfile.jsx'
 
 const App = () => {
   return (
@@ -75,6 +76,7 @@ const App = () => {
         <Route path="/fees-reciept" element={<FeesReciept />} />
         <Route path="/app-profile" element={<ProfilePage />} />
         <Route path="/post-details" element={<PostDetails />} />
+        <Route path="/edit-app-profile" element={<EditAppProfile />} />
         <Route path="*" element={<Dashboard1 />} />
       </Routes>
     </div>
