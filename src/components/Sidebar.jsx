@@ -409,13 +409,13 @@ const Sidebar = () => {
                     </div>
                     <div className={`overflow-hidden transition-all duration-500 ease-in-out ${shopSection ? "max-h-80 opacity-100" : "max-h-0 opacity-0"}`}>
                       <div className="flex flex-col gap-3 pt-3 pl-4">
-                        <span className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Product Grid</span>
-                        <span className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Product List</span>
-                        <span className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Product Details</span>
-                        <span className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Order</span>
-                        <span className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Checkout</span>
-                        <span className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Invoice</span>
-                        <span className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Customers</span>
+                        <Link to="/product-grid" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Product Grid</Link>
+                        <Link to="/product-list" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Product List</Link>
+                        <Link to="/product-details" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Product Details</Link>
+                        <Link to="/order" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Order</Link>
+                        <Link to="/checkout" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Checkout</Link>
+                        <Link to="/invoice" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Invoice</Link>
+                        <Link to="/customers" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Customers</Link>
                       </div>
                     </div>
                   </div>
