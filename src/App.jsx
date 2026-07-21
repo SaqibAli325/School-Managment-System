@@ -41,6 +41,7 @@ import Inbox from './components/App/Email/inbox.jsx'
 import Read from './components/App/Email/Read.jsx'
 import AppCalender from './components/App/AppCalender.jsx'
 import ProductGrid from './components/App/Shop/ProductGrid.jsx'
+import ProductList from './components/App/Shop/ProductList.jsx'
 
 const App = () => {
   return (
@@ -87,6 +88,7 @@ const App = () => {
         <Route path='/read' element={<Read />} />
         <Route path='/app-calender' element={<AppCalender />} />
         <Route path='/product-grid' element={<ProductGrid />} />
+        <Route path='/product-list' element={<ProductList />} />
         <Route path="*" element={<Dashboard1 />} />
       </Routes>
     </div>
