@@ -43,6 +43,7 @@ import AppCalender from './components/App/AppCalender.jsx'
 import ProductGrid from './components/App/Shop/ProductGrid.jsx'
 import ProductList from './components/App/Shop/ProductList.jsx'
 import ProductDetails from './components/App/Shop/ProductDetails.jsx'
+import Order from './components/App/Shop/Order.jsx'
 
 const App = () => {
   return (
@@ -91,6 +92,7 @@ const App = () => {
         <Route path='/product-grid' element={<ProductGrid />} />
         <Route path='/product-list' element={<ProductList />} />
         <Route path='/product-details' element={<ProductDetails />} />
+        <Route path='/order' element={<Order />} />
         <Route path="*" element={<Dashboard1 />} />
       </Routes>
     </div>
