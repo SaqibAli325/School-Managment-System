@@ -46,6 +46,7 @@ import ProductDetails from './components/App/Shop/ProductDetails.jsx'
 import Order from './components/App/Shop/Order.jsx'
 import Checkout from './components/App/Shop/Checkout.jsx'
 import Customers from './components/App/Shop/Customers.jsx'
+import AllContent from './components/CMS/AllContent.jsx'
 
 const App = () => {
   return (
@@ -97,6 +98,7 @@ const App = () => {
         <Route path='/order' element={<Order />} />
         <Route path='/checkout' element={<Checkout />} />
         <Route path='/customers' element={<Customers />} />
+        <Route path='/cms-content' element={<AllContent />} />
         <Route path="*" element={<Dashboard1 />} />
       </Routes>
     </div>

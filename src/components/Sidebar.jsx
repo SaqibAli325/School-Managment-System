@@ -40,6 +40,7 @@ const Sidebar = () => {
   const [appsSection, setAppsSection] = useState(false);
   const [emailSection, setEmailSection] = useState(false);
   const [shopSection, setShopSection] = useState(false);
+  const [cmsSection, setCmsSection] = useState(false);
 
   useEffect(() => {
     const handleResize = () => setWindowWidth(window.innerWidth);
@@ -425,18 +426,67 @@ const Sidebar = () => {
             )}
           </div>
 
-          {/* CMS */}
-          <div className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}>
-            <div className="flex items-center gap-4">
-              <RiInboxLine size={18} className="transition-colors duration-300 group-hover:text-[#6A73FA]" />
+          {/* CMS SECTION */}
+          <div className="w-full">
+            <div
+              onClick={() => setCmsSection(!cmsSection)}
+              className={`group flex items-center ${collapsed ? "justify-center" : "justify-between w-[90%] mx-auto"
+                } py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}
+            >
+              <div className="flex items-center gap-4">
+                <RiInboxLine
+                  size={18}
+                  className={`transition-colors duration-300 group-hover:text-[#6A73FA] ${cmsSection ? "text-[#6A73FA]" : ""
+                    }`}
+                />
+                {!collapsed && (
+                  <div className="flex items-center gap-2">
+                    <span className={`${SidebarTextStyling}`}>CMS</span>
+                    <div className="bg-red-500 text-white text-[10px] px-2 py-0.5 rounded-sm">
+                      New
+                    </div>
+                  </div>
+                )}
+              </div>
               {!collapsed && (
-                <div className="flex items-center gap-2">
-                  <span className={`${SidebarTextStyling}`}>CMS</span>
-                  <div className="bg-red-500 text-white text-[10px] px-2 py-0.5 rounded-sm">New</div>
-                </div>
+                <RiPlayMiniFill
+                  size={16}
+                  className={`transition-all duration-300 group-hover:text-[#6A73FA] ${cmsSection ? "rotate-90 text-[#6A73FA]" : ""
+                    }`}
+                />
               )}
             </div>
-            {!collapsed && <RiPlayMiniFill size={16} className="transition-colors duration-300 group-hover:text-[#6A73FA]" />}
+
+            {!collapsed && (
+              <div
+                className={`overflow-hidden transition-all duration-500 ease-in-out ${cmsSection ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+                  }`}
+              >
+                <div className="flex flex-col pl-10 gap-3 pb-3">
+                  <Link to="/cms-content" className={`${SubMenuTextStyling}`}>
+                    - Content
+                  </Link>
+                  <Link to="/cms-menu" className={`${SubMenuTextStyling}`}>
+                    - Menus
+                  </Link>
+                  <Link to="/cms-email-template" className={`${SubMenuTextStyling}`}>
+                    - Email Template
+                  </Link>
+                  <Link to="/cms-add-email" className={`${SubMenuTextStyling}`}>
+                    - Add Email
+                  </Link>
+                  <Link to="/cms-blog" className={`${SubMenuTextStyling}`}>
+                    - Blog
+                  </Link>
+                  <Link to="/cms-add-blog" className={`${SubMenuTextStyling}`}>
+                    - Add Blog
+                  </Link>
+                  <Link to="/cms-blog-category" className={`${SubMenuTextStyling}`}>
+                    - Blog Category
+                  </Link>
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Charts */}
