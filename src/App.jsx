@@ -44,6 +44,7 @@ import ProductGrid from './components/App/Shop/ProductGrid.jsx'
 import ProductList from './components/App/Shop/ProductList.jsx'
 import ProductDetails from './components/App/Shop/ProductDetails.jsx'
 import Order from './components/App/Shop/Order.jsx'
+import Checkout from './components/App/Shop/Checkout.jsx'
 
 const App = () => {
   return (
@@ -93,6 +94,7 @@ const App = () => {
         <Route path='/product-list' element={<ProductList />} />
         <Route path='/product-details' element={<ProductDetails />} />
         <Route path='/order' element={<Order />} />
+        <Route path='/checkout' element={<Checkout />} />
         <Route path="*" element={<Dashboard1 />} />
       </Routes>
     </div>
