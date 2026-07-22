@@ -65,7 +65,7 @@ const Customers = () => {
                                         type="checkbox"
                                         checked={allChecked}
                                         onChange={toggleAll}
-                                        className="w-4 h-4 rounded accent-[#6A73FA] cursor-pointer"
+                                        className="mr-8 w-4 h-4 rounded accent-[#6A73FA] cursor-pointer"
                                     />
                                 </th>
                                 <th className="pb-4 pr-3">Name</th>
