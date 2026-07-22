@@ -45,6 +45,7 @@ import ProductList from './components/App/Shop/ProductList.jsx'
 import ProductDetails from './components/App/Shop/ProductDetails.jsx'
 import Order from './components/App/Shop/Order.jsx'
 import Checkout from './components/App/Shop/Checkout.jsx'
+import Invoice from './components/App/Shop/Invoice.jsx'
 
 const App = () => {
   return (
@@ -95,6 +96,7 @@ const App = () => {
         <Route path='/product-details' element={<ProductDetails />} />
         <Route path='/order' element={<Order />} />
         <Route path='/checkout' element={<Checkout />} />
+        <Route path='/invoice' element={<Invoice />} />
         <Route path="*" element={<Dashboard1 />} />
       </Routes>
     </div>
