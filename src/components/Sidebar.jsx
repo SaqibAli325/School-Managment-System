@@ -15,18 +15,17 @@ import {
   RiComputerLine,
   RiFileTextLine,
   RiLayoutGrid2Line,
-  RiMoneyDollarCircleLine,
   RiHeartFill,
-  RiStackLine,
 } from "@remixicon/react";
 import { useState, useEffect } from "react";
-import { Link, Links, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-const EXPANDED_WIDTH = 250;
-const COLLAPSED_WIDTH = 56;
+// Reusable styling classes
+const SidebarTextStyling = "text-[#737B8B] font-[500] text-[0.8375rem] transition-colors duration-300 group-hover:text-[#6A73FA]";
+const SubMenuTextStyling = "text-[#737B8B] hover:text-[#6A73FA] text-[12px] cursor-pointer hover:pl-2 transition-all duration-300 font-medium";
 
 const Sidebar = () => {
-  const [dashboardSections, setdashboardSections] = useState(false);
+  const [dashboardSections, setDashboardSections] = useState(false);
   const [professorsSections, setProfessorsSections] = useState(false);
   const [studentsSections, setStudentsSections] = useState(false);
   const [coursesSections, setCoursesSections] = useState(false);
@@ -37,25 +36,19 @@ const Sidebar = () => {
   const [collapsed, setCollapsed] = useState(localStorage.getItem('sidebarCollapsed') === 'true');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const [FeesSection, setFeesSection] = useState(false)
-  const [appsSection, setAppsSection] = useState(false)
-  const [emailSection, setEmailSection] = useState(false)
-  const [shopSection, setShopSection] = useState(false)
+  const [feesSection, setFeesSection] = useState(false);
+  const [appsSection, setAppsSection] = useState(false);
+  const [emailSection, setEmailSection] = useState(false);
+  const [shopSection, setShopSection] = useState(false);
 
   useEffect(() => {
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
+    const handleResize = () => setWindowWidth(window.innerWidth);
     window.addEventListener("resize", handleResize);
 
-    const handleToggle = (e) => {
-      setCollapsed(e.detail.collapsed);
-    };
+    const handleToggle = (e) => setCollapsed(e.detail.collapsed);
     window.addEventListener("sidebarToggle", handleToggle);
 
-    const handleMobileToggle = (e) => {
-      setMobileMenuOpen(e.detail.isOpen);
-    };
+    const handleMobileToggle = (e) => setMobileMenuOpen(e.detail.isOpen);
     window.addEventListener("mobileSidebarToggle", handleMobileToggle);
 
     return () => {
@@ -70,273 +63,281 @@ const Sidebar = () => {
   const displayCollapsed = isMobileView ? false : collapsed;
 
   return (
-    <div className={`custom-scrollbar pb-12 fixed top-0 left-0 h-screen bg-[#FAF9FB] overflow-y-auto overflow-x-hidden z-90 border-r border-gray-200 transition-all duration-200 ${isMobileView
-      ? "w-[250px]"
-      : displayCollapsed
-        ? "w-14"
-        : "w-[250px]"} mt-16`}>
+    <div
+      className={`custom-scrollbar pb-12 fixed top-0 left-0 h-screen bg-[#FAF9FB] overflow-y-auto overflow-x-hidden z-50 border-r border-gray-200 transition-all duration-300 ${shouldHide ? "-translate-x-full" : "translate-x-0"
+        } ${isMobileView ? "w-[250px]" : displayCollapsed ? "w-14" : "w-[250px]"
+        } mt-16`}
+    >
       <div>
-        <div className={`pt-8  pb-2 mr-4 ${displayCollapsed ? 'hidden' : 'ml-8 text-gray-500'}`}>
+        <div className={`pt-8 pb-2 mr-4 ${displayCollapsed ? 'hidden' : 'ml-8 text-gray-500'}`}>
           {!displayCollapsed && <small className="text-[70%] font-semibold">Main Menu</small>}
         </div>
 
         <div className="flex flex-col gap-1 mt-2 border-b border-gray-200 pb-5">
+          {/* Dashboard */}
           <div className="w-full">
             <div
-              onClick={() => setdashboardSections(!dashboardSections)}
+              onClick={() => setDashboardSections(!dashboardSections)}
               className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}
             >
-              <div className={`${dashboardSections ? "text-[#6A73FA]" : ""} flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]`}>
-                <RiHome4Line size={20} />
-                {!collapsed && <h2 className="text-[#737B8B] font-[500] text-[0.8375rem]">Dashboard</h2>}
+              <div className="flex items-center gap-4">
+                <RiHome4Line size={18} className={`transition-colors duration-300 group-hover:text-[#6A73FA] ${dashboardSections ? "text-[#6A73FA]" : ""}`} />
+                {!collapsed && <h2 className={`${SidebarTextStyling}`}>Dashboard</h2>}
               </div>
               {!collapsed && (
                 <RiPlayMiniFill
                   size={16}
-                  className={`transition-transform duration-300 ${dashboardSections ? "rotate-90 text-[#6A73FA]" : ""}`}
+                  className={`transition-all duration-300 group-hover:text-[#6A73FA] ${dashboardSections ? "rotate-90 text-[#6A73FA]" : ""}`}
                 />
               )}
             </div>
 
             {!collapsed && (
               <div className={`overflow-hidden transition-all duration-500 ease-in-out ${dashboardSections ? "max-h-40 opacity-100" : "max-h-0 opacity-0"}`}>
-                <div className="flex flex-col text-[12px] pl-10 gap-3 pb-3 text-[#737b8b] font-medium">
-                  <Link to="/" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Dashboard 1</Link>
-                  <Link to="/dashboard2" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Dashboard 2</Link>
-                  <Link to="/dashboard3" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Dashboard 3</Link>
+                <div className="flex flex-col pl-10 gap-3 pb-3">
+                  <Link to="/" className={`${SubMenuTextStyling}`}>- Dashboard 1</Link>
+                  <Link to="/dashboard2" className={`${SubMenuTextStyling}`}>- Dashboard 2</Link>
+                  <Link to="/dashboard3" className={`${SubMenuTextStyling}`}>- Dashboard 3</Link>
                 </div>
               </div>
             )}
           </div>
 
+          {/* Event Management */}
           <Link to="/event-management" className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}>
-            <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
-              <RiCalendar2Line size={20} />
-              {!collapsed && <span>Event Management</span>}
+            <div className="flex items-center gap-4">
+              <RiCalendar2Line size={18} className="transition-colors duration-300 group-hover:text-[#6A73FA]" />
+              {!collapsed && <span className={`${SidebarTextStyling}`}>Event Management</span>}
             </div>
           </Link>
 
+          {/* Professors */}
           <div className="w-full">
             <div
               onClick={() => setProfessorsSections(!professorsSections)}
               className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}
             >
-              <div className={`${professorsSections ? "text-[#6A73FA]" : ""} flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]`}>
-                <RiUserLine size={20} />
-                {!collapsed && <h2 className="text-[#737B8B] font-[500] text-[0.8375rem]">Professors</h2>}
+              <div className="flex items-center gap-4">
+                <RiUserLine size={18} className={`transition-colors duration-300 group-hover:text-[#6A73FA] ${professorsSections ? "text-[#6A73FA]" : ""}`} />
+                {!collapsed && <h2 className={`${SidebarTextStyling}`}>Professors</h2>}
               </div>
               {!collapsed && (
                 <RiPlayMiniFill
                   size={16}
-                  className={`transition-transform duration-300 ${professorsSections ? "rotate-90 text-[#6A73FA]" : ""}`}
+                  className={`transition-all duration-300 group-hover:text-[#6A73FA] ${professorsSections ? "rotate-90 text-[#6A73FA]" : ""}`}
                 />
               )}
             </div>
 
             {!collapsed && (
               <div className={`overflow-hidden transition-all duration-500 ease-in-out ${professorsSections ? "max-h-48 opacity-100" : "max-h-0 opacity-0"}`}>
-                <div className="flex flex-col text-[12px] pl-10 gap-3 pb-3 text-[#737b8b] font-medium">
-                  <Link to="/all-professors" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- All Professors</Link>
-                  <Link to="/add-professor" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Add Professor</Link>
-                  <Link to="/edit-professor" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Edit Professor</Link>
-                  <Link to="/professor-profile" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Professor Profile</Link>
+                <div className="flex flex-col pl-10 gap-3 pb-3">
+                  <Link to="/all-professors" className={`${SubMenuTextStyling}`}>- All Professors</Link>
+                  <Link to="/add-professor" className={`${SubMenuTextStyling}`}>- Add Professor</Link>
+                  <Link to="/edit-professor" className={`${SubMenuTextStyling}`}>- Edit Professor</Link>
+                  <Link to="/professor-profile" className={`${SubMenuTextStyling}`}>- Professor Profile</Link>
                 </div>
               </div>
             )}
           </div>
 
+          {/* Students */}
           <div className="w-full">
             <div
               onClick={() => setStudentsSections(!studentsSections)}
               className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}
             >
-              <div className={`${studentsSections ? "text-[#6A73FA]" : ""} flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]`}>
-                <RiTeamLine size={20} />
-                {!collapsed && <h2 className="text-[#737B8B] font-[500] text-[0.8375rem]">Students</h2>}
+              <div className="flex items-center gap-4">
+                <RiTeamLine size={18} className={`transition-colors duration-300 group-hover:text-[#6A73FA] ${studentsSections ? "text-[#6A73FA]" : ""}`} />
+                {!collapsed && <h2 className={`${SidebarTextStyling}`}>Students</h2>}
               </div>
               {!collapsed && (
                 <RiPlayMiniFill
                   size={16}
-                  className={`transition-transform duration-300 ${studentsSections ? "rotate-90 text-[#6A73FA]" : ""}`}
+                  className={`transition-all duration-300 group-hover:text-[#6A73FA] ${studentsSections ? "rotate-90 text-[#6A73FA]" : ""}`}
                 />
               )}
             </div>
             {!collapsed && (
               <div className={`overflow-hidden transition-all duration-500 ease-in-out ${studentsSections ? "max-h-48 opacity-100" : "max-h-0 opacity-0"}`}>
-                <div className="flex flex-col text-[12px] pl-10 gap-3 pb-3 text-[#737b8b] font-medium">
-                  <Link to="/all-students" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- All Students</Link>
-                  <Link to="/add-student" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Add Student</Link>
-                  <Link to="/edit-student" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Edit Student</Link>
-                  <Link to="/about-student" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- About Student</Link>
+                <div className="flex flex-col pl-10 gap-3 pb-3">
+                  <Link to="/all-students" className={`${SubMenuTextStyling}`}>- All Students</Link>
+                  <Link to="/add-student" className={`${SubMenuTextStyling}`}>- Add Student</Link>
+                  <Link to="/edit-student" className={`${SubMenuTextStyling}`}>- Edit Student</Link>
+                  <Link to="/about-student" className={`${SubMenuTextStyling}`}>- About Student</Link>
                 </div>
               </div>
             )}
           </div>
 
+          {/* Courses */}
           <div className="w-full">
             <div
               onClick={() => setCoursesSections(!coursesSections)}
               className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}
             >
-              <div className={`${coursesSections ? "text-[#6A73FA]" : ""} flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]`}>
-                <RiGraduationCapLine size={20} />
-                {!collapsed && <h2 className="text-[#737B8B] font-[500] text-[0.8375rem]">Courses</h2>}
+              <div className="flex items-center gap-4">
+                <RiGraduationCapLine size={18} className={`transition-colors duration-300 group-hover:text-[#6A73FA] ${coursesSections ? "text-[#6A73FA]" : ""}`} />
+                {!collapsed && <h2 className={`${SidebarTextStyling}`}>Courses</h2>}
               </div>
               {!collapsed && (
                 <RiPlayMiniFill
                   size={16}
-                  className={`transition-transform duration-300 ${coursesSections ? "rotate-90 text-[#6A73FA]" : ""}`}
+                  className={`transition-all duration-300 group-hover:text-[#6A73FA] ${coursesSections ? "rotate-90 text-[#6A73FA]" : ""}`}
                 />
               )}
             </div>
             {!collapsed && (
               <div className={`overflow-hidden transition-all duration-500 ease-in-out ${coursesSections ? "max-h-48 opacity-100" : "max-h-0 opacity-0"}`}>
-                <div className="flex flex-col text-[12px] pl-10 gap-3 pb-3 text-[#737b8b] font-medium">
-                  <Link to="/all-courses" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- All Courses</Link>
-                  <Link to="/add-course" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Add Course</Link>
-                  <Link to="/edit-course" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Edit Course</Link>
-                  <Link to="/about-course" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- About Course</Link>
+                <div className="flex flex-col pl-10 gap-3 pb-3">
+                  <Link to="/all-courses" className={`${SubMenuTextStyling}`}>- All Courses</Link>
+                  <Link to="/add-course" className={`${SubMenuTextStyling}`}>- Add Course</Link>
+                  <Link to="/edit-course" className={`${SubMenuTextStyling}`}>- Edit Course</Link>
+                  <Link to="/about-course" className={`${SubMenuTextStyling}`}>- About Course</Link>
                 </div>
               </div>
             )}
           </div>
 
+          {/* Library */}
           <div className="w-full">
             <div
               onClick={() => setLibrarySections(!librarySections)}
               className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}
             >
-              <div className={`${librarySections ? "text-[#6A73FA]" : ""} flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]`}>
-                <RiBook2Line size={20} />
-                {!collapsed && <h2 className="text-[#737B8B] font-[500] text-[0.8375rem]">Library</h2>}
+              <div className="flex items-center gap-4">
+                <RiBook2Line size={18} className={`transition-colors duration-300 group-hover:text-[#6A73FA] ${librarySections ? "text-[#6A73FA]" : ""}`} />
+                {!collapsed && <h2 className={`${SidebarTextStyling}`}>Library</h2>}
               </div>
               {!collapsed && (
                 <RiPlayMiniFill
                   size={16}
-                  className={`transition-transform duration-300 ${librarySections ? "rotate-90 text-[#6A73FA]" : ""}`}
+                  className={`transition-all duration-300 group-hover:text-[#6A73FA] ${librarySections ? "rotate-90 text-[#6A73FA]" : ""}`}
                 />
               )}
             </div>
             {!collapsed && (
               <div className={`overflow-hidden transition-all duration-500 ease-in-out ${librarySections ? "max-h-40 opacity-100" : "max-h-0 opacity-0"}`}>
-                <div className="flex flex-col text-[12px] pl-10 gap-3 pb-3 text-[#737b8b] font-medium">
-                  <Link to="/all-library" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- All Library</Link>
-                  <Link to="/add-library" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Add Library</Link>
-                  <Link to="/edit-library" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Edit Library</Link>
+                <div className="flex flex-col pl-10 gap-3 pb-3">
+                  <Link to="/all-library" className={`${SubMenuTextStyling}`}>- All Library</Link>
+                  <Link to="/add-library" className={`${SubMenuTextStyling}`}>- Add Library</Link>
+                  <Link to="/edit-library" className={`${SubMenuTextStyling}`}>- Edit Library</Link>
                 </div>
               </div>
             )}
           </div>
 
+          {/* Departments */}
           <div className="w-full">
             <div
               onClick={() => setDepartmentsSections(!departmentsSections)}
               className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}
             >
-              <div className={`${departmentsSections ? "text-[#6A73FA]" : ""} flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]`}>
-                <RiBuilding4Line size={20} />
-                {!collapsed && <h2 className="text-[#737B8B] font-[500] text-[0.8375rem]">Departments</h2>}
+              <div className="flex items-center gap-4">
+                <RiBuilding4Line size={18} className={`transition-colors duration-300 group-hover:text-[#6A73FA] ${departmentsSections ? "text-[#6A73FA]" : ""}`} />
+                {!collapsed && <h2 className={`${SidebarTextStyling}`}>Departments</h2>}
               </div>
               {!collapsed && (
                 <RiPlayMiniFill
                   size={16}
-                  className={`transition-transform duration-300 ${departmentsSections ? "rotate-90 text-[#6A73FA]" : ""}`}
+                  className={`transition-all duration-300 group-hover:text-[#6A73FA] ${departmentsSections ? "rotate-90 text-[#6A73FA]" : ""}`}
                 />
               )}
             </div>
             {!collapsed && (
               <div className={`overflow-hidden transition-all duration-500 ease-in-out ${departmentsSections ? "max-h-40 opacity-100" : "max-h-0 opacity-0"}`}>
-                <div className="flex flex-col text-[12px] pl-10 gap-3 pb-3 text-[#737b8b] font-medium">
-                  <Link to="/all-departments" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- All Departments</Link>
-                  <Link to="/add-department" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Add Department</Link>
-                  <Link to="/edit-department" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Edit Department</Link>
+                <div className="flex flex-col pl-10 gap-3 pb-3">
+                  <Link to="/all-departments" className={`${SubMenuTextStyling}`}>- All Departments</Link>
+                  <Link to="/add-department" className={`${SubMenuTextStyling}`}>- Add Department</Link>
+                  <Link to="/edit-department" className={`${SubMenuTextStyling}`}>- Edit Department</Link>
                 </div>
               </div>
             )}
           </div>
 
+          {/* Staff */}
           <div className="w-full">
             <div
               onClick={() => setStaffSections(!staffSections)}
               className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}
             >
-              <div className={`${staffSections ? "text-[#6A73FA]" : ""} flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]`}>
-                <RiTeamLine size={20} />
-                {!collapsed && <h2 className="text-[#737B8B] font-[500] text-[0.8375rem]">Staff</h2>}
+              <div className="flex items-center gap-4">
+                <RiTeamLine size={18} className={`transition-colors duration-300 group-hover:text-[#6A73FA] ${staffSections ? "text-[#6A73FA]" : ""}`} />
+                {!collapsed && <h2 className={`${SidebarTextStyling}`}>Staff</h2>}
               </div>
               {!collapsed && (
                 <RiPlayMiniFill
                   size={16}
-                  className={`transition-transform duration-300 ${staffSections ? "rotate-90 text-[#6A73FA]" : ""}`}
+                  className={`transition-all duration-300 group-hover:text-[#6A73FA] ${staffSections ? "rotate-90 text-[#6A73FA]" : ""}`}
                 />
               )}
             </div>
             {!collapsed && (
               <div className={`overflow-hidden transition-all duration-500 ease-in-out ${staffSections ? "max-h-40 opacity-100" : "max-h-0 opacity-0"}`}>
-                <div className="flex flex-col text-[12px] pl-10 gap-3 pb-3 text-[#737b8b] font-medium">
-                  <Link to="/all-staff" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- All Staff</Link>
-                  <Link to="/add-staff" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Add Staff</Link>
-                  <Link to="/edit-staff" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Edit Staff</Link>
-                  <Link to="/staff-profile" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Staff Profile</Link>
+                <div className="flex flex-col pl-10 gap-3 pb-3">
+                  <Link to="/all-staff" className={`${SubMenuTextStyling}`}>- All Staff</Link>
+                  <Link to="/add-staff" className={`${SubMenuTextStyling}`}>- Add Staff</Link>
+                  <Link to="/edit-staff" className={`${SubMenuTextStyling}`}>- Edit Staff</Link>
+                  <Link to="/staff-profile" className={`${SubMenuTextStyling}`}>- Staff Profile</Link>
                 </div>
               </div>
             )}
           </div>
 
+          {/* Holiday */}
           <div className="w-full">
             <div
               onClick={() => setHolidaySections(!holidaySections)}
               className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}
             >
-              <div className={`${holidaySections ? "text-[#6A73FA]" : ""} flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]`}>
-                <RiGift2Line size={20} />
-                {!collapsed && <h2 className="text-[#737B8B] font-[500] text-[0.8375rem]">Holiday</h2>}
+              <div className="flex items-center gap-4">
+                <RiGift2Line size={18} className={`transition-colors duration-300 group-hover:text-[#6A73FA] ${holidaySections ? "text-[#6A73FA]" : ""}`} />
+                {!collapsed && <h2 className={`${SidebarTextStyling}`}>Holiday</h2>}
               </div>
               {!collapsed && (
                 <RiPlayMiniFill
                   size={16}
-                  className={`transition-transform duration-300 ${holidaySections ? "rotate-90 text-[#6A73FA]" : ""}`}
+                  className={`transition-all duration-300 group-hover:text-[#6A73FA] ${holidaySections ? "rotate-90 text-[#6A73FA]" : ""}`}
                 />
               )}
             </div>
             {!collapsed && (
               <div className={`overflow-hidden transition-all duration-500 ease-in-out ${holidaySections ? "max-h-40 opacity-100" : "max-h-0 opacity-0"}`}>
-                <div className="flex flex-col text-[12px] pl-10 gap-3 pb-3 text-[#737b8b] font-medium">
-                  <Link to="/all-holiday" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- All Holiday</Link>
-                  <Link to="/add-holiday" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Add Holiday</Link>
-                  <Link to="/edit-holiday" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Edit Holiday</Link>
-                  <Link to="/holiday-calendar" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Holiday Calendar</Link>
+                <div className="flex flex-col pl-10 gap-3 pb-3">
+                  <Link to="/all-holiday" className={`${SubMenuTextStyling}`}>- All Holiday</Link>
+                  <Link to="/add-holiday" className={`${SubMenuTextStyling}`}>- Add Holiday</Link>
+                  <Link to="/edit-holiday" className={`${SubMenuTextStyling}`}>- Edit Holiday</Link>
+                  <Link to="/holiday-calendar" className={`${SubMenuTextStyling}`}>- Holiday Calendar</Link>
                 </div>
               </div>
             )}
           </div>
 
+          {/* Fees */}
           <div className="w-full">
             <div
-              onClick={() => { setFeesSection(!FeesSection) }}
+              onClick={() => setFeesSection(!feesSection)}
               className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}>
-
-              <div className={`${FeesSection ? "text-[#6A73FA]" : ""} flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]`}>
-                <span className="text-[20px] pl-1">$</span>
-                {!collapsed && <span className="text-[#737B8B] font-[500] text-[0.8375rem]">Fees</span>}
+              <div className="flex items-center gap-4">
+                <span className={`text-[18px] pl-1 transition-colors duration-300 group-hover:text-[#6A73FA] ${feesSection ? "text-[#6A73FA]" : ""}`}>$</span>
+                {!collapsed && <span className={`${SidebarTextStyling}`}>Fees</span>}
               </div>
-              {!collapsed && <RiPlayMiniFill size={16} />}
+              {!collapsed && <RiPlayMiniFill size={16} className={`transition-all duration-300 group-hover:text-[#6A73FA] ${feesSection ? "rotate-90 text-[#6A73FA]" : ""}`} />}
             </div>
 
-
             {!collapsed && (
-              <div className={`overflow-hidden transition-all duration-500 ease-in-out ${FeesSection ? "max-h-40 opacity-100" : "max-h-0 opacity-0"}`}>
-                <div className="flex flex-col text-[12px] pl-10 gap-3 pb-3 text-[#737b8b] font-medium">
-                  <Link to="/fees-collection" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Fees Collection</Link>
-                  <Link to="/add-fees" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Add Fees</Link>
-                  <Link to="/fees-reciept" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Fees Reciept</Link>
+              <div className={`overflow-hidden transition-all duration-500 ease-in-out ${feesSection ? "max-h-40 opacity-100" : "max-h-0 opacity-0"}`}>
+                <div className="flex flex-col pl-10 gap-3 pb-3">
+                  <Link to="/fees-collection" className={`${SubMenuTextStyling}`}>- Fees Collection</Link>
+                  <Link to="/add-fees" className={`${SubMenuTextStyling}`}>- Add Fees</Link>
+                  <Link to="/fees-reciept" className={`${SubMenuTextStyling}`}>- Fees Reciept</Link>
                 </div>
               </div>
             )}
           </div>
-
         </div>
 
+        {/* APPS SECTION */}
         <div className={`pt-3 pb-2 mr-4 ${collapsed ? 'hidden' : 'ml-8 text-gray-500'}`}>
           {!collapsed && <small className="text-[70%] font-semibold">Apps</small>}
         </div>
@@ -347,75 +348,75 @@ const Sidebar = () => {
               onClick={() => setAppsSection(!appsSection)}
               className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}
             >
-              <div className={`${appsSection ? "text-[#6A73FA]" : ""} flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]`}>
-                <RiTeamLine size={20} />
-                {!collapsed && <h2 className="text-[#737B8B] font-[500] text-[0.8375rem]">Apps</h2>}
+              <div className="flex items-center gap-4">
+                <RiTeamLine size={18} className={`transition-colors duration-300 group-hover:text-[#6A73FA] ${appsSection ? "text-[#6A73FA]" : ""}`} />
+                {!collapsed && <h2 className={`${SidebarTextStyling}`}>Apps</h2>}
               </div>
               {!collapsed && (
                 <RiPlayMiniFill
                   size={16}
-                  className={`transition-transform duration-300 ${appsSection ? "rotate-90 text-[#6A73FA]" : ""}`}
+                  className={`transition-all duration-300 group-hover:text-[#6A73FA] ${appsSection ? "rotate-90 text-[#6A73FA]" : ""}`}
                 />
               )}
             </div>
 
             {!collapsed && (
-              <div className={`overflow-hidden transition-all duration-500 ease-in-out ${appsSection ? "max-h-160 opacity-100" : "max-h-0 opacity-0"}`}>
-                <div className="flex flex-col text-[12px] pl-10 gap-3 pb-3 text-[#737b8b] font-medium">
-                  <Link to="/app-profile" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Profile</Link>
+              <div className={`overflow-hidden transition-all duration-500 ease-in-out ${appsSection ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"}`}>
+                <div className="flex flex-col pl-10 gap-3 pb-3">
+                  <Link to="/app-profile" className={`${SubMenuTextStyling}`}>- Profile</Link>
 
-                  <div className="flex items-center gap-1.25">
-                    <Link to="/post-details" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Post Details</Link>
+                  <div className="flex items-center gap-2">
+                    <Link to="/post-details" className={`${SubMenuTextStyling}`}>- Post Details</Link>
                     <div className="bg-red-500 text-white text-[10px] px-2 py-0.5 rounded-sm">New</div>
                   </div>
 
-                  <div className="flex items-center gap-1.25">
-                    <Link to="/edit-app-profile" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Edit Profile</Link>
+                  <div className="flex items-center gap-2">
+                    <Link to="/edit-app-profile" className={`${SubMenuTextStyling}`}>- Edit Profile</Link>
                     <div className="bg-red-500 text-white text-[10px] px-2 py-0.5 rounded-sm">New</div>
                   </div>
 
                   <div>
                     <div
                       onClick={() => setEmailSection(!emailSection)}
-                      className="flex items-center justify-between pr-2 cursor-pointer hover:pl-2 transition-all duration-500"
+                      className="group flex items-center justify-between pr-2 cursor-pointer"
                     >
-                      <span className={emailSection ? "text-[#6A73FA]" : ""}>- Email</span>
+                      <span className={`${SubMenuTextStyling} ${emailSection ? "text-[#6A73FA]" : ""}`}>- Email</span>
                       <RiPlayMiniFill
-                        size={14}
-                        className={`transition-transform duration-300 ${emailSection ? "rotate-90 text-[#6A73FA]" : ""}`}
+                        size={12}
+                        className={`transition-transform duration-300 group-hover:text-[#6A73FA] ${emailSection ? "rotate-90 text-[#6A73FA]" : ""}`}
                       />
                     </div>
                     <div className={`overflow-hidden transition-all duration-500 ease-in-out ${emailSection ? "max-h-40 opacity-100" : "max-h-0 opacity-0"}`}>
                       <div className="flex flex-col gap-3 pt-3 pl-4">
-                        <Link to="/compose-email" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Compose</Link>
-                        <Link to="/inbox" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Inbox</Link>
-                        <Link to="/read" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Read</Link>
+                        <Link to="/compose-email" className={`${SubMenuTextStyling}`}>- Compose</Link>
+                        <Link to="/inbox" className={`${SubMenuTextStyling}`}>- Inbox</Link>
+                        <Link to="/read" className={`${SubMenuTextStyling}`}>- Read</Link>
                       </div>
                     </div>
                   </div>
 
-                  <Link to="/app-calender" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Calender</Link>
+                  <Link to="/app-calender" className={`${SubMenuTextStyling}`}>- Calender</Link>
 
                   <div>
                     <div
                       onClick={() => setShopSection(!shopSection)}
-                      className="flex items-center justify-between pr-2 cursor-pointer hover:pl-2 transition-all duration-500"
+                      className="group flex items-center justify-between pr-2 cursor-pointer"
                     >
-                      <span className={shopSection ? "text-[#6A73FA]" : ""}>- Shop</span>
+                      <span className={`${SubMenuTextStyling} ${shopSection ? "text-[#6A73FA]" : ""}`}>- Shop</span>
                       <RiPlayMiniFill
-                        size={14}
-                        className={`transition-transform duration-300 ${shopSection ? "rotate-90 text-[#6A73FA]" : ""}`}
+                        size={12}
+                        className={`transition-transform duration-300 group-hover:text-[#6A73FA] ${shopSection ? "rotate-90 text-[#6A73FA]" : ""}`}
                       />
                     </div>
                     <div className={`overflow-hidden transition-all duration-500 ease-in-out ${shopSection ? "max-h-80 opacity-100" : "max-h-0 opacity-0"}`}>
                       <div className="flex flex-col gap-3 pt-3 pl-4">
-                        <Link to="/product-grid" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Product Grid</Link>
-                        <Link to="/product-list" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Product List</Link>
-                        <Link to="/product-details" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Product Details</Link>
-                        <Link to="/order" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Order</Link>
-                        <Link to="/checkout" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Checkout</Link>
-                        <Link to="/invoice" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Invoice</Link>
-                        <Link to="/customers" className="hover:text-[#6A73FA] cursor-pointer hover:pl-2 transition-all duration-500">- Customers</Link>
+                        <Link to="/product-grid" className={`${SubMenuTextStyling}`}>- Product Grid</Link>
+                        <Link to="/product-list" className={`${SubMenuTextStyling}`}>- Product List</Link>
+                        <Link to="/product-details" className={`${SubMenuTextStyling}`}>- Product Details</Link>
+                        <Link to="/order" className={`${SubMenuTextStyling}`}>- Order</Link>
+                        <Link to="/checkout" className={`${SubMenuTextStyling}`}>- Checkout</Link>
+                        <Link to="/invoice" className={`${SubMenuTextStyling}`}>- Invoice</Link>
+                        <Link to="/customers" className={`${SubMenuTextStyling}`}>- Customers</Link>
                       </div>
                     </div>
                   </div>
@@ -424,92 +425,97 @@ const Sidebar = () => {
             )}
           </div>
 
+          {/* CMS */}
           <div className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}>
-            <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
-              <RiInboxLine size={20} />
+            <div className="flex items-center gap-4">
+              <RiInboxLine size={18} className="transition-colors duration-300 group-hover:text-[#6A73FA]" />
               {!collapsed && (
-                <div className="flex items-center gap-1.25">
-                  <span className='text-[#737B8B] font-[500] text-[0.8375rem]'>CMS</span>
+                <div className="flex items-center gap-2">
+                  <span className={`${SidebarTextStyling}`}>CMS</span>
                   <div className="bg-red-500 text-white text-[10px] px-2 py-0.5 rounded-sm">New</div>
                 </div>
               )}
             </div>
-            {!collapsed && <RiPlayMiniFill size={16} />}
+            {!collapsed && <RiPlayMiniFill size={16} className="transition-colors duration-300 group-hover:text-[#6A73FA]" />}
           </div>
 
+          {/* Charts */}
           <div className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}>
-            <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
-              <RiSignalCellular3Fill size={20} />
-              {!collapsed && <span className="text-[#737B8B] font-[500] text-[0.8375rem]">Charts</span>}
+            <div className="flex items-center gap-4">
+              <RiSignalCellular3Fill size={18} className="transition-colors duration-300 group-hover:text-[#6A73FA]" />
+              {!collapsed && <span className={`${SidebarTextStyling}`}>Charts</span>}
             </div>
-            {!collapsed && <RiPlayMiniFill size={16} />}
+            {!collapsed && <RiPlayMiniFill size={16} className="transition-colors duration-300 group-hover:text-[#6A73FA]" />}
           </div>
         </div>
 
+        {/* COMPONENTS SECTION */}
         <div className={`pt-3 pb-2 mr-4 ${collapsed ? 'hidden' : 'ml-8 text-gray-500'}`}>
           {!collapsed && <small className="text-[70%] font-[500]">COMPONENTS</small>}
         </div>
 
         <div className="flex flex-col gap-1 mt-2 border-b border-gray-200 pb-5">
           <div className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}>
-            <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
-              <RiGlobalLine size={20} />
-              {!collapsed && <span className="text-[#737B8B] font-[500] text-[0.8375rem]">Bootstrap</span>}
+            <div className="flex items-center gap-4">
+              <RiGlobalLine size={18} className="transition-colors duration-300 group-hover:text-[#6A73FA]" />
+              {!collapsed && <span className={`${SidebarTextStyling}`}>Bootstrap</span>}
             </div>
-            {!collapsed && <RiPlayMiniFill size={16} />}
+            {!collapsed && <RiPlayMiniFill size={16} className="transition-colors duration-300 group-hover:text-[#6A73FA]" />}
           </div>
           <div className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}>
-            <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
-              <RiFileAddLine size={20} />
-              {!collapsed && <span className="text-[#737B8B] font-[500] text-[0.8375rem]">Plugins</span>}
+            <div className="flex items-center gap-4">
+              <RiFileAddLine size={18} className="transition-colors duration-300 group-hover:text-[#6A73FA]" />
+              {!collapsed && <span className={`${SidebarTextStyling}`}>Plugins</span>}
             </div>
-            {!collapsed && <RiPlayMiniFill size={16} />}
+            {!collapsed && <RiPlayMiniFill size={16} className="transition-colors duration-300 group-hover:text-[#6A73FA]" />}
           </div>
           <div className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}>
-            <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
-              <RiComputerLine size={20} />
-              {!collapsed && <span className="text-[#737B8B] font-[500] text-[0.8375rem]">Widget</span>}
+            <div className="flex items-center gap-4">
+              <RiComputerLine size={18} className="transition-colors duration-300 group-hover:text-[#6A73FA]" />
+              {!collapsed && <span className={`${SidebarTextStyling}`}>Widget</span>}
             </div>
-
           </div>
         </div>
 
+        {/* FORMS */}
         <div className={`pt-3 pb-2 mr-4 ${collapsed ? 'hidden' : 'ml-8 text-gray-500'}`}>
           {!collapsed && <small className="text-[#737B8B] text-[0.8375rem] font-[500]">FORMS</small>}
         </div>
         <div className="flex flex-col gap-1 mt-2 border-b border-gray-200 pb-5">
           <div className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}>
-            <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
-              <RiFileTextLine size={20} />
-              {!collapsed && <span className="text-[#737B8B] font-[500] text-[0.8375rem]">Forms</span>}
+            <div className="flex items-center gap-4">
+              <RiFileTextLine size={18} className="transition-colors duration-300 group-hover:text-[#6A73FA]" />
+              {!collapsed && <span className={`${SidebarTextStyling}`}>Forms</span>}
             </div>
-            {!collapsed && <RiPlayMiniFill size={16} />}
+            {!collapsed && <RiPlayMiniFill size={16} className="transition-colors duration-300 group-hover:text-[#6A73FA]" />}
           </div>
         </div>
 
+        {/* TABLE */}
         <div className={`pt-3 pb-2 mr-4 ${collapsed ? 'hidden' : 'ml-8 text-gray-500'}`}>
           {!collapsed && <small className="text-[70%] font-[500]">TABLE</small>}
         </div>
         <div className="flex flex-col gap-1 mt-2 border-b border-gray-200 pb-5">
           <div className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}>
-            <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
-              <RiLayoutGrid2Line size={20} />
-              {!collapsed && <span className="text-[#737B8B] font-[500] text-[0.8375rem]">Table</span>}
+            <div className="flex items-center gap-4">
+              <RiLayoutGrid2Line size={18} className="transition-colors duration-300 group-hover:text-[#6A73FA]" />
+              {!collapsed && <span className={`${SidebarTextStyling}`}>Table</span>}
             </div>
-            {!collapsed && <RiPlayMiniFill size={16} />}
+            {!collapsed && <RiPlayMiniFill size={16} className="transition-colors duration-300 group-hover:text-[#6A73FA]" />}
           </div>
         </div>
 
+        {/* EXTRA */}
         <div className={`pt-3 pb-2 mr-4 ${collapsed ? 'hidden' : 'ml-8 text-gray-500'}`}>
           {!collapsed && <small className="text-[70%] font-[500]">EXTRA</small>}
         </div>
         <div className="flex flex-col gap-1 mt-2">
           <div className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}>
-            <div className="flex items-center gap-4 transition-colors duration-300 group-hover:text-[#6A73FA]">
-              <RiFileTextLine size={20} />
-              {!collapsed && <span className="text-[#737B8B] font-[500] text-[0.8375rem]">Pages</span>}
+            <div className="flex items-center gap-4">
+              <RiFileTextLine size={18} className="transition-colors duration-300 group-hover:text-[#6A73FA]" />
+              {!collapsed && <span className={`${SidebarTextStyling}`}>Pages</span>}
             </div>
-            {!collapsed && <RiPlayMiniFill size={16} />}
+            {!collapsed && <RiPlayMiniFill size={16} className="transition-colors duration-300 group-hover:text-[#6A73FA]" />}
           </div>
         </div>
 
@@ -520,7 +526,7 @@ const Sidebar = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Sidebar
+export default Sidebar;
