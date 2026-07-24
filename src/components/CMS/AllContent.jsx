@@ -3,8 +3,8 @@ import Navbar from "../Navbar.jsx";
 import Sidebar from "../Sidebar.jsx";
 import PageContainer from "../Layout/PageContainer.jsx";
 import Header from "../Header.jsx";
-import ContentFilter from "./ContentFilter.jsx";
-import ContentTable from "./ContentTable.jsx";
+import ContentFilter from "./Content/ContentFilter.jsx";
+import ContentTable from "./Content/ContentTable.jsx";
 import { Link } from "react-router-dom";
 
 const AllContent = () => {
