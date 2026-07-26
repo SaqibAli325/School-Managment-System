@@ -472,8 +472,8 @@ const Sidebar = () => {
                   <Link to="/cms-email-template" className={`${SubMenuTextStyling}`}>
                     - Email Template
                   </Link>
-                  <Link to="/cms-add-email" className={`${SubMenuTextStyling}`}>
-                    - Add Email
+                  <Link to="/cms-add-content" className={`${SubMenuTextStyling}`}>
+                    - Add Content
                   </Link>
                   <Link to="/cms-blog" className={`${SubMenuTextStyling}`}>
                     - Blog

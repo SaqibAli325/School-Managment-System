@@ -49,6 +49,8 @@ import Customers from './components/App/Shop/Customers.jsx'
 import AllContent from './components/CMS/AllContent.jsx'
 import Menu from './components/CMS/Menus.jsx'
 import EmailTemplate from './components/CMS/EmailTemplate.jsx'
+import AllBlog from './components/CMS/AllBlog.jsx'
+import AddContent from './components/CMS/AddContent.jsx'
 
 const App = () => {
   return (
@@ -103,6 +105,8 @@ const App = () => {
         <Route path='/cms-content' element={<AllContent />} />
         <Route path='/cms-menu' element={<Menu />} />
         <Route path='/cms-email-template' element={<EmailTemplate />} />
+        <Route path='/cms-blog' element={<AllBlog />} />
+        <Route path='/cms-add-content' element={<AddContent />} />
         <Route path="*" element={<Dashboard1 />} />
       </Routes>
     </div>

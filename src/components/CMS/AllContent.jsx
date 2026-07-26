@@ -23,11 +23,12 @@ const AllContent = () => {
         <div className="pt-4">
           <ContentFilter />
 
-          <button
+          <Link
+            to="/cms-add-content"
             className="inline-block bg-[#6A73FC] hover:bg-[#5961e0] text-white text-sm font-medium px-5 py-2.5 rounded-md mb-5 transition-colors cursor-pointer"
           >
             Add Content
-          </button>
+          </Link>
 
           <ContentTable />
         </div>
