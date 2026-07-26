@@ -48,6 +48,7 @@ import Checkout from './components/App/Shop/Checkout.jsx'
 import Customers from './components/App/Shop/Customers.jsx'
 import AllContent from './components/CMS/AllContent.jsx'
 import Menu from './components/CMS/Menus.jsx'
+import EmailTemplate from './components/CMS/EmailTemplate.jsx'
 
 const App = () => {
   return (
@@ -101,6 +102,7 @@ const App = () => {
         <Route path='/customers' element={<Customers />} />
         <Route path='/cms-content' element={<AllContent />} />
         <Route path='/cms-menu' element={<Menu />} />
+        <Route path='/cms-email-template' element={<EmailTemplate />} />
         <Route path="*" element={<Dashboard1 />} />
       </Routes>
     </div>
