@@ -36,11 +36,12 @@ const AllBlog = () => {
             >
               Blog Category
             </Link>
-            <button
+            <Link
+              to="/cms-blog-category"
               className="inline-block bg-[#6A73FC] hover:bg-[#5961e0] text-white text-sm font-medium px-5 py-2.5 rounded-md transition-colors cursor-pointer"
             >
               Add Blog Category
-            </button>
+            </Link>
           </div>
 
           <BlogTable />

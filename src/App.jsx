@@ -51,6 +51,9 @@ import Menu from './components/CMS/Menus.jsx'
 import EmailTemplate from './components/CMS/EmailTemplate.jsx'
 import AllBlog from './components/CMS/AllBlog.jsx'
 import AddContent from './components/CMS/AddContent.jsx'
+import AddBlog from './components/CMS/AddBlog.jsx'
+import BlogCategory from './components/CMS/BlogCategory.jsx'
+import AddEmail from './components/CMS/AddEmail.jsx'
 
 const App = () => {
   return (
@@ -107,6 +110,9 @@ const App = () => {
         <Route path='/cms-email-template' element={<EmailTemplate />} />
         <Route path='/cms-blog' element={<AllBlog />} />
         <Route path='/cms-add-content' element={<AddContent />} />
+        <Route path='/cms-add-blog' element={<AddBlog />} />
+        <Route path='/cms-blog-category' element={<BlogCategory />} />
+        <Route path='/cms-add-email' element={<AddEmail />} />
         <Route path="*" element={<Dashboard1 />} />
       </Routes>
     </div>
