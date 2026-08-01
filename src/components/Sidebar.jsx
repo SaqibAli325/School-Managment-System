@@ -41,6 +41,7 @@ const Sidebar = () => {
   const [emailSection, setEmailSection] = useState(false);
   const [shopSection, setShopSection] = useState(false);
   const [cmsSection, setCmsSection] = useState(false);
+  const [chartsSection, setChartsSection] = useState(false);
 
   useEffect(() => {
     const handleResize = () => setWindowWidth(window.innerWidth);
@@ -493,12 +494,34 @@ const Sidebar = () => {
           </div>
 
           {/* Charts */}
-          <div className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}>
-            <div className="flex items-center gap-4">
-              <RiSignalCellular3Fill size={18} className="transition-colors duration-300 group-hover:text-[#6A73FA]" />
-              {!collapsed && <span className={`${SidebarTextStyling}`}>Charts</span>}
+          <div className="w-full">
+            <div
+              onClick={() => setChartsSection(!chartsSection)}
+              className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}
+            >
+              <div className="flex items-center gap-4">
+                <RiSignalCellular3Fill size={18} className={`transition-colors duration-300 group-hover:text-[#6A73FA] ${chartsSection ? "text-[#6A73FA]" : ""}`} />
+                {!collapsed && <span className={`${SidebarTextStyling}`}>Charts</span>}
+              </div>
+              {!collapsed && (
+                <RiPlayMiniFill
+                  size={16}
+                  className={`transition-all duration-300 group-hover:text-[#6A73FA] ${chartsSection ? "rotate-90 text-[#6A73FA]" : ""}`}
+                />
+              )}
             </div>
-            {!collapsed && <RiPlayMiniFill size={16} className="transition-colors duration-300 group-hover:text-[#6A73FA]" />}
+            {!collapsed && (
+              <div className={`overflow-hidden transition-all duration-500 ease-in-out ${chartsSection ? "max-h-52 opacity-100" : "max-h-0 opacity-0"}`}>
+                <div className="flex flex-col pl-10 gap-3 pb-3">
+                  <Link to="/charts-flot" className={`${SubMenuTextStyling}`}>- Flot</Link>
+                  <Link to="/charts-morris" className={`${SubMenuTextStyling}`}>- Morris</Link>
+                  <Link to="/charts-chartjs" className={`${SubMenuTextStyling}`}>- Chartjs</Link>
+                  <Link to="/charts-chartist" className={`${SubMenuTextStyling}`}>- Chartist</Link>
+                  <Link to="/charts-sparkline" className={`${SubMenuTextStyling}`}>- Sparkline</Link>
+                  <Link to="/charts-peity" className={`${SubMenuTextStyling}`}>- Peity</Link>
+                </div>
+              </div>
+            )}
           </div>
         </div>
 
