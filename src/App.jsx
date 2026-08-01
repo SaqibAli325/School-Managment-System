@@ -51,6 +51,15 @@ import Menu from './components/CMS/Menus.jsx'
 import EmailTemplate from './components/CMS/EmailTemplate.jsx'
 import AllBlog from './components/CMS/AllBlog.jsx'
 import AddContent from './components/CMS/AddContent.jsx'
+import AddBlog from './components/CMS/AddBlog.jsx'
+import BlogCategory from './components/CMS/BlogCategory.jsx'
+import AddEmail from './components/CMS/AddEmail.jsx'
+import ChartsFlot from './pages/ChartsFlot.jsx'
+import ChartsMorris from './pages/ChartsMorris.jsx'
+import ChartsChartjs from './pages/ChartsChartjs.jsx'
+import ChartsChartist from './pages/ChartsChartist.jsx'
+import ChartsSparkline from './pages/ChartsSparkline.jsx'
+import ChartsPeity from './pages/ChartsPeity.jsx'
 
 const App = () => {
   return (
@@ -107,6 +116,15 @@ const App = () => {
         <Route path='/cms-email-template' element={<EmailTemplate />} />
         <Route path='/cms-blog' element={<AllBlog />} />
         <Route path='/cms-add-content' element={<AddContent />} />
+        <Route path='/cms-add-blog' element={<AddBlog />} />
+        <Route path='/cms-blog-category' element={<BlogCategory />} />
+        <Route path='/cms-add-email' element={<AddEmail />} />
+        <Route path='/charts-flot' element={<ChartsFlot />} />
+        <Route path='/charts-morris' element={<ChartsMorris />} />
+        <Route path='/charts-chartjs' element={<ChartsChartjs />} />
+        <Route path='/charts-chartist' element={<ChartsChartist />} />
+        <Route path='/charts-sparkline' element={<ChartsSparkline />} />
+        <Route path='/charts-peity' element={<ChartsPeity />} />
         <Route path="*" element={<Dashboard1 />} />
       </Routes>
     </div>
