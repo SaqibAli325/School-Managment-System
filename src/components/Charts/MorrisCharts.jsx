@@ -39,21 +39,18 @@ const tooltipStyle = {
   },
 };
 
-// --- Donut chart ---
 const donutData = [
   { name: "Online", value: 42, color: "#f5b800" },
   { name: "In-Store", value: 30, color: "#3ac569" },
   { name: "Wholesale", value: 28, color: "#6a73fa" },
 ];
 
-// --- Line chart 1 (single red line) ---
 const lineSingle = [
   { x: 0, y: 20 }, { x: 1, y: 30 }, { x: 2, y: 25 }, { x: 3, y: 40 },
   { x: 4, y: 32 }, { x: 5, y: 45 }, { x: 6, y: 42 }, { x: 7, y: 55 },
   { x: 8, y: 48 }, { x: 9, y: 95 }, { x: 10, y: 80 }, { x: 11, y: 88 },
 ];
 
-// --- Grouped bar chart (years) ---
 const barYears = [
   { x: "2006", a: 100, b: 55, c: 32 },
   { x: "2008", a: 62, b: 40, c: 25 },
@@ -61,7 +58,6 @@ const barYears = [
   { x: "2012", a: 100, b: 60, c: 35 },
 ];
 
-// --- Multi line chart (years) ---
 const lineYears = [
   { x: "2001", a: 10, b: 8, c: 5 },
   { x: "2002", a: 78, b: 40, c: 30 },
@@ -72,14 +68,12 @@ const lineYears = [
   { x: "2007", a: 20, b: 15, c: 55 },
 ];
 
-// --- Bar chart (days) ---
 const barDays = [
   { x: "T", y: 88 }, { x: "F", y: 100 }, { x: "M", y: 60 },
   { x: "T", y: 15 }, { x: "F", y: 45 }, { x: "T", y: 40 },
   { x: "S", y: 68 }, { x: "S", y: 38 },
 ];
 
-// --- Stacked area (years) ---
 const areaYears = [
   { x: "2001", a: 40, b: 15, c: 5 },
   { x: "2002", a: 55, b: 30, c: 10 },
@@ -90,7 +84,6 @@ const areaYears = [
   { x: "2007", a: 40, b: 20, c: 10 },
 ];
 
-// --- Full-width area (years, 2010-2016) ---
 const areaFull = [
   { x: "2010", a: 60, b: 40 },
   { x: "2011", a: 90, b: 60 },
