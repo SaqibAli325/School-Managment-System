@@ -16,7 +16,6 @@ const ChartCard = ({ title, children, className = "" }) => (
   </div>
 );
 
-// ---------- data ----------
 const barColor1 = [40, 65, 50, 30, 45, 60, 40, 70, 48, 32].map((y, x) => ({ x, y }));
 const barColor2 = [30, -15, 45, -25, 20, -10, 35, -20, 40, 15, -30, 25].map((y, x) => ({ x, y }));
 const barColor3 = [90, 78, 66, 55, 45, 38, 30, 24, 18, 12].map((y, x) => ({ x, y }));
@@ -58,7 +57,6 @@ const liveUpdate = Array.from({ length: 30 }, (_, i) => ({
   y: 20 + Math.round(Math.abs(Math.sin(i * 0.8)) * 70),
 }));
 
-// ---------- mini building blocks ----------
 const MiniDonut = ({ value, color, track, ring = false }) => {
   const data = [
     { name: "v", value },
@@ -129,7 +127,7 @@ const PeityCharts = () => {
             <BarChart data={barColor1}>
               <Bar dataKey="y" barSize={6} radius={[1, 1, 0, 0]}>
                 {barColor1.map((_, i) => (
-                  <Cell key={i} fill={i % 2 === 0 ? "#6a73fa" : "#3f9cf2" } />
+                  <Cell key={i} fill={i % 2 === 0 ? "#6a73fa" : "#3f9cf2"} />
                 ))}
               </Bar>
             </BarChart>

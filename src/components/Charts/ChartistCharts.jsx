@@ -46,12 +46,10 @@ const ORANGE = "#f2984a";
 const YELLOW = "#f5b800";
 const PURPLE = "#6a4ff2";
 
-// 1. Advanced Smil Animation
 const smilData = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((x) => ({
   x, y: 3 + Math.round(Math.abs(Math.sin(x * 0.7)) * 9 * 10) / 10,
 }));
 
-// 2. Simple Line Chart
 const simpleLine = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"].map((d, i) => ({
   d,
   a: [10, 6, 8, 8, 5][i],
@@ -59,7 +57,6 @@ const simpleLine = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"].map(
   c: [2, 5, 3, 8, 4][i],
 }));
 
-// 3. Line Scatter Diagram
 const scatterColors = [RED, BLUE, YELLOW, PURPLE];
 const scatterData = Array.from({ length: 90 }, (_, i) => ({
   x: i,
@@ -67,17 +64,14 @@ const scatterData = Array.from({ length: 90 }, (_, i) => ({
   fill: scatterColors[i % scatterColors.length],
 }));
 
-// 4. Line Chart With Tooltips
 const tooltipLine = [1, 2, 3, 4, 5, 6].map((x) => ({
   x, a: Math.round(1.2 * Math.pow(1.55, x) * 10) / 10, b: Math.round(1 * Math.pow(1.5, x) * 10) / 10,
 }));
 
-// 5. Line Chart With Area
 const areaOnly = [1, 2, 3, 4, 5, 6, 7, 8].map((x, i) => ({
   x, y: [5, 7, 4, 6, 3, 4, 3, 6][i],
 }));
 
-// 6. Bi-Polar Line Chart With Area Only
 const bipolarArea = [0, 1, 2, 3, 4, 5, 6, 7, 8].map((x, i) => ({
   x,
   a: [1, 2, -1, 1.5, 2, -0.5, 1, 2, 0][i],
@@ -85,17 +79,14 @@ const bipolarArea = [0, 1, 2, 3, 4, 5, 6, 7, 8].map((x, i) => ({
   c: [0.5, -1, 0.5, 1, -1.5, 0.5, 0.5, -1, 1.5][i],
 }));
 
-// 7. SVG Path Animation
 const pathAnim = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((d, i) => ({
   d, y: [1, 5, 3, 6, 4, 8][i], base: 0.3,
 }));
 
-// 8. Line Interpolation / Smoothing
 const interpData = [1, 2, 3, 4, 5].map((x, i) => ({
   x, red: [10, 15, 5, 8, 3][i], blue: [8, 8, 12, 3, 12][i],
 }));
 
-// 9. Different Configuration For Different Series
 const diffConfig = [1, 2, 3, 4, 5, 6, 7, 8].map((x, i) => ({
   x,
   blue: [0, 5, 0, -5, 0, 5, 0, -3][i],
@@ -103,18 +94,15 @@ const diffConfig = [1, 2, 3, 4, 5, 6, 7, 8].map((x, i) => ({
   yellow: [2, 1, 3, 2, 4, 3, 5, 4][i],
 }));
 
-// 10. SVG Animations Chart
 const svgAnimDots = [
   { x: 0, y: 5 }, { x: 15, y: 5 }, { x: 30, y: 6 }, { x: 45, y: 4 },
   { x: 60, y: 6 }, { x: 75, y: 2 }, { x: 90, y: 3 },
 ];
 
-// 11. Bi-Polar Bar Chart
 const bipolarBar = ["W1", "W2", "W3", "W4", "W5", "W6", "W7", "W8", "W9"].map((w, i) => ({
   w, y: [8, 2, -3, -7, -3, 2, -6, 3, -9][i],
 }));
 
-// 12. Overlapping Bars On Mobile
 const overlapMonths = ["Jan", "Feb", "Mar", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 const overlapBars = overlapMonths.map((m, i) => ({
   m,
@@ -122,7 +110,6 @@ const overlapBars = overlapMonths.map((m, i) => ({
   b: [5, 3, 6, 9, 3, 6, 8, 5, 6, 8, 4, 7][i],
 }));
 
-// 13. Multi-Line Labels
 const quarterLabels = ["First quarter\nof the year", "Second\nquarter of the\nyear", "Third quarter\nof the year", "Fourth quarter\nof the year"];
 const multiLine = quarterLabels.map((q, i) => ({
   q: `Q${i + 1}`,
@@ -130,49 +117,41 @@ const multiLine = quarterLabels.map((q, i) => ({
   b: [23000, 18000, 78000, 32000][i],
 }));
 
-// 14. Stacked Bar Chart
 const stackedQ = ["Q1", "Q2", "Q3", "Q4"].map((q, i) => ({
   q, a: [500, 700, 900, 750][i], b: [300, 600, 900, 500][i], c: [200, 700, 400, 600][i],
 }));
 
-// 15. Horizontal Bar Chart
 const hDays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"].map((d, i) => ({
   d, a: [3, 4, 8, 6, 2.5, 8.5, 3][i], b: [5, 2, 6, 3.5, 6, 5, 8.5][i],
 }));
 
-// 16. Extreme Responsive Configuration
 const extremeQ = ["Quarter 1", "Quarter 2", "Quarter 3", "Quarter 4"].map((q, i) => ({
   q,
   a: [4, 2, 8, 4][i], b: [2, 5, 3, 6][i], c: [6, 3, 9, 2][i], d: [1, 6, 5, 3][i],
 }));
 
-// 17. Label Placement
 const labelPlacement = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((d, i) => ({
   d, a: [3, 6, 8, 3.5, 6, 4.5, 2][i], b: [2, 3, 5, 8.5, 2.5, 3, 5.5][i],
 }));
 
-// 18. Donut chart
 const donutAnim = [
   { name: "A", value: 35, color: BLUE },
   { name: "B", value: 35, color: RED },
   { name: "C", value: 30, color: YELLOW },
 ];
 
-// 19. Simple Pie Chart
 const simplePie = [
   { name: "A", value: 15, color: ORANGE },
   { name: "B", value: 59, color: "#2bcbe0" },
   { name: "C", value: 26, color: BLUE },
 ];
 
-// 20. Pie Chart With Custom Labels
 const customLabelPie = [
   { name: "A", value: 10, color: PURPLE },
   { name: "B", value: 35, color: RED },
   { name: "C", value: 55, color: YELLOW },
 ];
 
-// 21. Gauge chart (half donut)
 const gaugeData = [
   { name: "A", value: 25, color: "#2d2a7a" },
   { name: "B", value: 25, color: ORANGE },

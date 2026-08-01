@@ -40,7 +40,6 @@ const tooltipStyle = {
   },
 };
 
-// ---- Static datasets (mirroring flot demo shapes) ----
 
 const barSingle = [
   { x: 0, y: 3 },

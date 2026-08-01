@@ -21,7 +21,6 @@ const ChartCard = ({ title, children, className = "" }) => (
   </div>
 );
 
-// --- datasets ---
 const barAsc = [3, 5, 6, 8, 10, 12, 14, 16, 18, 20].map((y, x) => ({ x, y }));
 
 const trafficWave1 = [4, 3, 5, 8, 6, 9, 7, 10, 8, 6, 9, 7].map((y, x) => ({ x, y }));
@@ -58,7 +57,6 @@ const pieSpark = [
   { name: "C", value: 33, color: "#f0768c" },
 ];
 
-// --- Bullet chart (custom svg) ---
 const BulletChart = () => (
   <div className="w-full h-[70px] flex items-center">
     <svg viewBox="0 0 400 40" className="w-full h-10">
@@ -71,7 +69,6 @@ const BulletChart = () => (
   </div>
 );
 
-// --- Box plot (custom svg) ---
 const BoxPlot = () => (
   <div className="w-full h-[70px] flex items-center">
     <svg viewBox="0 0 200 40" className="w-40 h-10">
