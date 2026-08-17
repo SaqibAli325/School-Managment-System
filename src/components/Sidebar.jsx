@@ -42,6 +42,7 @@ const Sidebar = () => {
   const [shopSection, setShopSection] = useState(false);
   const [cmsSection, setCmsSection] = useState(false);
   const [chartsSection, setChartsSection] = useState(false);
+  const [bootstrapSection, setBootstrapSection] = useState(false);
 
   useEffect(() => {
     const handleResize = () => setWindowWidth(window.innerWidth);
@@ -63,6 +64,26 @@ const Sidebar = () => {
   const isMobileView = windowWidth < 1100;
   const shouldHide = isMobileView && !mobileMenuOpen;
   const displayCollapsed = isMobileView ? false : collapsed;
+
+  const bootstrapMenuItems = [
+    { title: "Accordion", to: "/bootstrap/accordion" },
+    { title: "Alert", to: "/bootstrap/alert" },
+    { title: "Badge", to: "/bootstrap/badge" },
+    { title: "Button", to: "/bootstrap/button" },
+    { title: "Modal", to: "/bootstrap/modal" },
+    { title: "Button Group", to: "/bootstrap/button-group" },
+    { title: "List Group", to: "/bootstrap/list-group" },
+    { title: "Media Object", to: "/bootstrap/media-object" },
+    { title: "Cards", to: "/bootstrap/cards" },
+    { title: "Carousel", to: "/bootstrap/carousel" },
+    { title: "Dropdown", to: "/bootstrap/dropdown" },
+    { title: "Popover", to: "/bootstrap/popover" },
+    { title: "Progressbar", to: "/bootstrap/progressbar" },
+    { title: "Tab", to: "/bootstrap/tab" },
+    { title: "Typography", to: "/bootstrap/typography" },
+    { title: "Pagination", to: "/bootstrap/pagination" },
+    { title: "Grid", to: "/bootstrap/grid" }
+  ];
 
   return (
     <div
@@ -531,13 +552,28 @@ const Sidebar = () => {
         </div>
 
         <div className="flex flex-col gap-1 mt-2 border-b border-gray-200 pb-5">
-          <div className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}>
+          {/* Bootstrap */}
+          <div onClick={() => { setBootstrapSection(!bootstrapSection) }} className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}>
             <div className="flex items-center gap-4">
               <RiGlobalLine size={18} className="transition-colors duration-300 group-hover:text-[#6A73FA]" />
               {!collapsed && <span className={`${SidebarTextStyling}`}>Bootstrap</span>}
             </div>
             {!collapsed && <RiPlayMiniFill size={16} className="transition-colors duration-300 group-hover:text-[#6A73FA]" />}
+
           </div>
+          {!collapsed && (
+            <div className={`overflow-hidden transition-all duration-500 ease-in-out ${bootstrapSection ? "max-h-125 opacity-100" : "max-h-0 opacity-0"}`}>
+              <div className="flex flex-col pl-10 gap-3 pb-3">
+                {bootstrapMenuItems.map((item, index) => (
+                  <Link key={index} to={item.to} className={`${SubMenuTextStyling}`}>
+                    - {item.title}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Plugins */}
           <div className={`group flex items-center ${collapsed ? 'justify-center' : 'justify-between w-[90%] mx-auto'} py-3 text-[#5a5a5ac9] text-[12px] font-semibold cursor-pointer`}>
             <div className="flex items-center gap-4">
               <RiFileAddLine size={18} className="transition-colors duration-300 group-hover:text-[#6A73FA]" />

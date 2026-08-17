@@ -60,6 +60,16 @@ import ChartsChartjs from './pages/ChartsChartjs.jsx'
 import ChartsChartist from './pages/ChartsChartist.jsx'
 import ChartsSparkline from './pages/ChartsSparkline.jsx'
 import ChartsPeity from './pages/ChartsPeity.jsx'
+import BootstrapAccordion from './components/Bootstrap/Accordion.jsx'
+import BootstrapAlert from './components/Bootstrap/Alert.jsx'
+import BootstrapBadge from './components/Bootstrap/Badge.jsx'
+import BootstrapButton from './components/Bootstrap/Button.jsx'
+import BootstrapModal from './components/Bootstrap/Modal.jsx'
+import ButtonGroup from './components/Bootstrap/ButtonGroup.jsx'
+import ListGroup from './components/Bootstrap/ListGroup.jsx'
+import MediaObject from './components/Bootstrap/MediaObject.jsx'
+import BootstrapCards from './components/Bootstrap/BootstrapCards.jsx'
+import BootstrapCarousel from './components/Bootstrap/Carousel.jsx'
 
 const App = () => {
   return (
@@ -125,6 +135,16 @@ const App = () => {
         <Route path='/charts-chartist' element={<ChartsChartist />} />
         <Route path='/charts-sparkline' element={<ChartsSparkline />} />
         <Route path='/charts-peity' element={<ChartsPeity />} />
+        <Route path='/bootstrap/accordion' element={<BootstrapAccordion />} />
+        <Route path='/bootstrap/alert' element={<BootstrapAlert />} />
+        <Route path='/bootstrap/badge' element={<BootstrapBadge />} />
+        <Route path='/bootstrap/button' element={<BootstrapButton />} />
+        <Route path='/bootstrap/modal' element={<BootstrapModal />} />
+        <Route path='/bootstrap/button-group' element={<ButtonGroup />} />
+        <Route path='/bootstrap/list-group' element={<ListGroup />} />
+        <Route path='/bootstrap/media-object' element={<MediaObject />} />
+        <Route path='/bootstrap/cards' element={<BootstrapCards />} />
+        <Route path='/bootstrap/carousel' element={<BootstrapCarousel />} />
         <Route path="*" element={<Dashboard1 />} />
       </Routes>
     </div>
